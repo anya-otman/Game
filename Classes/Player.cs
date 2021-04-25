@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using Game.Properties;
+﻿using System.Drawing;
 
 namespace Game.Classes
 {
-    class Player
+    public class Player
     {
         public Physics physics;
         public int animationCount = 0;
@@ -22,14 +16,12 @@ namespace Game.Classes
             physics = new Physics(position, size);
             score = 0;
             life = 5;
-            image = new Bitmap("D:\\C# 2\\Totoro-game\\Game\\Images\\totoro.png");
+            image = Properties.Resources.totoro;
         }
 
         public void DrawImage(Graphics g)
         {
-            g.DrawImage(image,
-                new Rectangle(new Point((int) physics.transform.position.X, (int) physics.transform.position.Y),
-                    new Size(physics.transform.size.Width, physics.transform.size.Height)));
+            g.DrawImage(image, physics.transform.position.X, physics.transform.position.Y, physics.transform.size.Width, physics.transform.size.Height);
         }
 
     }

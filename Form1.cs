@@ -28,8 +28,8 @@ namespace Game
         private void Init()
         {
             GameController.Init();
+            player = new Player(new PointF(275, 495), new Size(180, 280));
             time = 0;
-            player = new Player(new PointF(275, 569), new Size(150, 200));
             mainTimer.Start();
             Invalidate();
             }
@@ -73,7 +73,7 @@ namespace Game
         private void UpdateTimer()
         {
             if (time > 10000)
-                mainTimer.Interval = 3;
+                mainTimer.Interval = 5;
         }
 
         private void DrawGame(object sender, PaintEventArgs e)
@@ -92,8 +92,8 @@ namespace Game
                     {
                         player.physics.isCrouching = true;
                         player.physics.isJumping = false;
-                        player.physics.transform.size.Height = 125;
-                        player.physics.transform.position.Y = 650;
+                        player.physics.transform.size.Height = 200;
+                        player.physics.transform.position.Y = 580;
                     }
 
                     break;
@@ -113,8 +113,8 @@ namespace Game
                     break;
                 case Keys.Down:
                     player.physics.isCrouching = false;
-                    player.physics.transform.size.Height = 200;
-                    player.physics.transform.position.Y = 570.2f;
+                    player.physics.transform.size.Height = 280;
+                    player.physics.transform.position.Y = 496.2f;
                     break;
             }
         }
@@ -129,8 +129,7 @@ namespace Game
                         player.score += 10;
                         GameController.foods.RemoveAt(player.physics.GetIndexOfFoodNearTotoro());
                         player.physics.DoesTotoroTakeFood = true;
-                    }
-
+                    } 
                     break;
             }
         }

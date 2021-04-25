@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Game.Classes
 {
-    class Physics
+    public class Physics
     {
         public Transform transform;
         private float gravity;
@@ -31,31 +27,21 @@ namespace Game.Classes
         {
             CalculatePhysics();
         }
-        public void CalculatePhysics()
-        {
-            if (transform.position.Y < 570 || isJumping)
-            {
-                transform.position.Y += gravity;
-                gravity += a;
-            }
-
-            if (transform.position.Y > 570)
-                isJumping = false;
-        }
 
         public bool Collide()
         {
-            for (var i = 0; i < GameController.obstacles.Count; i++)
+            foreach (var obstacle in GameController.obstacles)
             {
-                var obstacle = GameController.obstacles[i];
-                PointF delta = new PointF();
-                delta.X = (transform.position.X + transform.size.Width / 2) -
-                          (obstacle.transform.position.X + obstacle.transform.size.Width / 2);
-                delta.Y = (transform.position.Y + transform.size.Height / 2) -
-                          (obstacle.transform.position.Y + obstacle.transform.size.Height / 2);
-                
-                if (Math.Abs(delta.X * 1.3)<= transform.size.Width / 2 + obstacle.transform.size.Width / 2)
-                    if (Math.Abs(delta.Y * 1.3) <= transform.size.Height / 2 + obstacle.transform.size.Height / 2)
+                var delta = new PointF
+                {
+                    X = (transform.position.X + transform.size.Width / 2) -
+                        (obstacle.transform.position.X + obstacle.transform.size.Width / 2),
+                    Y = (transform.position.Y + transform.size.Height / 2) -
+                        (obstacle.transform.position.Y + obstacle.transform.size.Height / 2)
+                };
+
+                if (Math.Abs(delta.X * 1.35)<= transform.size.Width / 2 + obstacle.transform.size.Width / 2)
+                    if (Math.Abs(delta.Y * 1.35) <= transform.size.Height / 2 + obstacle.transform.size.Height / 2)
                         return true;
             }
             return false;
@@ -63,21 +49,21 @@ namespace Game.Classes
 
         public bool CanTotoroTakeFood()
         {
-            for (var i = 0; i < GameController.foods.Count; i++)
+            foreach (var food in GameController.foods)
             {
-                var food = GameController.foods[i];
-                PointF delta = new PointF();
-                delta.X = (transform.position.X + transform.size.Width / 2) -
-                          (food.transform.position.X + food.transform.size.Width / 2);
-                delta.Y = (transform.position.Y + transform.size.Height / 2) -
-                          (food.transform.position.Y + food.transform.size.Height / 2);
-                
+                var delta = new PointF
+                {
+                    X = (transform.position.X + transform.size.Width / 2) -
+                        (food.transform.position.X + food.transform.size.Width / 2),
+                    Y = (transform.position.Y + transform.size.Height / 2) -
+                        (food.transform.position.Y + food.transform.size.Height / 2)
+                };
+
                 if (Math.Abs(delta.X)<= transform.size.Width / 2 + food.transform.size.Width / 2)
                     if (Math.Abs(delta.Y) <= transform.size.Height / 2 + food.transform.size.Height / 2)
                     {
                         return true;
                     }
-                       
             }
             return false;
         }
@@ -87,12 +73,14 @@ namespace Game.Classes
             for (var i = 0; i < GameController.foods.Count; i++)
             {
                 var food = GameController.foods[i];
-                PointF delta = new PointF();
-                delta.X = (transform.position.X + transform.size.Width / 2) -
-                          (food.transform.position.X + food.transform.size.Width / 2);
-                delta.Y = (transform.position.Y + transform.size.Height / 2) -
-                          (food.transform.position.Y + food.transform.size.Height / 2);
-                
+                var delta = new PointF
+                {
+                    X = (transform.position.X + transform.size.Width / 2) -
+                        (food.transform.position.X + food.transform.size.Width / 2),
+                    Y = (transform.position.Y + transform.size.Height / 2) -
+                        (food.transform.position.Y + food.transform.size.Height / 2)
+                };
+
                 if (Math.Abs(delta.X)<= transform.size.Width / 2 + food.transform.size.Width / 2)
                     if (Math.Abs(delta.Y) <= transform.size.Height / 2 + food.transform.size.Height / 2)
                     {
@@ -109,8 +97,20 @@ namespace Game.Classes
             if (!isJumping)
             {
                 isJumping = true;
-                gravity = -17;
+                gravity = -15;
             }
+        }
+
+        private void CalculatePhysics()
+        {
+            if (transform.position.Y < 496 || isJumping)
+            {
+                transform.position.Y += gravity;
+                gravity += a;
+            }
+
+            if (transform.position.Y > 496)
+                isJumping = false;
         }
     }
 }
