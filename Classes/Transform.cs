@@ -3,7 +3,7 @@
 
 namespace Game.Classes
 {
-    public class Transform
+    public class Transform //хранит позицию и размер
     {
         public PointF position;
         public Size size;
