@@ -15,6 +15,7 @@ namespace Game.Classes
 
         public bool isJumping;
         public bool isCrouching;
+        public bool DoesTotoroTakeFood;
 
         public Physics(PointF position, Size size)
         {
@@ -23,6 +24,7 @@ namespace Game.Classes
             a = 0.4f;
             isJumping = false;
             isCrouching = false;
+            DoesTotoroTakeFood = false;
         }
 
         public void ApplyPhisics()
@@ -56,11 +58,52 @@ namespace Game.Classes
                     if (Math.Abs(delta.Y * 1.3) <= transform.size.Height / 2 + obstacle.transform.size.Height / 2)
                         return true;
             }
-
             return false;
         }
 
-        
+        public bool CanTotoroTakeFood()
+        {
+            for (var i = 0; i < GameController.foods.Count; i++)
+            {
+                var food = GameController.foods[i];
+                PointF delta = new PointF();
+                delta.X = (transform.position.X + transform.size.Width / 2) -
+                          (food.transform.position.X + food.transform.size.Width / 2);
+                delta.Y = (transform.position.Y + transform.size.Height / 2) -
+                          (food.transform.position.Y + food.transform.size.Height / 2);
+                
+                if (Math.Abs(delta.X)<= transform.size.Width / 2 + food.transform.size.Width / 2)
+                    if (Math.Abs(delta.Y) <= transform.size.Height / 2 + food.transform.size.Height / 2)
+                    {
+                        return true;
+                    }
+                       
+            }
+            return false;
+        }
+
+        public int GetIndexOfFoodNearTotoro()
+        {
+            for (var i = 0; i < GameController.foods.Count; i++)
+            {
+                var food = GameController.foods[i];
+                PointF delta = new PointF();
+                delta.X = (transform.position.X + transform.size.Width / 2) -
+                          (food.transform.position.X + food.transform.size.Width / 2);
+                delta.Y = (transform.position.Y + transform.size.Height / 2) -
+                          (food.transform.position.Y + food.transform.size.Height / 2);
+                
+                if (Math.Abs(delta.X)<= transform.size.Width / 2 + food.transform.size.Width / 2)
+                    if (Math.Abs(delta.Y) <= transform.size.Height / 2 + food.transform.size.Height / 2)
+                    {
+                        return i;
+                    }
+                       
+            }
+            return -1;
+        }
+
+
         public void AddForce()
         {
             if (!isJumping)
