@@ -7,17 +7,12 @@ namespace Game.Classes
     public class Food
     {
         public Transform transform;
-        Image image;
+        public Image image;
 
         public Food(PointF position, Size size)
         {
             transform = new Transform(position, size);
             ChooseRandomImage();
-        }
-
-        public void DrawImage(Graphics g)
-        {
-            g.DrawImage(image, transform.position.X, transform.position.Y, transform.size.Width, transform.size.Height);
         }
 
         private void ChooseRandomImage()

@@ -27,7 +27,8 @@ namespace Game
 
         private void Init()
         {
-            GameController.Init();
+            GameController.Init(new Transform(new PointF(1800, 200), new Size(50, 50)), 
+                new Transform(new PointF(200, 200), new Size(50, 50)));
             player = new Player(new PointF(275, 495), new Size(180, 280));
             time = 0;
             mainTimer.Start();
@@ -79,10 +80,36 @@ namespace Game
         private void DrawGame(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
-            GameController.DrawObjects(g);
+            DrawObjects(g);
             player.DrawImage(g);
         }
 
+        public static void DrawObjects(Graphics g)
+        {
+            for (var i = 0; i < GameController.roads.Count; i++)
+            {
+                var road = GameController.roads[i];
+                g.DrawImage(road.roadImage, 
+                    2100, 112, 100, 17);
+            }
+
+            for (var i = 0; i < GameController.obstacles.Count; i++)
+            {
+                var obstacle = GameController.obstacles[i];
+                g.DrawImage(obstacle.image, obstacle.transform.position.X, obstacle.transform.position.Y, 
+                    obstacle.transform.size.Width, obstacle.transform.size.Height);
+            }
+
+            for (var i = 0; i < GameController.foods.Count; i++)
+            {
+                var food = GameController.foods[i];
+                g.DrawImage(food.image, food.transform.position.X, food.transform.position.Y, 
+                    food.transform.size.Width, food.transform.size.Height);
+            }
+
+            //еще птицы
+        }
+        
         private void OnKeyBoardDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -121,7 +148,7 @@ namespace Game
 
         private void OnKeyBoardSpace(object sender, KeyEventArgs e)
         {
-            switch (e.KeyCode)
+            switch (e.KeyCode) 
             {
                 case Keys.Space:
                     if (player.physics.CanTotoroTakeFood() && !player.physics.DoesTotoroTakeFood)
