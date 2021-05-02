@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace Game.Classes
 {
+    
     public interface IGameObject
     {
         Transform Transform { get; set; }
@@ -20,6 +21,8 @@ namespace Game.Classes
         public static Transform food;
 
         public static Transform road;
+
+        public static int foodCounter;
         //еще птицы
 
         private static int dangerSpawn = 7;
@@ -32,6 +35,7 @@ namespace Game.Classes
             foods = new List<Food>();
             food = f;
             road = r;
+            foodCounter = 0;
             //еще птицы
             GenerateRoad();
         }
@@ -59,14 +63,15 @@ namespace Game.Classes
 
             for (var i = 0; i < foods.Count; i++)
             {
-                foods[i].transform.position.X -= 4;
+                foods[i].transform.position.X -= 1;
+                if (foods[i].transform.position.X < 0)
+                    foods.RemoveAt(i);
+                /*foods[i].transform.position.X -= 4;
                 if (foods[i].transform.position.X + foods[i].transform.size.Width < 0)
                 {
                     foods.RemoveAt(i);
-                }
+                }*/
             }
-
-            //еще птицы
         }
 
         /*private static void NewMethod(List<T> list)
@@ -102,8 +107,9 @@ namespace Game.Classes
                         obstacles.Add(obstacle);
                         break;
                     case 1:
-                        var food = new Food(new PointF(GameController.food.position.X, 690), new Size(90, 90));
-                        foods.Add(food);
+                        //var food = new Food(new PointF(GameController.food.position.X, 690), new Size(90, 90));
+                        foods.Add(new Food());
+                        foodCounter++;
                         break;
                     //еще птицы
                 }

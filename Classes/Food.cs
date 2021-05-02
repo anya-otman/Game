@@ -9,12 +9,12 @@ namespace Game.Classes
         public Transform transform;
         public Image image;
 
-        public Food(PointF position, Size size)
+        public Food()
         {
-            transform = new Transform(position, size);
+            transform = new Transform(new PointF(11, 2), new Size(1,1));
             ChooseRandomImage();
         }
-
+        
         private void ChooseRandomImage()
         {
             var r = new Random();
