@@ -4,14 +4,14 @@ using System.Drawing;
 
 namespace Game.Classes
 {
-    public class Food
+    public class Food 
     {
         public Transform transform;
         public Image image;
 
         public Food()
         {
-            transform = new Transform(new PointF(11, 2), new Size(1,1));
+            transform = new Transform(new PointF(1800, 690), new Size(90,90));
             ChooseRandomImage();
         }
         
@@ -31,6 +31,11 @@ namespace Game.Classes
                     image = Properties.Resources.nut;
                     break;
             }
+        }
+
+        public bool DoesNeedGetNewRoad()
+        {
+            return false;
         }
     }
 }

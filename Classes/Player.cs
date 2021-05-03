@@ -13,7 +13,7 @@ namespace Game.Classes
 
         public Player(/*PointF position, Size size*/)
         {
-            physics = new Physics(new PointF(3, 0), new Size(1, 2));
+            physics = new Physics(new PointF(275, 495), new Size(180, 280));
             score = 0;
             life = 5;
             image = Properties.Resources.totoro;

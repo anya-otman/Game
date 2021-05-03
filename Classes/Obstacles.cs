@@ -4,14 +4,14 @@ using System.Drawing;
 
 namespace Game.Classes
 {
-    public class Obstacles
+    public class Obstacles 
     {
         public Transform transform;
         public Image image;
 
-        public Obstacles(PointF position, Size size)
+        public Obstacles()
         {
-            transform = new Transform(position, size);
+            transform = new Transform(new PointF(0 + 200 * 9, 668), new Size(100, 110));
             ChooseRandomImage();
         }
 
@@ -34,6 +34,10 @@ namespace Game.Classes
                     image = Properties.Resources.stone2;
                     break;
             }
+        }
+        public bool DoesNeedGetNewRoad()
+        {
+            return false;
         }
     }
 }

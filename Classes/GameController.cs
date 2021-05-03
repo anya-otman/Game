@@ -8,12 +8,13 @@ namespace Game.Classes
     
     public interface IGameObject
     {
-        Transform Transform { get; set; }
+        Transform transform { get; set; }
+        bool DoesNeedGetNewRoad();
     }
 
     public static class GameController
     {
-        public static List<IGameObject> road1;
+        public static List<IGameObject> gameObjects;
 
         public static List<Road> roads;
         public static List<Obstacles> obstacles;
@@ -30,6 +31,7 @@ namespace Game.Classes
 
         public static void Init(Transform f, Transform r)
         {
+            gameObjects = new List<IGameObject>();
             roads = new List<Road>();
             obstacles = new List<Obstacles>();
             foods = new List<Food>();
@@ -42,6 +44,16 @@ namespace Game.Classes
 
         public static void MoveMap()
         {
+            /*for (var i = 0; i < gameObjects.Count; i++)
+            {
+                gameObjects[i].transform.position.X -= 4;
+                if (gameObjects[i].transform.position.X + gameObjects[i].transform.size.Width < 0)
+                {
+                    gameObjects.RemoveAt(i);
+                    if (gameObjects[i].DoesNeedGetNewRoad())
+                        GetNewRoad();
+                }
+            }*/
             for (var i = 0; i < roads.Count; i++)
             {
                 roads[i].transform.position.X -= 4;
@@ -63,14 +75,11 @@ namespace Game.Classes
 
             for (var i = 0; i < foods.Count; i++)
             {
-                foods[i].transform.position.X -= 1;
-                if (foods[i].transform.position.X < 0)
-                    foods.RemoveAt(i);
-                /*foods[i].transform.position.X -= 4;
+                foods[i].transform.position.X -= 4;
                 if (foods[i].transform.position.X + foods[i].transform.size.Width < 0)
                 {
                     foods.RemoveAt(i);
-                }*/
+                }
             }
         }
 
@@ -90,7 +99,7 @@ namespace Game.Classes
 
         private static void GetNewRoad()
         {
-            var road = new Road(new PointF(0 + 200 * 9, 750), new Size(100, 17));
+            var road = new Road(new PointF(0 + 200 * 9, 750));
             roads.Add(road);
             countDangerSpawn++;
 
@@ -103,11 +112,11 @@ namespace Game.Classes
                 switch (obj)
                 {
                     case 0:
-                        var obstacle = new Obstacles(new PointF(0 + 200 * 9, 668), new Size(100, 110));
-                        obstacles.Add(obstacle);
+                        //gameObjects.Add(new Obstacles());
+                        obstacles.Add(new Obstacles());
                         break;
                     case 1:
-                        //var food = new Food(new PointF(GameController.food.position.X, 690), new Size(90, 90));
+                        //gameObjects.Add(new Food());
                         foods.Add(new Food());
                         foodCounter++;
                         break;
@@ -120,7 +129,8 @@ namespace Game.Classes
         {
             for (var i = 0; i < 10; i++)
             {
-                var newRoad = new Road(new PointF(road.position.X * i, 750), new Size(100, 17));
+                var newRoad = new Road(new PointF(road.position.X * i, 750));
+                //gameObjects.Add(new Road(new PointF(road.position.X * i, 750)));
                 roads.Add(newRoad);
                 countDangerSpawn++;
             }

@@ -24,10 +24,10 @@ namespace Game.Classes
             DoesTotoroTakeFood = false;
         }
 
-        /*public void ApplyPhisics()
+        public void ApplyPhisics()
         {
             CalculatePhysics();
-        }*/
+        }
 
         public bool Collide()
         {
@@ -50,7 +50,7 @@ namespace Game.Classes
 
         public bool CanTotoroTakeFood(Player player)
         {
-            /*foreach (var food in GameController.foods)
+            foreach (var food in GameController.foods)
             {
                 var delta = new PointF
                 {
@@ -66,33 +66,12 @@ namespace Game.Classes
                         return true;
                     }
             }
-            return false;*/
-            foreach (var food in GameController.foods)
-            {
-                var foodPosition = food.transform.position;
-                if (GetPointsWhereTotoro(player).Contains(foodPosition))
-                    return true;
-            }
             return false;
         }
 
-        public HashSet<PointF> GetPointsWhereTotoro(Player player)
-        {
-            var startPoint = player.physics.transform.position;
-            var points  = new HashSet<PointF>();
-            for (var i = 0; i <= player.physics.transform.size.Width; i++)
-            {
-                for (var j = 0; j <= player.physics.transform.size.Height; j++)
-                {
-                    points.Add(new PointF((int)startPoint.X + i, (int)startPoint.Y + j));
-                }
-            }
-
-            return points;
-        }
         public int GetIndexOfFoodNearTotoro(Player player)
         {
-            var playerPosition = player.physics.transform.position;
+            /*var playerPosition = player.physics.transform.position;
             var playerSize = player.physics.transform.size;
             for (var i = 0; i < GameController.foods.Count; i++)
             {
@@ -105,8 +84,8 @@ namespace Game.Classes
                     return i;
             }
 
-            return -1;
-            /*for (var i = 0; i < GameController.foods.Count; i++)
+            return -1;*/
+            for (var i = 0; i < GameController.foods.Count; i++)
             {
                 var food = GameController.foods[i];
                 var delta = new PointF
@@ -124,7 +103,7 @@ namespace Game.Classes
                     }
                        
             }
-            return -1;*/
+            return -1;
         }
 
         private bool IsPointBetweenPoints(int startPoint, int endPoint, int point)
@@ -135,7 +114,7 @@ namespace Game.Classes
         }
 
 
-        /*public void AddForce()
+        public void AddForce()
         {
             if (!isJumping)
             {
@@ -154,6 +133,6 @@ namespace Game.Classes
 
             if (transform.position.Y > 496)
                 isJumping = false;
-        }*/
+        }
     }
 }

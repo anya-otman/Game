@@ -20,7 +20,7 @@ namespace Game
             KeyDown += OnKeyBoardDown;
             KeyUp += OnKeyBoardSpace;
             mainTimer = new Timer();
-            mainTimer.Interval = 100;
+            mainTimer.Interval = 5;
             mainTimer.Tick += Update;
 
             Init();
@@ -44,7 +44,7 @@ namespace Game
             UpdateCollision();
             Text = "Totoro - life: " + player.life + " time interval: " + mainTimer.Interval + " score" + player.score + " foodCounter " + GameController.foodCounter;
             //ShouldGameStop();
-            //player.physics.ApplyPhisics();
+            player.physics.ApplyPhisics();
             GameController.MoveMap();
             Invalidate();
         }
@@ -100,8 +100,10 @@ namespace Game
 
         public void DrawPlayer(Graphics g)
         {
-            g.DrawImage(player.image, -265 + player.physics.transform.position.X * 180, 495 + player.physics.transform.position.Y * 475,
-                player.physics.transform.size.Width*180, player.physics.transform.size.Height*140);
+            /*g.DrawImage(player.image, -265 + player.physics.transform.position.X * 180, 495 + player.physics.transform.position.Y * 475,
+                player.physics.transform.size.Width*180, player.physics.transform.size.Height*140);*/
+            g.DrawImage(player.image, player.physics.transform.position.X * 1, player.physics.transform.position.Y * 1,
+                player.physics.transform.size.Width*1, player.physics.transform.size.Height*1);
         }
 
         public static void DrawObjects(Graphics g)
@@ -123,10 +125,10 @@ namespace Game
             for (var i = 0; i < GameController.foods.Count; i++)
             {
                 var food = GameController.foods[i];
-                /*g.DrawImage(food.image, food.transform.position.X * 1, food.transform.position.Y,
-                    food.transform.size.Width, food.transform.size.Height);*/
-                g.DrawImage(food.image, -265 + food.transform.position.X * 180, 690,
-                    90, 90);
+                g.DrawImage(food.image, food.transform.position.X * 1, food.transform.position.Y,
+                    food.transform.size.Width, food.transform.size.Height);
+                /*g.DrawImage(food.image, -265 + food.transform.position.X * 180, 690,
+                    90, 90);*/
             }
 
             //еще птицы
@@ -157,7 +159,7 @@ namespace Game
                     if (!player.physics.isJumping)
                     {
                         player.physics.isCrouching = false;
-                        //player.physics.AddForce();
+                        player.physics.AddForce();
                     }
 
                     break;
