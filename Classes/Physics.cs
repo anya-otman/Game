@@ -144,5 +144,16 @@ namespace Game.Classes
                 AddForce();
             }
         }
+
+        public void SitDown()
+        {
+            if (!isJumping)
+            {
+                isCrouching = true;
+                isJumping = false;
+                transform.size.Height = 200;
+                transform.position.Y = 580;
+            }
+        }
     }
 }

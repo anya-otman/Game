@@ -139,14 +139,7 @@ namespace Game
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    if (!player.physics.isJumping)
-                    {
-                        player.physics.isCrouching = true;
-                        player.physics.isJumping = false;
-                        player.physics.transform.size.Height = 200;
-                        player.physics.transform.position.Y = 580;
-                    }
-
+                    player.physics.SitDown();
                     break;
             }
         }
