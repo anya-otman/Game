@@ -1,23 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Runtime.CompilerServices;
 
 namespace Game.Classes
 {
-    
-    
-
     public static class GameController
     {
         public static List<IGameObject> gameObjects;
-
-        public static List<Road> roads;
-        public static List<Obstacles> obstacles;
-        public static List<Food> foods;
-        public static Transform food;
-
-        public static Transform road;
 
         public static int foodCounter;
         //еще птицы
@@ -25,14 +13,9 @@ namespace Game.Classes
         private static int dangerSpawn = 7;
         private static int countDangerSpawn = 2;
 
-        public static void Init(Transform f, Transform r)
+        public static void Init()
         {
             gameObjects = new List<IGameObject>();
-            roads = new List<Road>();
-            obstacles = new List<Obstacles>();
-            foods = new List<Food>();
-            food = f;
-            road = r;
             foodCounter = 0;
             //еще птицы
             GenerateRoad();
@@ -42,59 +25,21 @@ namespace Game.Classes
         {
             for (var i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].transform.position.X -= 4;
-                if (gameObjects[i].transform.position.X + gameObjects[i].transform.size.Width < 0)
+                gameObjects[i].Transform.position.X -= 4;
+                if (gameObjects[i].Transform.position.X + gameObjects[i].Transform.size.Width < 0)
                 {
+                    if (gameObjects[i].ObjectName == "road")
+                        GetNewRoad();
                     gameObjects.RemoveAt(i);
                 }
             }
-            for (var i = 0; i < roads.Count; i++)
-            {
-                roads[i].transform.position.X -= 4;
-                if (roads[i].transform.position.X + roads[i].transform.size.Width < 0)
-                {
-                    roads.RemoveAt(i);
-                    GetNewRoad();
-                }
-            }
-
-            /*for (var i = 0; i < obstacles.Count; i++)
-            {
-                obstacles[i].transform.position.X -= 4;
-                if (obstacles[i].transform.position.X + obstacles[i].transform.size.Width < 0)
-                {
-                    obstacles.RemoveAt(i);
-                }
-            }
-
-            for (var i = 0; i < foods.Count; i++)
-            {
-                foods[i].transform.position.X -= 4;
-                if (foods[i].transform.position.X + foods[i].transform.size.Width < 0)
-                {
-                    foods.RemoveAt(i);
-                }
-            }*/
         }
 
-        /*private static void NewMethod(List<T> list)
-        {
-            for (var i = 0; i < roads.Count; i++)
-            {
-                roads[i].transform.position.X -= 4;
-                if (roads[i].transform.position.X + roads[i].transform.size.Width < 0)
-                {
-                    roads.RemoveAt(i);
-                    GetNewRoad();
-                }
-            }
-        }*/
-        
 
         private static void GetNewRoad()
         {
-            var road = new Road(new PointF(0 + 200 * 9, 750));
-            roads.Add(road);
+            var road = new Road();
+            gameObjects.Add(road);
             countDangerSpawn++;
 
             if (countDangerSpawn >= dangerSpawn)
@@ -107,11 +52,9 @@ namespace Game.Classes
                 {
                     case 0:
                         gameObjects.Add(new Obstacles());
-                        //obstacles.Add(new Obstacles());
                         break;
                     case 1:
                         gameObjects.Add(new Food());
-                        //foods.Add(new Food());
                         foodCounter++;
                         break;
                     //еще птицы
@@ -123,9 +66,9 @@ namespace Game.Classes
         {
             for (var i = 0; i < 10; i++)
             {
-                var newRoad = new Road(new PointF(road.position.X * i, 750));
-                //gameObjects.Add(new Road(new PointF(road.position.X * i, 750)));
-                roads.Add(newRoad);
+                var newRoad = new Road();
+                newRoad.Transform.position.X *= i;
+                gameObjects.Add(newRoad);
                 countDangerSpawn++;
             }
         }

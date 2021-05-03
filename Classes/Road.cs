@@ -3,20 +3,15 @@
 
 namespace Game.Classes
 {
-    public class Road 
+    public class Road: IGameObject
     {
-        public Transform transform { get; set; }
-        public Image roadImage = Properties.Resources.road;
-
-        public Road(PointF position)
-        {
-            transform = new Transform(new PointF(position.X, 750), new Size(100, 17));
-        }
-
         public Transform Transform { get; set; }
-        public bool DoesNeedGetNewRoad()
+        public Image Image => Properties.Resources.road;
+        public string ObjectName => "road";
+
+        public Road()
         {
-            return true;
+            Transform = new Transform(new PointF(2100, 900), new Size(100, 17));
         }
     }
 }

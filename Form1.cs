@@ -28,9 +28,7 @@ namespace Game
 
         private void Init()
         {
-            GameController.Init(new Transform(new PointF(1800, 200), new Size(50, 50)),
-                new Transform(new PointF(200, 200), new Size(50, 50)));
-            //player = new Player(new PointF(275, 495), new Size(180, 280));
+            GameController.Init();
             player = new Player();
             time = 0;
             mainTimer.Start();
@@ -111,27 +109,11 @@ namespace Game
             for (var i = 0; i < GameController.gameObjects.Count; i++)
             {
                 var gameObjects = GameController.gameObjects[i];
-                g.DrawImage(gameObjects.Image, gameObjects.transform.position.X, gameObjects.transform.position.Y,
-                    gameObjects.transform.size.Width, gameObjects.transform.size.Height);
+                g.DrawImage(gameObjects.Image, gameObjects.Transform.position.X, gameObjects.Transform.position.Y,
+                    gameObjects.Transform.size.Width, gameObjects.Transform.size.Height);
             }
 
-            /*for (var i = 0; i < GameController.obstacles.Count; i++)
-            {
-                var obstacle = GameController.obstacles[i];
-                g.DrawImage(obstacle.image, obstacle.transform.position.X, obstacle.transform.position.Y,
-                    obstacle.transform.size.Width, obstacle.transform.size.Height);
-            }
-
-            for (var i = 0; i < GameController.foods.Count; i++)
-            {
-                var food = GameController.foods[i];
-                g.DrawImage(food.image, food.transform.position.X * 1, food.transform.position.Y,
-                    food.transform.size.Width, food.transform.size.Height);*/
-                /*g.DrawImage(food.image, -265 + food.transform.position.X * 180, 690,
-                    90, 90);
-                    }*/
-
-                //еще птицы
+            //еще птицы
         }
 
         private void OnKeyBoardDown(object sender, KeyEventArgs e)

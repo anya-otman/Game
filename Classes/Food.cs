@@ -6,14 +6,15 @@ namespace Game.Classes
 {
     public class Food : IGameObject
     {
-        public Transform transform { get; set; }
-        public Image Image { get; set; }
-        public gameClasses Name { get; set; }
+        public Transform Transform { get; set; }
+        public Image Image => _image;
+        public string ObjectName => "food";
+
+        private Image _image;
 
         public Food()
         {
-            transform = new Transform(new PointF(1800, 690), new Size(90,90));
-            Name = gameClasses.Food;
+            Transform = new Transform(new PointF(1800, 690), new Size(90,90));
             ChooseRandomImage();
         }
         
@@ -24,20 +25,15 @@ namespace Game.Classes
             switch (rnd)
             {
                 case 0:
-                    Image = Properties.Resources.berries;
+                    _image = Properties.Resources.berries;
                     break;
                 case 1:
-                    Image = Properties.Resources.corn;
+                    _image = Properties.Resources.corn;
                     break;
                 case 2:
-                    Image = Properties.Resources.nut;
+                    _image = Properties.Resources.nut;
                     break;
             }
-        }
-
-        public bool DoesNeedGetNewRoad()
-        {
-            return false;
         }
     }
 }

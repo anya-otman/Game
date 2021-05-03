@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 
 namespace Game.Classes
@@ -31,44 +30,48 @@ namespace Game.Classes
 
         public bool Collide()
         {
-            foreach (var obstacle in GameController.gameObjects)
+            for (var i = 0; i < GameController.gameObjects.Count; i++)
             {
-                if(obstacle.Name != gameClasses.Obstacles)
-                    continue;
-                var delta = new PointF
+                var gameObject = GameController.gameObjects[i];
+                if (gameObject.ObjectName == "obstacle")
                 {
-                    X = (transform.position.X + transform.size.Width / 2) -
-                        (obstacle.transform.position.X + obstacle.transform.size.Width / 2),
-                    Y = (transform.position.Y + transform.size.Height / 2) -
-                        (obstacle.transform.position.Y + obstacle.transform.size.Height / 2)
-                };
+                    var delta = new PointF
+                    {
+                        X = (transform.position.X + transform.size.Width / 2) -
+                            (gameObject.Transform.position.X + gameObject.Transform.size.Width / 2),
+                        Y = (transform.position.Y + transform.size.Height / 2) -
+                            (gameObject.Transform.position.Y + gameObject.Transform.size.Height / 2)
+                    };
 
-                if (Math.Abs(delta.X * 1.35)<= transform.size.Width / 2 + obstacle.transform.size.Width / 2)
-                    if (Math.Abs(delta.Y * 1.35) <= transform.size.Height / 2 + obstacle.transform.size.Height / 2)
-                        return true;
+                    if (Math.Abs(delta.X * 1.35) <= transform.size.Width / 2 + gameObject.Transform.size.Width / 2)
+                        if (Math.Abs(delta.Y * 1.35) <= transform.size.Height / 2 + gameObject.Transform.size.Height / 2)
+                            return true;
+                }
             }
             return false;
         }
 
         public bool CanTotoroTakeFood(Player player)
         {
-            foreach (var food in GameController.foods)
+            for (var i = 0; i < GameController.gameObjects.Count; i++)
             {
-                if(food.Name != gameClasses.Food)
-                    continue;
-                var delta = new PointF
+                var gameObject = GameController.gameObjects[i];
+                if (gameObject.ObjectName == "food")
                 {
-                    X = (transform.position.X + transform.size.Width / 2) -
-                        (food.transform.position.X + food.transform.size.Width / 2),
-                    Y = (transform.position.Y + transform.size.Height / 2) -
-                        (food.transform.position.Y + food.transform.size.Height / 2)
-                };
-
-                if (Math.Abs(delta.X)<= transform.size.Width / 2 + food.transform.size.Width / 2)
-                    if (Math.Abs(delta.Y) <= transform.size.Height / 2 + food.transform.size.Height / 2)
+                    var delta = new PointF
                     {
-                        return true;
-                    }
+                        X = (transform.position.X + transform.size.Width / 2) -
+                            (gameObject.Transform.position.X + gameObject.Transform.size.Width / 2),
+                        Y = (transform.position.Y + transform.size.Height / 2) -
+                            (gameObject.Transform.position.Y + gameObject.Transform.size.Height / 2)
+                    };
+
+                    if (Math.Abs(delta.X) <= transform.size.Width / 2 + gameObject.Transform.size.Width / 2)
+                        if (Math.Abs(delta.Y) <= transform.size.Height / 2 + gameObject.Transform.size.Height / 2)
+                        {
+                            return true;
+                        }
+                }
             }
             return false;
         }
@@ -89,25 +92,26 @@ namespace Game.Classes
             }
 
             return -1;*/
+
             for (var i = 0; i < GameController.gameObjects.Count; i++)
             {
-                var food = GameController.gameObjects[i];
-                if (food.Name != gameClasses.Food)
-                    continue;
-                var delta = new PointF
+                var gameObject = GameController.gameObjects[i];
+                if (gameObject.ObjectName == "food")
                 {
-                    X = (transform.position.X + transform.size.Width / 2) -
-                        (food.transform.position.X + food.transform.size.Width / 2),
-                    Y = (transform.position.Y + transform.size.Height / 2) -
-                        (food.transform.position.Y + food.transform.size.Height / 2)
-                };
-
-                if (Math.Abs(delta.X)<= transform.size.Width / 2 + food.transform.size.Width / 2)
-                    if (Math.Abs(delta.Y) <= transform.size.Height / 2 + food.transform.size.Height / 2)
+                    var delta = new PointF
                     {
-                        return i;
-                    }
-                       
+                        X = (transform.position.X + transform.size.Width / 2) -
+                            (gameObject.Transform.position.X + gameObject.Transform.size.Width / 2),
+                        Y = (transform.position.Y + transform.size.Height / 2) -
+                            (gameObject.Transform.position.Y + gameObject.Transform.size.Height / 2)
+                    };
+
+                    if (Math.Abs(delta.X) <= transform.size.Width / 2 + gameObject.Transform.size.Width / 2)
+                        if (Math.Abs(delta.Y) <= transform.size.Height / 2 + gameObject.Transform.size.Height / 2)
+                        {
+                            return i;
+                        }
+                }
             }
             return -1;
         }

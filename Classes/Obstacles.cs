@@ -6,14 +6,15 @@ namespace Game.Classes
 {
     public class Obstacles : IGameObject
     {
-        public Transform transform { get; set; }
-        public Image Image { get; set; }
-        public gameClasses Name { get; set; }
+        public Transform Transform { get; set; }
+        public Image Image => _image;
+        public string ObjectName => "obstacle";
+
+        private Image _image;
 
         public Obstacles()
         {
-            transform = new Transform(new PointF(0 + 200 * 9, 668), new Size(100, 110));
-            Name = gameClasses.Obstacles;
+            Transform = new Transform(new PointF(1800, 668), new Size(100, 110));
             ChooseRandomImage();
         }
 
@@ -24,22 +25,18 @@ namespace Game.Classes
             switch (rnd)
             {
                 case 0:
-                    Image = Properties.Resources.bush;
+                    _image = Properties.Resources.bush;
                     break;
                 case 1:
-                    Image = Properties.Resources.stump;
+                    _image = Properties.Resources.stump;
                     break;
                 case 2:
-                    Image = Properties.Resources.stone1;
+                    _image = Properties.Resources.stone1;
                     break;
                 case 3:
-                    Image = Properties.Resources.stone2;
+                    _image = Properties.Resources.stone2;
                     break;
             }
-        }
-        public bool DoesNeedGetNewRoad()
-        {
-            return false;
         }
     }
 }
