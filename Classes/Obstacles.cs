@@ -4,14 +4,16 @@ using System.Drawing;
 
 namespace Game.Classes
 {
-    public class Obstacles 
+    public class Obstacles : IGameObject
     {
-        public Transform transform;
-        public Image image;
+        public Transform transform { get; set; }
+        public Image Image { get; set; }
+        public gameClasses Name { get; set; }
 
         public Obstacles()
         {
             transform = new Transform(new PointF(0 + 200 * 9, 668), new Size(100, 110));
+            Name = gameClasses.Obstacles;
             ChooseRandomImage();
         }
 
@@ -22,16 +24,16 @@ namespace Game.Classes
             switch (rnd)
             {
                 case 0:
-                    image = Properties.Resources.bush;
+                    Image = Properties.Resources.bush;
                     break;
                 case 1:
-                    image = Properties.Resources.stump;
+                    Image = Properties.Resources.stump;
                     break;
                 case 2:
-                    image = Properties.Resources.stone1;
+                    Image = Properties.Resources.stone1;
                     break;
                 case 3:
-                    image = Properties.Resources.stone2;
+                    Image = Properties.Resources.stone2;
                     break;
             }
         }

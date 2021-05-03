@@ -4,14 +4,16 @@ using System.Drawing;
 
 namespace Game.Classes
 {
-    public class Food 
+    public class Food : IGameObject
     {
-        public Transform transform;
-        public Image image;
+        public Transform transform { get; set; }
+        public Image Image { get; set; }
+        public gameClasses Name { get; set; }
 
         public Food()
         {
             transform = new Transform(new PointF(1800, 690), new Size(90,90));
+            Name = gameClasses.Food;
             ChooseRandomImage();
         }
         
@@ -22,13 +24,13 @@ namespace Game.Classes
             switch (rnd)
             {
                 case 0:
-                    image = Properties.Resources.berries;
+                    Image = Properties.Resources.berries;
                     break;
                 case 1:
-                    image = Properties.Resources.corn;
+                    Image = Properties.Resources.corn;
                     break;
                 case 2:
-                    image = Properties.Resources.nut;
+                    Image = Properties.Resources.nut;
                     break;
             }
         }

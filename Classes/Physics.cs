@@ -31,8 +31,10 @@ namespace Game.Classes
 
         public bool Collide()
         {
-            foreach (var obstacle in GameController.obstacles)
+            foreach (var obstacle in GameController.gameObjects)
             {
+                if(obstacle.Name != gameClasses.Obstacles)
+                    continue;
                 var delta = new PointF
                 {
                     X = (transform.position.X + transform.size.Width / 2) -
@@ -52,6 +54,8 @@ namespace Game.Classes
         {
             foreach (var food in GameController.foods)
             {
+                if(food.Name != gameClasses.Food)
+                    continue;
                 var delta = new PointF
                 {
                     X = (transform.position.X + transform.size.Width / 2) -
@@ -85,9 +89,11 @@ namespace Game.Classes
             }
 
             return -1;*/
-            for (var i = 0; i < GameController.foods.Count; i++)
+            for (var i = 0; i < GameController.gameObjects.Count; i++)
             {
-                var food = GameController.foods[i];
+                var food = GameController.gameObjects[i];
+                if (food.Name != gameClasses.Food)
+                    continue;
                 var delta = new PointF
                 {
                     X = (transform.position.X + transform.size.Width / 2) -
@@ -105,15 +111,7 @@ namespace Game.Classes
             }
             return -1;
         }
-
-        private bool IsPointBetweenPoints(int startPoint, int endPoint, int point)
-        {
-            if (point >= startPoint && point <= endPoint)
-                return true;
-            return false;
-        }
-
-
+        
         public void AddForce()
         {
             if (!isJumping)

@@ -6,11 +6,7 @@ using System.Runtime.CompilerServices;
 namespace Game.Classes
 {
     
-    public interface IGameObject
-    {
-        Transform transform { get; set; }
-        bool DoesNeedGetNewRoad();
-    }
+    
 
     public static class GameController
     {
@@ -44,16 +40,14 @@ namespace Game.Classes
 
         public static void MoveMap()
         {
-            /*for (var i = 0; i < gameObjects.Count; i++)
+            for (var i = 0; i < gameObjects.Count; i++)
             {
                 gameObjects[i].transform.position.X -= 4;
                 if (gameObjects[i].transform.position.X + gameObjects[i].transform.size.Width < 0)
                 {
                     gameObjects.RemoveAt(i);
-                    if (gameObjects[i].DoesNeedGetNewRoad())
-                        GetNewRoad();
                 }
-            }*/
+            }
             for (var i = 0; i < roads.Count; i++)
             {
                 roads[i].transform.position.X -= 4;
@@ -64,7 +58,7 @@ namespace Game.Classes
                 }
             }
 
-            for (var i = 0; i < obstacles.Count; i++)
+            /*for (var i = 0; i < obstacles.Count; i++)
             {
                 obstacles[i].transform.position.X -= 4;
                 if (obstacles[i].transform.position.X + obstacles[i].transform.size.Width < 0)
@@ -80,7 +74,7 @@ namespace Game.Classes
                 {
                     foods.RemoveAt(i);
                 }
-            }
+            }*/
         }
 
         /*private static void NewMethod(List<T> list)
@@ -112,12 +106,12 @@ namespace Game.Classes
                 switch (obj)
                 {
                     case 0:
-                        //gameObjects.Add(new Obstacles());
-                        obstacles.Add(new Obstacles());
+                        gameObjects.Add(new Obstacles());
+                        //obstacles.Add(new Obstacles());
                         break;
                     case 1:
-                        //gameObjects.Add(new Food());
-                        foods.Add(new Food());
+                        gameObjects.Add(new Food());
+                        //foods.Add(new Food());
                         foodCounter++;
                         break;
                     //еще птицы

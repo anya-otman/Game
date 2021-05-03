@@ -5,7 +5,7 @@ namespace Game.Classes
 {
     public class Road 
     {
-        public Transform transform;
+        public Transform transform { get; set; }
         public Image roadImage = Properties.Resources.road;
 
         public Road(PointF position)

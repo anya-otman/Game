@@ -108,14 +108,14 @@ namespace Game
 
         public static void DrawObjects(Graphics g)
         {
-            for (var i = 0; i < GameController.roads.Count; i++)
+            for (var i = 0; i < GameController.gameObjects.Count; i++)
             {
-                var road = GameController.roads[i];
-                g.DrawImage(road.roadImage,
-                    2100, 112, 100, 17);
+                var gameObjects = GameController.gameObjects[i];
+                g.DrawImage(gameObjects.Image, gameObjects.transform.position.X, gameObjects.transform.position.Y,
+                    gameObjects.transform.size.Width, gameObjects.transform.size.Height);
             }
 
-            for (var i = 0; i < GameController.obstacles.Count; i++)
+            /*for (var i = 0; i < GameController.obstacles.Count; i++)
             {
                 var obstacle = GameController.obstacles[i];
                 g.DrawImage(obstacle.image, obstacle.transform.position.X, obstacle.transform.position.Y,
@@ -126,12 +126,12 @@ namespace Game
             {
                 var food = GameController.foods[i];
                 g.DrawImage(food.image, food.transform.position.X * 1, food.transform.position.Y,
-                    food.transform.size.Width, food.transform.size.Height);
+                    food.transform.size.Width, food.transform.size.Height);*/
                 /*g.DrawImage(food.image, -265 + food.transform.position.X * 180, 690,
-                    90, 90);*/
-            }
+                    90, 90);
+                    }*/
 
-            //еще птицы
+                //еще птицы
         }
 
         private void OnKeyBoardDown(object sender, KeyEventArgs e)
@@ -150,7 +150,6 @@ namespace Game
             {
                 case Keys.Up:
                     player.physics.Jump();
-
                     break;
                 case Keys.Down:
                     player.physics.isCrouching = false;
@@ -168,7 +167,7 @@ namespace Game
                     if (player.physics.CanTotoroTakeFood(player))
                     {
                         player.score += 10;
-                        GameController.foods.RemoveAt(player.physics.GetIndexOfFoodNearTotoro(player));
+                        GameController.gameObjects.RemoveAt(player.physics.GetIndexOfFoodNearTotoro(player));
                     }
 
                     break;
