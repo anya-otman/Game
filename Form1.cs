@@ -156,11 +156,7 @@ namespace Game
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    if (!player.physics.isJumping)
-                    {
-                        player.physics.isCrouching = false;
-                        player.physics.AddForce();
-                    }
+                    player.physics.Jump();
 
                     break;
                 case Keys.Down:

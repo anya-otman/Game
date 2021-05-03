@@ -134,5 +134,15 @@ namespace Game.Classes
             if (transform.position.Y > 496)
                 isJumping = false;
         }
+
+
+        public void Jump()
+        {
+            if (!isJumping)
+            {
+                isCrouching = false;
+                AddForce();
+            }
+        }
     }
 }
