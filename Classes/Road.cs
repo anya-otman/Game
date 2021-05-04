@@ -5,13 +5,14 @@ namespace Game.Classes
 {
     public class Road: IGameObject
     {
-        public Transform Transform { get; set; }
-        public Image Image => Properties.Resources.road;
-        public GameClass ObjectName => GameClass.Road;
+        public sealed override Transform Transform { get; set; }
+        public sealed override ImageName ImageName { get; set; }
+        public override GameClass ObjectName => GameClass.Road;
 
         public Road()
         {
             Transform = new Transform(new PointF(2100, 900), new Size(100, 17));
+            ImageName = Classes.ImageName.Road;
         }
     }
 }

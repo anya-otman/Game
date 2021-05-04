@@ -6,11 +6,9 @@ namespace Game.Classes
 {
     public class Obstacles : IGameObject
     {
-        public Transform Transform { get; set; }
-        public Image Image => _image;
-        public GameClass ObjectName => GameClass.Obstacles;
-
-        private Image _image;
+        public override Transform Transform { get; set; }
+        public override ImageName ImageName { get; set; }
+        public override GameClass ObjectName => GameClass.Obstacles;
 
         public Obstacles()
         {
@@ -25,16 +23,16 @@ namespace Game.Classes
             switch (rnd)
             {
                 case 0:
-                    _image = Properties.Resources.bush;
+                    ImageName = Classes.ImageName.Bush;
                     break;
                 case 1:
-                    _image = Properties.Resources.stump;
+                    ImageName = Classes.ImageName.Stump;
                     break;
                 case 2:
-                    _image = Properties.Resources.stone1;
+                    ImageName = Classes.ImageName.Stone1;
                     break;
                 case 3:
-                    _image = Properties.Resources.stone2;
+                    ImageName = Classes.ImageName.Stone2;
                     break;
             }
         }

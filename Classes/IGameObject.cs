@@ -2,10 +2,10 @@
 
 namespace Game.Classes
 {
-    public interface IGameObject
+    public abstract class IGameObject
     {
-        Transform Transform { get; set; }
-        Image Image { get; }
-        GameClass ObjectName { get; }
+        public abstract Transform Transform { get; set; }
+        public abstract ImageName ImageName { get; set; }
+        public abstract GameClass ObjectName { get; }
     }
 }

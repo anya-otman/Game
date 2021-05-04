@@ -6,9 +6,9 @@ namespace Game.Classes
 {
     public class Food : IGameObject
     {
-        public Transform Transform { get; set; }
-        public Image Image { get; private set; }
-        public GameClass ObjectName => GameClass.Food;
+        public sealed override Transform Transform { get; set; }
+        public override ImageName ImageName { get; set; }
+        public override GameClass ObjectName => GameClass.Food;
 
         public Food()
         {
@@ -23,13 +23,13 @@ namespace Game.Classes
             switch (rnd)
             {
                 case 0:
-                    Image = Properties.Resources.berries;
+                    ImageName = ImageName.Berries;
                     break;
                 case 1:
-                    Image = Properties.Resources.corn;
+                    ImageName = ImageName.Corn;
                     break;
                 case 2:
-                    Image = Properties.Resources.nut;
+                    ImageName = ImageName.Nut;
                     break;
             }
         }

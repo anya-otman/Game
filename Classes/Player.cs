@@ -4,17 +4,17 @@ namespace Game.Classes
 {
     public class Player
     {
-        public Physics physics;
-        public int score;
-        public int life;
-        public Image image;
+        public readonly Physics Physics;
+        public int Score;
+        public int Life;
+        public Image Image;
 
         public Player()
         {
-            physics = new Physics(new PointF(3, 0), new Size(1, 2));
-            score = 0;
-            life = 5;
-            image = Properties.Resources.totoro;
+            Physics = new Physics(new PointF(3, 0), new Size(1, 2));
+            Score = 0;
+            Life = 5;
+            Image = Properties.Resources.totoro;
         }
 
     }

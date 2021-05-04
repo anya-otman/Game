@@ -5,7 +5,7 @@ namespace Game.Classes
 {
     public class Physics
     {
-        public Transform transform;
+        public readonly Transform transform;
         public bool isJumping;
         public bool isCrouching;
         public bool DoesTotoroTakeFood;
