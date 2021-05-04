@@ -6,10 +6,9 @@ namespace Game.Classes
     public static class GameController
     {
         public static List<IGameObject> gameObjects;
-
         public static int foodCounter;
+        public static int obstaclesCounter;
         //еще птицы
-
         private static int dangerSpawn = 7;
         private static int countDangerSpawn = 2;
 
@@ -17,6 +16,7 @@ namespace Game.Classes
         {
             gameObjects = new List<IGameObject>();
             foodCounter = 0;
+            obstaclesCounter = 0;
             //еще птицы
             GenerateRoad();
         }
@@ -25,10 +25,10 @@ namespace Game.Classes
         {
             for (var i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].Transform.position.X -= 4;
-                if (gameObjects[i].Transform.position.X + gameObjects[i].Transform.size.Width < 0)
+                gameObjects[i].Transform.position.X -= 1;
+                if (gameObjects[i].Transform.position.X < -2)
                 {
-                    if (gameObjects[i].ObjectName == "road")
+                    if (gameObjects[i].ObjectName == GameClass.Road)
                         GetNewRoad();
                     gameObjects.RemoveAt(i);
                 }
@@ -52,6 +52,7 @@ namespace Game.Classes
                 {
                     case 0:
                         gameObjects.Add(new Obstacles());
+                        obstaclesCounter++;
                         break;
                     case 1:
                         gameObjects.Add(new Food());

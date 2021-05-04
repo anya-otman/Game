@@ -7,7 +7,7 @@ namespace Game.Classes
     {
         public Transform Transform { get; set; }
         public Image Image => Properties.Resources.road;
-        public string ObjectName => "road";
+        public GameClass ObjectName => GameClass.Road;
 
         public Road()
         {

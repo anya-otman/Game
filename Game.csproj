@@ -48,7 +48,7 @@
   <ItemGroup>
     <Compile Include="Classes\Bird.cs" />
     <Compile Include="Classes\Food.cs" />
-    <Compile Include="Classes\gameClasses.cs" />
+    <Compile Include="Classes\GameClass.cs" />
     <Compile Include="Classes\GameController.cs" />
     <Compile Include="Classes\IGameObject.cs" />
     <Compile Include="Classes\Obstacles.cs" />

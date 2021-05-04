@@ -6,6 +6,6 @@ namespace Game.Classes
     {
         Transform Transform { get; set; }
         Image Image { get; }
-        string ObjectName { get; }
+        GameClass ObjectName { get; }
     }
 }

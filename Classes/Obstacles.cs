@@ -8,13 +8,13 @@ namespace Game.Classes
     {
         public Transform Transform { get; set; }
         public Image Image => _image;
-        public string ObjectName => "obstacle";
+        public GameClass ObjectName => GameClass.Obstacles;
 
         private Image _image;
 
         public Obstacles()
         {
-            Transform = new Transform(new PointF(1800, 668), new Size(100, 110));
+            Transform = new Transform(new PointF(11, 2), new Size(1,1));
             ChooseRandomImage();
         }
 
