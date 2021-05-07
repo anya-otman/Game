@@ -9,21 +9,14 @@ namespace Game.Classes
 {
     public class Bird
     {
-        public Transform transform;
+        public PositionAndSize positionAndSize;
         int frameCount = 0;
         int animationCount = 0;
 
         public Bird(PointF position, Size size)
         {
-            transform = new Transform(position, size);
+            positionAndSize = new PositionAndSize(position, size);
         }
 
-        public void DrawSprite(Graphics g)
-        {
-            frameCount++;
-            //Разобраться с анимацией
-
-            g.DrawImage(Properties.Resources.bush, 2100, 112, 100, 17);
-        }
     }
 }

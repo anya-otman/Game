@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
-using Game.Classes;
 using System.Drawing;
 using Game.Properties;
+using Game.Classes;
 
 namespace Game
 {
@@ -18,7 +17,7 @@ namespace Game
             InitializeComponent();
             DoubleBuffered = true;
             Paint += DrawGame;
-            //KeyUp += OnKeyBoardSpace;
+            KeyUp += OnKeyBoardSpace;
             mainTimer = new Timer();
             mainTimer.Interval = 300;
             mainTimer.Tick += Update;
@@ -56,15 +55,15 @@ namespace Game
             {
                 //нужно убратьб дорогу из логики и тогда вот этот if не будет нужен
                 if (gameObject.ObjectName == GameClass.Road)
-                    g.DrawImage(GetImage(gameObject.ImageName), gameObject.Transform.position.X,gameObject.Transform.position.Y,
-                        gameObject.Transform.size.Width, gameObject.Transform.size.Height);
+                    g.DrawImage(GetImage(gameObject.ImageName), gameObject.PositionAndSize.position.X,gameObject.PositionAndSize.position.Y,
+                        gameObject.PositionAndSize.size.Width, gameObject.PositionAndSize.size.Height);
                 else
-                    g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.Transform.position.X*180,690,
-                        gameObject.Transform.size.Width*90, gameObject.Transform.size.Height*90);
+                    g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.position.X*180,690,
+                        gameObject.PositionAndSize.size.Width*90, gameObject.PositionAndSize.size.Height*90);
             }
 
-            g.DrawImage(player.Image, -265 + player.Physics.transform.position.X * 180, 495 + player.Physics.transform.position.Y * 475,
-                player.Physics.transform.size.Width*180, player.Physics.transform.size.Height*140);
+            g.DrawImage(GetImage(player.ImageName), -265 + player.Physics.positionAndSize.position.X * 180, 20 + player.Physics.positionAndSize.position.Y * 475,
+                player.Physics.positionAndSize.size.Width*180, player.Physics.positionAndSize.size.Height*140);
         }
 
         private static Image GetImage(ImageName imageName)
@@ -87,6 +86,8 @@ namespace Game
                     return Resources.bush;
                 case ImageName.Road:
                     return Resources.road;
+                case ImageName.Totoro:
+                    return Resources.totoro;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(imageName), imageName, null);
             }
@@ -140,19 +141,14 @@ namespace Game
             }
         }*/
 
-        /*private void OnKeyBoardSpace(object sender, KeyEventArgs e)
+        private void OnKeyBoardSpace(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    if (player.physics.CanTotoroTakeFood(player))
-                    {
-                        player.score += 10;
-                        GameController.gameObjects.RemoveAt(player.physics.GetIndexOfFoodNearTotoro(player));
-                    }
-
+                    GameController.player.Physics.GetFood();
                     break;
             }
-        }*/
+        }
     }
 }

@@ -9,6 +9,7 @@
         Stone1,
         Stone2,
         Stump,
-        Road
+        Road,
+        Totoro
     }
 }

@@ -8,7 +8,7 @@ namespace Game.Classes
         public static List<IGameObject> gameObjects;
         public static int foodCounter;
         public static int obstaclesCounter;
-        //еще птицы
+        public static Player player;
         private static int dangerSpawn = 7;
         private static int countDangerSpawn = 2;
 
@@ -17,7 +17,7 @@ namespace Game.Classes
             gameObjects = new List<IGameObject>();
             foodCounter = 0;
             obstaclesCounter = 0;
-            //еще птицы
+            player = new Player();
             GenerateRoad();
         }
 
@@ -25,8 +25,8 @@ namespace Game.Classes
         {
             for (var i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].Transform.position.X -= 1;
-                if (gameObjects[i].Transform.position.X < -2)
+                gameObjects[i].PositionAndSize.position.X -= 1;
+                if (gameObjects[i].PositionAndSize.position.X < -2)
                 {
                     if (gameObjects[i].ObjectName == GameClass.Road)
                         GetNewRoad();
@@ -58,7 +58,6 @@ namespace Game.Classes
                         gameObjects.Add(new Food());
                         foodCounter++;
                         break;
-                    //еще птицы
                 }
             }
         }
@@ -68,7 +67,7 @@ namespace Game.Classes
             for (var i = 0; i < 10; i++)
             {
                 var newRoad = new Road();
-                newRoad.Transform.position.X *= i;
+                newRoad.PositionAndSize.position.X *= i;
                 gameObjects.Add(newRoad);
                 countDangerSpawn++;
             }

@@ -6,13 +6,13 @@ namespace Game.Classes
 {
     public class Obstacles : IGameObject
     {
-        public override Transform Transform { get; set; }
+        public override PositionAndSize PositionAndSize { get; set; }
         public override ImageName ImageName { get; set; }
         public override GameClass ObjectName => GameClass.Obstacles;
 
         public Obstacles()
         {
-            Transform = new Transform(new PointF(11, 2), new Size(1,1));
+            PositionAndSize = new PositionAndSize(new PointF(11, 2), new Size(1,1));
             ChooseRandomImage();
         }
 

@@ -28,3 +28,6 @@ D:\C# 2\Game Totoro 3\Game\obj\Debug\Game.csproj.GenerateResource.cache
 D:\C# 2\Game Totoro 3\Game\obj\Debug\Game.csproj.CoreCompileInputs.cache
 D:\C# 2\Game Totoro 3\Game\obj\Debug\Game.exe
 D:\C# 2\Game Totoro 3\Game\obj\Debug\Game.pdb
+D:\C# 2\Game Totoro 3\Game\bin\Debug\Logic.dll
+D:\C# 2\Game Totoro 3\Game\bin\Debug\Logic.pdb
+D:\C# 2\Game Totoro 3\Game\obj\Debug\Game.csproj.CopyComplete

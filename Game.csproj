@@ -46,17 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Bird.cs" />
-    <Compile Include="Classes\Food.cs" />
-    <Compile Include="Classes\GameClass.cs" />
-    <Compile Include="Classes\GameController.cs" />
-    <Compile Include="Classes\IGameObject.cs" />
-    <Compile Include="Classes\ImageName.cs" />
-    <Compile Include="Classes\Obstacles.cs" />
-    <Compile Include="Classes\Physics.cs" />
-    <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\Road.cs" />
-    <Compile Include="Classes\Transform.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +109,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\totoro.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Logic\Logic.csproj">
+      <Project>{990cb277-d8e3-4b0a-b7c5-45d079cbe1f9}</Project>
+      <Name>Logic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

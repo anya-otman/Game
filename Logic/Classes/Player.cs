@@ -7,14 +7,14 @@ namespace Game.Classes
         public readonly Physics Physics;
         public int Score;
         public int Life;
-        public Image Image;
+        public ImageName ImageName;
 
         public Player()
         {
-            Physics = new Physics(new PointF(3, 0), new Size(1, 2));
+            Physics = new Physics(new PointF(3, 1), new Size(1, 2));
             Score = 0;
             Life = 5;
-            Image = Properties.Resources.totoro;
+            ImageName = ImageName.Totoro;
         }
 
     }

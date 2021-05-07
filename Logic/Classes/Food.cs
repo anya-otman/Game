@@ -6,13 +6,13 @@ namespace Game.Classes
 {
     public class Food : IGameObject
     {
-        public sealed override Transform Transform { get; set; }
+        public sealed override PositionAndSize PositionAndSize { get; set; }
         public override ImageName ImageName { get; set; }
         public override GameClass ObjectName => GameClass.Food;
 
         public Food()
         {
-            Transform = new Transform(new PointF(11, 2), new Size(1,1));
+            PositionAndSize = new PositionAndSize(new PointF(11, 2), new Size(1,1));
             ChooseRandomImage();
         }
         
