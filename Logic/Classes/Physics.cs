@@ -7,7 +7,7 @@ namespace Logic.Classes
     {
         public PositionAndSize positionAndSize;
         private bool isJumping;
-        public bool isCrouching;
+        private bool isCrouching;
         private int tick;
         private int jumpTick;
         private int sitTick;
@@ -44,6 +44,7 @@ namespace Logic.Classes
             positionAndSize = new PositionAndSize(new PointF(3, 2), new Size(1, 1));
             sitTick = tick;
         }
+        public bool IsCrouching => isCrouching;
 
         private void FallDown()
         {
