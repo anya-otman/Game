@@ -72,5 +72,20 @@ namespace Game.Classes
                 countDangerSpawn++;
             }
         }
+        
+        /*private void Collide()
+        {
+            foreach (var t in GameController.gameObjects)
+            {
+                if (t.ObjectName != GameClass.Obstacles)
+                    continue;
+                var obstaclePosition = t.PositionAndSize.position;
+                var playerPosition = player.Physics.positionAndSize.position;
+                var playerSize = player.Physics.positionAndSize.size;
+                if (!IsObjectInPlayerPosition(playerPosition, obstaclePosition, playerSize))
+                    continue;
+                GameController.player.Life -= 1;
+            }
+        }*/
     }
 }

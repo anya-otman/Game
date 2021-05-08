@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using Logic.Classes;
 
 namespace Game.Classes
 {

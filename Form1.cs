@@ -8,7 +8,6 @@ namespace Game
 {
     public sealed partial class Form1 : Form
     {
-        static Player player;
         private Timer mainTimer;
         private int time;
 
@@ -18,6 +17,8 @@ namespace Game
             DoubleBuffered = true;
             Paint += DrawGame;
             KeyUp += OnKeyBoardSpace;
+            KeyUp += OnKeyBoardUp;
+            KeyUp += OnKeyBoardDown;
             mainTimer = new Timer();
             mainTimer.Interval = 300;
             mainTimer.Tick += Update;
@@ -28,7 +29,6 @@ namespace Game
         private void Init()
         {
             GameController.Init();
-            player = new Player();
             time = 0;
             mainTimer.Start();
             Invalidate();
@@ -37,9 +37,13 @@ namespace Game
         private void Update(object sender, EventArgs e)
         {
             time += mainTimer.Interval;
-            Text = "Totoro - life: " + player.Life + " time interval: " + mainTimer.Interval + " score" + player.Score + " foodCounter " + GameController.foodCounter +
-                " obstaclesCounter " + GameController.obstaclesCounter;
             GameController.MoveMap();
+            GameController.player.Physics.ApplyPhysics();
+            Text = "Totoro - life: " + GameController.player.Life +
+                   //" timeInterval: " + mainTimer.Interval + 
+                   " score" + GameController.player.Score +
+                   " foodCounter " + GameController.foodCounter +
+                   " obstaclesCounter " + GameController.obstaclesCounter;
             Invalidate();
         }
 
@@ -55,15 +59,23 @@ namespace Game
             {
                 //нужно убратьб дорогу из логики и тогда вот этот if не будет нужен
                 if (gameObject.ObjectName == GameClass.Road)
-                    g.DrawImage(GetImage(gameObject.ImageName), gameObject.PositionAndSize.position.X,gameObject.PositionAndSize.position.Y,
+                    g.DrawImage(GetImage(gameObject.ImageName), gameObject.PositionAndSize.position.X,
+                        gameObject.PositionAndSize.position.Y,
                         gameObject.PositionAndSize.size.Width, gameObject.PositionAndSize.size.Height);
                 else
-                    g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.position.X*180,690,
-                        gameObject.PositionAndSize.size.Width*90, gameObject.PositionAndSize.size.Height*90);
+                    g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.position.X * 180, 690,
+                        gameObject.PositionAndSize.size.Width * 90, gameObject.PositionAndSize.size.Height * 90);
             }
 
-            g.DrawImage(GetImage(player.ImageName), -265 + player.Physics.positionAndSize.position.X * 180, 20 + player.Physics.positionAndSize.position.Y * 475,
-                player.Physics.positionAndSize.size.Width*180, player.Physics.positionAndSize.size.Height*140);
+            var player = GameController.player;
+            if (player.Physics.isCrouching)
+                g.DrawImage(GetImage(player.ImageName), -265 + player.Physics.positionAndSize.position.X * 180,
+                    455 + player.Physics.positionAndSize.position.Y * 90,
+                    player.Physics.positionAndSize.size.Width * 180, player.Physics.positionAndSize.size.Height * 140);
+            else
+                g.DrawImage(GetImage(player.ImageName), -265 + player.Physics.positionAndSize.position.X * 180,
+                    405 + player.Physics.positionAndSize.position.Y * 90,
+                    player.Physics.positionAndSize.size.Width * 180, player.Physics.positionAndSize.size.Height * 140);
         }
 
         private static Image GetImage(ImageName imageName)
@@ -92,36 +104,13 @@ namespace Game
                     throw new ArgumentOutOfRangeException(nameof(imageName), imageName, null);
             }
         }
-        private void ShouldGameStop()
-        {
-            if (player.Life == 0)
-                mainTimer.Stop();
-        }
 
-        /*private void UpdateCollision()
-        {
-            var isCollide = player.physics.Collide();
-            if (isCollide && !player.isInCollision)
-            {
-                player.life -= 1;
-                player.isInCollision = true;
-            }
-
-            if (!isCollide)
-            {
-                player.isInCollision = false;
-            }
-
-            if (player.physics.CanTotoroTakeFood(player) == false && player.physics.DoesTotoroTakeFood)
-                player.physics.DoesTotoroTakeFood = false;
-        }*/
-
-        /*private void OnKeyBoardDown(object sender, KeyEventArgs e)
+        private void OnKeyBoardDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    player.physics.SitDown();
+                    GameController.player.Physics.SitDown();
                     break;
             }
         }
@@ -131,15 +120,10 @@ namespace Game
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    player.physics.Jump();
-                    break;
-                case Keys.Down:
-                    player.physics.isCrouching = false;
-                    player.physics.transform.size.Height = 280;
-                    player.physics.transform.position.Y = 496.2f;
+                    GameController.player.Physics.Jump();
                     break;
             }
-        }*/
+        }
 
         private void OnKeyBoardSpace(object sender, KeyEventArgs e)
         {
