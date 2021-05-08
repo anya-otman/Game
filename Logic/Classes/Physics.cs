@@ -60,12 +60,5 @@ namespace Logic.Classes
             isCrouching = false;
             positionAndSize = new PositionAndSize(new PointF(3, 1), new Size(1, 2));
         }
-        
-
-        private static bool IsObjectInPlayerPosition(PointF playerPosition, PointF foodPosition, Size playerSize)
-        {
-            return Math.Abs(playerPosition.X - foodPosition.X) < 0.1 &&
-                   Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
-        }
     }
 }
