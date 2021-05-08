@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-
-namespace Game.Classes
+namespace Logic.Classes
 {
     public class Food : IGameObject
     {

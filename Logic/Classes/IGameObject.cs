@@ -1,4 +1,4 @@
-﻿namespace Game.Classes
+﻿namespace Logic.Classes
 {
     public abstract class IGameObject
     {

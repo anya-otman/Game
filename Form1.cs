@@ -2,14 +2,14 @@
 using System.Windows.Forms;
 using System.Drawing;
 using Game.Properties;
-using Game.Classes;
+using Logic.Classes;
 
 namespace Game
 {
     public sealed partial class Form1 : Form
     {
-        private Timer mainTimer;
-        private int time;
+        private readonly Timer mainTimer;
+        private GameController gameController;
 
         public Form1()
         {
@@ -19,8 +19,7 @@ namespace Game
             KeyUp += OnKeyBoardSpace;
             KeyUp += OnKeyBoardUp;
             KeyUp += OnKeyBoardDown;
-            mainTimer = new Timer();
-            mainTimer.Interval = 300;
+            mainTimer = new Timer {Interval = 300};
             mainTimer.Tick += Update;
 
             Init();
@@ -28,22 +27,19 @@ namespace Game
 
         private void Init()
         {
-            GameController.Init();
-            time = 0;
+            gameController = new GameController();
             mainTimer.Start();
             Invalidate();
         }
 
         private void Update(object sender, EventArgs e)
         {
-            time += mainTimer.Interval;
-            GameController.MoveMap();
-            GameController.player.Physics.ApplyPhysics();
-            Text = "Totoro - life: " + GameController.player.Life +
+            gameController.ChangeState();
+            Text = "Totoro - life: " + gameController.GetLife() +
                    //" timeInterval: " + mainTimer.Interval + 
-                   " score" + GameController.player.Score +
-                   " foodCounter " + GameController.foodCounter +
-                   " obstaclesCounter " + GameController.obstaclesCounter;
+                   " score" + gameController.GetScore() +
+                   " foodCounter " + gameController.GetFoodCounter() +
+                   " obstaclesCounter " + gameController.GetObstacleCounter();
             Invalidate();
         }
 
@@ -55,7 +51,7 @@ namespace Game
 
         private void DrawObjects(Graphics g)
         {
-            foreach (var gameObject in GameController.gameObjects)
+            foreach (var gameObject in gameController.GetGameObjectList())
             {
                 //нужно убратьб дорогу из логики и тогда вот этот if не будет нужен
                 if (gameObject.ObjectName == GameClass.Road)
@@ -67,15 +63,18 @@ namespace Game
                         gameObject.PositionAndSize.size.Width * 90, gameObject.PositionAndSize.size.Height * 90);
             }
 
-            var player = GameController.player;
-            if (player.Physics.isCrouching)
-                g.DrawImage(GetImage(player.ImageName), -265 + player.Physics.positionAndSize.position.X * 180,
-                    455 + player.Physics.positionAndSize.position.Y * 90,
-                    player.Physics.positionAndSize.size.Width * 180, player.Physics.positionAndSize.size.Height * 140);
+            var playerPhysics = gameController.GetPlayerPhysics();
+            var playerImage = gameController.GetPlayerImageName();
+            if (playerPhysics.isCrouching)
+
+                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.positionAndSize.position.X * 180,
+                    455 + playerPhysics.positionAndSize.position.Y * 90,
+                    playerPhysics.positionAndSize.size.Width * 180, playerPhysics.positionAndSize.size.Height * 140);
+
             else
-                g.DrawImage(GetImage(player.ImageName), -265 + player.Physics.positionAndSize.position.X * 180,
-                    405 + player.Physics.positionAndSize.position.Y * 90,
-                    player.Physics.positionAndSize.size.Width * 180, player.Physics.positionAndSize.size.Height * 140);
+                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.positionAndSize.position.X * 180,
+                    405 + playerPhysics.positionAndSize.position.Y * 90,
+                    playerPhysics.positionAndSize.size.Width * 180, playerPhysics.positionAndSize.size.Height * 140);
         }
 
         private static Image GetImage(ImageName imageName)
@@ -110,7 +109,7 @@ namespace Game
             switch (e.KeyCode)
             {
                 case Keys.Down:
-                    GameController.player.Physics.SitDown();
+                    gameController.SitDown();
                     break;
             }
         }
@@ -120,7 +119,7 @@ namespace Game
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    GameController.player.Physics.Jump();
+                    gameController.Jump();
                     break;
             }
         }
@@ -130,7 +129,7 @@ namespace Game
             switch (e.KeyCode)
             {
                 case Keys.Space:
-                    GameController.player.Physics.GetFood();
+                    gameController.GetFood();
                     break;
             }
         }

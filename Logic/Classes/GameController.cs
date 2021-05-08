@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
-namespace Game.Classes
+namespace Logic.Classes
 {
-    public static class GameController
+    public class GameController
     {
-        public static List<IGameObject> gameObjects;
-        public static int foodCounter;
-        public static int obstaclesCounter;
-        public static Player player;
-        private static int dangerSpawn = 7;
-        private static int countDangerSpawn = 2;
+        private List<IGameObject> gameObjects;
+        private int foodCounter;
+        private int obstaclesCounter;
+        private readonly Player player;
+        private int dangerSpawn = 7;
+        private int countDangerSpawn = 2;
 
-        public static void Init()
+        public GameController()
         {
             gameObjects = new List<IGameObject>();
             foodCounter = 0;
@@ -21,7 +22,13 @@ namespace Game.Classes
             GenerateRoad();
         }
 
-        public static void MoveMap()
+        public void ChangeState()
+        {
+            MoveMap();
+            player.physics.ApplyPhysics();
+            Collide();
+        }
+        private void MoveMap()
         {
             for (var i = 0; i < gameObjects.Count; i++)
             {
@@ -34,9 +41,79 @@ namespace Game.Classes
                 }
             }
         }
+        
+        public void GetFood()
+        {
+            if (TryGetFoodIndex(out var index))
+            {
+                gameObjects.RemoveAt(index);
+                player.score += 10;
+            }
+        }
 
+        public void Jump()
+        {
+            player.physics.Jump();
+        }
 
-        private static void GetNewRoad()
+        public void SitDown()
+        {
+            player.physics.SitDown();
+        }
+
+        public int GetLife()
+        {
+            return player.life;
+        }
+
+        public int GetScore()
+        {
+            return player.score;
+        }
+
+        public int GetFoodCounter()
+        {
+            return foodCounter;
+        }
+        
+        public int GetObstacleCounter()
+        {
+            return obstaclesCounter;
+        }
+
+        public Physics GetPlayerPhysics()
+        {
+            return player.physics;
+        }
+
+        public ImageName GetPlayerImageName()
+        {
+            return player.imageName;
+        }
+
+        public List<IGameObject> GetGameObjectList()
+        {
+            return gameObjects;
+        }
+        private bool TryGetFoodIndex(out int index)
+        {
+            index = -1;
+            for (int i = 0; i < gameObjects.Count; i++)
+            {
+                if (gameObjects[i].ObjectName != GameClass.Food)
+                    continue;
+                var foodPosition = gameObjects[i].PositionAndSize.position;
+                var playerPosition = player.physics.positionAndSize.position;
+                var playerSize = player.physics.positionAndSize.size;
+                if (!IsObjectInPlayerPosition(playerPosition, foodPosition, playerSize))
+                    continue;
+                index = i;
+                return true;
+            }
+
+            return false;
+        }
+        private void GetNewRoad()
         {
             var road = new Road();
             gameObjects.Add(road);
@@ -62,7 +139,7 @@ namespace Game.Classes
             }
         }
 
-        private static void GenerateRoad()
+        private void GenerateRoad()
         {
             for (var i = 0; i < 10; i++)
             {
@@ -72,20 +149,28 @@ namespace Game.Classes
                 countDangerSpawn++;
             }
         }
-        
-        /*private void Collide()
+
+        private void Collide()
         {
-            foreach (var t in GameController.gameObjects)
+            foreach (var gameObject in gameObjects)
             {
-                if (t.ObjectName != GameClass.Obstacles)
+                if (gameObject.ObjectName != GameClass.Obstacles)
                     continue;
-                var obstaclePosition = t.PositionAndSize.position;
-                var playerPosition = player.Physics.positionAndSize.position;
-                var playerSize = player.Physics.positionAndSize.size;
+                var obstaclePosition = gameObject.PositionAndSize.position;
+                var playerPosition = player.physics.positionAndSize.position;
+                var playerSize = player.physics.positionAndSize.size;
                 if (!IsObjectInPlayerPosition(playerPosition, obstaclePosition, playerSize))
                     continue;
-                GameController.player.Life -= 1;
+                player.life -= 1;
             }
-        }*/
+        }
+
+        private bool IsObjectInPlayerPosition(PointF playerPosition, PointF foodPosition, Size playerSize)
+        {
+            return Math.Abs(playerPosition.X - foodPosition.X) < 0.1 &&
+                   Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
+        }
+        
+        
     }
 }

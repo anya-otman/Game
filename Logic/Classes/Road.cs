@@ -1,7 +1,6 @@
 ﻿using System.Drawing;
 
-
-namespace Game.Classes
+namespace Logic.Classes
 {
     public class Road: IGameObject
     {
@@ -12,7 +11,7 @@ namespace Game.Classes
         public Road()
         {
             PositionAndSize = new PositionAndSize(new PointF(2100, 900), new Size(100, 17));
-            ImageName = Classes.ImageName.Road;
+            ImageName = ImageName.Road;
         }
     }
 }

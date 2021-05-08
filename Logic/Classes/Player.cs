@@ -1,21 +1,20 @@
 ﻿using System.Drawing;
-using Logic.Classes;
 
-namespace Game.Classes
+namespace Logic.Classes
 {
     public class Player
     {
-        public readonly Physics Physics;
-        public int Score;
-        public int Life;
-        public ImageName ImageName;
+        public readonly Physics physics;
+        public int score;
+        public int life;
+        public readonly ImageName imageName;
 
         public Player()
         {
-            Physics = new Physics(new PointF(3, 1), new Size(1, 2));
-            Score = 0;
-            Life = 5;
-            ImageName = ImageName.Totoro;
+            physics = new Physics(new PointF(3, 1), new Size(1, 2));
+            score = 0;
+            life = 5;
+            imageName = ImageName.Totoro;
         }
 
     }

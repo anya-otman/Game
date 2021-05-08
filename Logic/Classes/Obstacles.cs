@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-
-namespace Game.Classes
+namespace Logic.Classes
 {
     public class Obstacles : IGameObject
     {
@@ -23,16 +22,16 @@ namespace Game.Classes
             switch (rnd)
             {
                 case 0:
-                    ImageName = Classes.ImageName.Bush;
+                    ImageName = ImageName.Bush;
                     break;
                 case 1:
-                    ImageName = Classes.ImageName.Stump;
+                    ImageName = ImageName.Stump;
                     break;
                 case 2:
-                    ImageName = Classes.ImageName.Stone1;
+                    ImageName = ImageName.Stone1;
                     break;
                 case 3:
-                    ImageName = Classes.ImageName.Stone2;
+                    ImageName = ImageName.Stone2;
                     break;
             }
         }
