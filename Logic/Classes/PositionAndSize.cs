@@ -4,13 +4,13 @@ namespace Logic.Classes
 {
     public class PositionAndSize
     {
-        public PointF position;
-        public Size size;
+        public PointF Position;
+        public Size Size;
 
         public PositionAndSize(PointF position, Size size)
         {
-            this.position = position;
-            this.size = size;
+            Position = position;
+            Size = size;
         }
     }
 }

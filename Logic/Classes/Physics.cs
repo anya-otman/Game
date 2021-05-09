@@ -1,20 +1,21 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Logic.Classes
 {
     public class Physics
     {
-        public PositionAndSize positionAndSize;
+        public PositionAndSize PositionAndSize;
         private bool isJumping;
         private bool isCrouching;
         private int tick;
         private int jumpTick;
         private int sitTick;
 
+        public bool IsCrouching => isCrouching;
+
         public Physics(PointF position, Size size)
         {
-            positionAndSize = new PositionAndSize(position, size);
+            PositionAndSize = new PositionAndSize(position, size);
             isJumping = false;
             isCrouching = false;
             tick = 0;
@@ -33,7 +34,7 @@ namespace Logic.Classes
         public void Jump()
         {
             isJumping = true;
-            positionAndSize = new PositionAndSize(new PointF(3, 0), new Size(1, 2));
+            PositionAndSize = new PositionAndSize(new PointF(3, 0), new Size(1, 2));
             jumpTick = tick;
         }
 
@@ -41,17 +42,16 @@ namespace Logic.Classes
         {
             if (isJumping) return;
             isCrouching = true;
-            positionAndSize = new PositionAndSize(new PointF(3, 2), new Size(1, 1));
+            PositionAndSize = new PositionAndSize(new PointF(3, 2), new Size(1, 1));
             sitTick = tick;
         }
-        public bool IsCrouching => isCrouching;
 
         private void FallDown()
         {
             if (jumpTick == tick || isJumping == false)
                 return;
             isJumping = false;
-            positionAndSize = new PositionAndSize(new PointF(3, 1), new Size(1, 2));
+            PositionAndSize = new PositionAndSize(new PointF(3, 1), new Size(1, 2));
         }
 
         private void StandUp()
@@ -59,7 +59,7 @@ namespace Logic.Classes
             if (sitTick == tick || isCrouching == false)
                 return;
             isCrouching = false;
-            positionAndSize = new PositionAndSize(new PointF(3, 1), new Size(1, 2));
+            PositionAndSize = new PositionAndSize(new PointF(3, 1), new Size(1, 2));
         }
     }
 }

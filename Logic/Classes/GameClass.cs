@@ -3,7 +3,6 @@
     public enum GameClass
     {
         Food,
-        Obstacles,
-        Road
+        Obstacles
     }
 }

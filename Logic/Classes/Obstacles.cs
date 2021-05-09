@@ -5,8 +5,8 @@ namespace Logic.Classes
 {
     public class Obstacles : IGameObject
     {
-        public PositionAndSize PositionAndSize { get; set; }
-        public ImageName ImageName { get; set; }
+        public PositionAndSize PositionAndSize { get; }
+        public ImageName ImageName { get; private set; }
         public GameClass ObjectName => GameClass.Obstacles;
 
         public Obstacles()

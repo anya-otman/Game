@@ -2,8 +2,8 @@
 {
     public interface IGameObject
     {
-        PositionAndSize PositionAndSize { get; set; }
-        ImageName ImageName { get; set; }
+        PositionAndSize PositionAndSize { get; }
+        ImageName ImageName { get; }
         GameClass ObjectName { get; }
     }
 }

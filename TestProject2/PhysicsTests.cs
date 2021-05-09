@@ -13,11 +13,11 @@ namespace TestProject2
             var physics = new Physics(new PointF(3, 1), new Size(1, 2));
             
             physics.Jump();
-            var positionAndSize = physics.positionAndSize;
+            var positionAndSize = physics.PositionAndSize;
             
             var expectedPositionAndSize = new PositionAndSize(new PointF(3, 0), new Size(1, 2));
-            Assert.AreEqual(expectedPositionAndSize.position, positionAndSize.position);
-            Assert.AreEqual(expectedPositionAndSize.size,positionAndSize.size);
+            Assert.AreEqual(expectedPositionAndSize.Position, positionAndSize.Position);
+            Assert.AreEqual(expectedPositionAndSize.Size,positionAndSize.Size);
         }
 
         [Test]
@@ -26,11 +26,11 @@ namespace TestProject2
             var physics = new Physics(new PointF(3, 1), new Size(1, 2));
             
             physics.SitDown();
-            var positionAndSize = physics.positionAndSize;
+            var positionAndSize = physics.PositionAndSize;
             
             var expectedPositionAndSize = new PositionAndSize(new PointF(3, 2), new Size(1, 1));
-            Assert.AreEqual(expectedPositionAndSize.position, positionAndSize.position);
-            Assert.AreEqual(expectedPositionAndSize.size,positionAndSize.size);
+            Assert.AreEqual(expectedPositionAndSize.Position, positionAndSize.Position);
+            Assert.AreEqual(expectedPositionAndSize.Size,positionAndSize.Size);
         }
         
         [Test]
@@ -40,11 +40,11 @@ namespace TestProject2
 
             physics.Jump();
             physics.SitDown();
-            var positionAndSize = physics.positionAndSize;
+            var positionAndSize = physics.PositionAndSize;
             
             var expectedPositionAndSize = new PositionAndSize(new PointF(3, 0), new Size(1, 2));
-            Assert.AreEqual(expectedPositionAndSize.position, positionAndSize.position);
-            Assert.AreEqual(expectedPositionAndSize.size,positionAndSize.size);
+            Assert.AreEqual(expectedPositionAndSize.Position, positionAndSize.Position);
+            Assert.AreEqual(expectedPositionAndSize.Size,positionAndSize.Size);
         }
     }
 }

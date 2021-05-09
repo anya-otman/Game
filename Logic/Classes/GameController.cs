@@ -6,69 +6,72 @@ namespace Logic.Classes
 {
     public class GameController
     {
-        private List<IGameObject> gameObjects;
+        private readonly List<IGameObject> gameObjects;
         private int foodCounter;
         private int obstaclesCounter;
         private readonly Player player;
-        private int dangerSpawn = 7;
-        private int countDangerSpawn = 2;
+        private readonly List<int> positions;
 
         public GameController()
         {
             gameObjects = new List<IGameObject>();
             foodCounter = 0;
             obstaclesCounter = 0;
+            positions = new List<int> {11, 20, 40, 53, 65};
             player = new Player();
-            GenerateRoad();
+            GetNewRoad();
         }
 
         public void ChangeState()
         {
             MoveMap();
-            player.physics.ApplyPhysics();
+            player.Physics.ApplyPhysics();
             Collide();
         }
+
         private void MoveMap()
         {
             for (var i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].PositionAndSize.position.X -= 1;
-                if (gameObjects[i].PositionAndSize.position.X < -2)
+                gameObjects[i].PositionAndSize.Position.X -= 1;
+                if (gameObjects[i].PositionAndSize.Position.X < -2)
                 {
-                    if (gameObjects[i].ObjectName == GameClass.Road)
-                        GetNewRoad();
-                    gameObjects[i].PositionAndSize.position.X = 70;
-                    //gameObjects.RemoveAt(i);
+                    gameObjects.RemoveAt(i);
+                    GetNewObject();
                 }
             }
+
+            if (gameObjects.Count < 2)
+                GetNewRoad();
         }
+
         public void GetFood()
         {
             if (TryGetFoodIndex(out var index))
             {
                 gameObjects.RemoveAt(index);
-                player.score += 10;
+                player.Score += 10;
             }
         }
 
         public void Jump()
         {
-            player.physics.Jump();
+            player.Physics.Jump();
         }
 
         public void SitDown()
         {
-            player.physics.SitDown();
+            player.Physics.SitDown();
         }
 
         public int GetLife()
         {
-            return player.life;
+            return player.Life;
         }
 
         public int GetScore()
         {
-            return player.score;
+            return player.Score;
         }
 
         public int GetFoodCounter()
@@ -83,28 +86,29 @@ namespace Logic.Classes
 
         public Physics GetPlayerPhysics()
         {
-            return player.physics;
+            return player.Physics;
         }
 
         public ImageName GetPlayerImageName()
         {
-            return player.imageName;
+            return player.ImgName;
         }
 
         public List<IGameObject> GetGameObjectList()
         {
             return gameObjects;
         }
+
         private bool TryGetFoodIndex(out int index)
         {
             index = -1;
-            for (int i = 0; i < gameObjects.Count; i++)
+            for (var i = 0; i < gameObjects.Count; i++)
             {
                 if (gameObjects[i].ObjectName != GameClass.Food)
                     continue;
-                var foodPosition = gameObjects[i].PositionAndSize.position;
-                var playerPosition = player.physics.positionAndSize.position;
-                var playerSize = player.physics.positionAndSize.size;
+                var foodPosition = gameObjects[i].PositionAndSize.Position;
+                var playerPosition = player.Physics.PositionAndSize.Position;
+                var playerSize = player.Physics.PositionAndSize.Size;
                 if (!IsObjectInPlayerPosition(playerPosition, foodPosition, playerSize))
                     continue;
                 index = i;
@@ -113,42 +117,49 @@ namespace Logic.Classes
 
             return false;
         }
+
         private void GetNewRoad()
         {
-            var road = new Road();
-            gameObjects.Add(road);
-            countDangerSpawn++;
-
-            if (countDangerSpawn >= dangerSpawn)
+            foreach (var position in positions)
             {
-                var r = new Random();
-                dangerSpawn = r.Next(2, 6);
-                countDangerSpawn = 0;
-                var obj = r.Next(0, 2); //c птицами (0, 3)
-                switch (obj)
+                var obstacle = new Obstacles();
+                var food = new Food();
+                if (position == 11 || position == 20 || position == 53)
                 {
-                    case 0:
-                        gameObjects.Add(new Obstacles());
-                        obstaclesCounter++;
-                        break;
-                    case 1:
-                        gameObjects.Add(new Food());
-                        foodCounter++;
-                        break;
+                    obstacle.PositionAndSize.Position.X = position;
+                    gameObjects.Add(obstacle);
+                }
+
+                if (position == 40 || position == 65)
+                {
+                    food.PositionAndSize.Position.X = position;
+                    gameObjects.Add(food);
                 }
             }
         }
 
-        private void GenerateRoad()
+
+        private void GetNewObject()
         {
-            for (var i = 0; i < 10; i++)
+            var r = new Random();
+            var obj = r.Next(0, 2); //c птицами (0, 3)
+            switch (obj)
             {
-                var newRoad = new Road();
-                newRoad.PositionAndSize.position.X *= i;
-                gameObjects.Add(newRoad);
-                countDangerSpawn++;
+                case 0:
+                    var newObstacle = new Obstacles();
+                    newObstacle.PositionAndSize.Position.X = 60;
+                    gameObjects.Add(newObstacle);
+                    obstaclesCounter++;
+                    break;
+                case 1:
+                    var newFood = new Food();
+                    newFood.PositionAndSize.Position.X = 60;
+                    gameObjects.Add(newFood);
+                    foodCounter++;
+                    break;
             }
         }
+
 
         private void Collide()
         {
@@ -156,12 +167,12 @@ namespace Logic.Classes
             {
                 if (gameObject.ObjectName != GameClass.Obstacles)
                     continue;
-                var obstaclePosition = gameObject.PositionAndSize.position;
-                var playerPosition = player.physics.positionAndSize.position;
-                var playerSize = player.physics.positionAndSize.size;
+                var obstaclePosition = gameObject.PositionAndSize.Position;
+                var playerPosition = player.Physics.PositionAndSize.Position;
+                var playerSize = player.Physics.PositionAndSize.Size;
                 if (!IsObjectInPlayerPosition(playerPosition, obstaclePosition, playerSize))
                     continue;
-                player.life -= 1;
+                player.Life -= 1;
             }
         }
 
@@ -170,7 +181,5 @@ namespace Logic.Classes
             return Math.Abs(playerPosition.X - foodPosition.X) < 0.1 &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
         }
-        
-        
     }
 }

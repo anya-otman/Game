@@ -35,9 +35,9 @@ namespace Game
         private void Update(object sender, EventArgs e)
         {
             gameController.ChangeState();
-            Text = "Totoro - life: " + gameController.GetLife() +
+            Text = "Totoro - Life: " + gameController.GetLife() +
                    //" timeInterval: " + mainTimer.Interval + 
-                   " score" + gameController.GetScore() +
+                   " Score" + gameController.GetScore() +
                    " foodCounter " + gameController.GetFoodCounter() +
                    " obstaclesCounter " + gameController.GetObstacleCounter();
             Invalidate();
@@ -53,27 +53,22 @@ namespace Game
         {
             foreach (var gameObject in gameController.GetGameObjectList())
             {
-                //нужно убратьб дорогу из логики и тогда вот этот if не будет нужен
-                if (gameObject.ObjectName == GameClass.Road)
-                    g.DrawImage(GetImage(gameObject.ImageName), gameObject.PositionAndSize.position.X,
-                        gameObject.PositionAndSize.position.Y,
-                        gameObject.PositionAndSize.size.Width, gameObject.PositionAndSize.size.Height);
-                else
-                    g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.position.X * 180, 690,
-                        gameObject.PositionAndSize.size.Width * 90, gameObject.PositionAndSize.size.Height * 90);
+                g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.Position.X * 180, 690,
+                        gameObject.PositionAndSize.Size.Width * 90, gameObject.PositionAndSize.Size.Height * 90);
             }
 
             var playerPhysics = gameController.GetPlayerPhysics();
             var playerImage = gameController.GetPlayerImageName();
+
             if (playerPhysics.IsCrouching)
-                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.positionAndSize.position.X * 180,
-                    455 + playerPhysics.positionAndSize.position.Y * 90,
-                    playerPhysics.positionAndSize.size.Width * 180, playerPhysics.positionAndSize.size.Height * 140);
+                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.PositionAndSize.Position.X * 180,
+                    455 + playerPhysics.PositionAndSize.Position.Y * 90,
+                    playerPhysics.PositionAndSize.Size.Width * 180, playerPhysics.PositionAndSize.Size.Height * 140);
 
             else
-                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.positionAndSize.position.X * 180,
-                    405 + playerPhysics.positionAndSize.position.Y * 90,
-                    playerPhysics.positionAndSize.size.Width * 180, playerPhysics.positionAndSize.size.Height * 140);
+                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.PositionAndSize.Position.X * 180,
+                    405 + playerPhysics.PositionAndSize.Position.Y * 90,
+                    playerPhysics.PositionAndSize.Size.Width * 180, playerPhysics.PositionAndSize.Size.Height * 140);
         }
 
         private static Image GetImage(ImageName imageName)
@@ -94,8 +89,6 @@ namespace Game
                     return Resources.stump;
                 case ImageName.Bush:
                     return Resources.bush;
-                case ImageName.Road:
-                    return Resources.road;
                 case ImageName.Totoro:
                     return Resources.totoro;
                 default:

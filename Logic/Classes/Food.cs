@@ -5,8 +5,8 @@ namespace Logic.Classes
 {
     public class Food : IGameObject
     {
-        public PositionAndSize PositionAndSize { get; set; }
-        public ImageName ImageName { get; set; }
+        public PositionAndSize PositionAndSize { get; }
+        public ImageName ImageName { get; private set; }
         public GameClass ObjectName => GameClass.Food;
 
         public Food()
@@ -18,16 +18,16 @@ namespace Logic.Classes
         private void ChooseRandomImage()
         {
             var r = new Random();
-            var rnd = r.Next(0, 3);
+            var rnd = r.Next(1, 4);
             switch (rnd)
             {
-                case 0:
-                    ImageName = ImageName.Berries;
-                    break;
                 case 1:
                     ImageName = ImageName.Corn;
                     break;
                 case 2:
+                    ImageName = ImageName.Berries;
+                    break;
+                case 3:
                     ImageName = ImageName.Nut;
                     break;
             }

@@ -31,3 +31,6 @@ D:\C# 2\Game Totoro 3\Game\obj\Debug\Game.pdb
 D:\C# 2\Game Totoro 3\Game\bin\Debug\Logic.dll
 D:\C# 2\Game Totoro 3\Game\bin\Debug\Logic.pdb
 D:\C# 2\Game Totoro 3\Game\obj\Debug\Game.csproj.CopyComplete
+C:\Users\User\source\repos\Game\bin\Debug\Logic.dll
+C:\Users\User\source\repos\Game\bin\Debug\Logic.pdb
+C:\Users\User\source\repos\Game\obj\Debug\Game.csproj.CopyComplete
