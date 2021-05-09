@@ -37,11 +37,11 @@ namespace Logic.Classes
                 {
                     if (gameObjects[i].ObjectName == GameClass.Road)
                         GetNewRoad();
-                    gameObjects.RemoveAt(i);
+                    gameObjects[i].PositionAndSize.position.X = 70;
+                    //gameObjects.RemoveAt(i);
                 }
             }
         }
-        
         public void GetFood()
         {
             if (TryGetFoodIndex(out var index))

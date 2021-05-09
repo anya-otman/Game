@@ -66,7 +66,6 @@ namespace Game
             var playerPhysics = gameController.GetPlayerPhysics();
             var playerImage = gameController.GetPlayerImageName();
             if (playerPhysics.IsCrouching)
-
                 g.DrawImage(GetImage(playerImage), -265 + playerPhysics.positionAndSize.position.X * 180,
                     455 + playerPhysics.positionAndSize.position.Y * 90,
                     playerPhysics.positionAndSize.size.Width * 180, playerPhysics.positionAndSize.size.Height * 140);

@@ -5,9 +5,9 @@ namespace Logic.Classes
 {
     public class Obstacles : IGameObject
     {
-        public override PositionAndSize PositionAndSize { get; set; }
-        public override ImageName ImageName { get; set; }
-        public override GameClass ObjectName => GameClass.Obstacles;
+        public PositionAndSize PositionAndSize { get; set; }
+        public ImageName ImageName { get; set; }
+        public GameClass ObjectName => GameClass.Obstacles;
 
         public Obstacles()
         {

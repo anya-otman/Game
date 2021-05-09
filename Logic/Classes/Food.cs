@@ -5,9 +5,9 @@ namespace Logic.Classes
 {
     public class Food : IGameObject
     {
-        public sealed override PositionAndSize PositionAndSize { get; set; }
-        public override ImageName ImageName { get; set; }
-        public override GameClass ObjectName => GameClass.Food;
+        public PositionAndSize PositionAndSize { get; set; }
+        public ImageName ImageName { get; set; }
+        public GameClass ObjectName => GameClass.Food;
 
         public Food()
         {

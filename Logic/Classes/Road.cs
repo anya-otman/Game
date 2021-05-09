@@ -4,9 +4,9 @@ namespace Logic.Classes
 {
     public class Road: IGameObject
     {
-        public sealed override PositionAndSize PositionAndSize { get; set; }
-        public sealed override ImageName ImageName { get; set; }
-        public override GameClass ObjectName => GameClass.Road;
+        public  PositionAndSize PositionAndSize { get; set; }
+        public  ImageName ImageName { get; set; }
+        public GameClass ObjectName => GameClass.Road;
 
         public Road()
         {

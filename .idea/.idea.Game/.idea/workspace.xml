@@ -22,11 +22,19 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec171b7d-d26f-44d6-8b4c-433a2a9bdf40" name="Default Changelist" comment="add test project">
+    <list default="true" id="ec171b7d-d26f-44d6-8b4c-433a2a9bdf40" name="Default Changelist" comment="add 3 tests on physics class">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/Classes/Physics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Classes/Physics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Classes/Food.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Classes/Food.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Classes/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Classes/GameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Classes/IGameObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Classes/IGameObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Classes/Obstacles.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Classes/Obstacles.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Classes/Road.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Classes/Road.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/Game.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Debug/Game.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Game.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.csprojAssemblyReference.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Game.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Game.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.pdb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,18 +86,18 @@
         <option value="$PROJECT_DIR$/Tests/Tests.cs" />
         <option value="$PROJECT_DIR$/TestProject2/Tests.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/Bird.cs" />
-        <option value="$PROJECT_DIR$/Logic/Classes/Food.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/GameClass.cs" />
-        <option value="$PROJECT_DIR$/Logic/Classes/IGameObject.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/ImageName.cs" />
-        <option value="$PROJECT_DIR$/Logic/Classes/Obstacles.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/Player.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/PositionAndSize.cs" />
-        <option value="$PROJECT_DIR$/Logic/Classes/Road.cs" />
-        <option value="$PROJECT_DIR$/Logic/Classes/GameController.cs" />
-        <option value="$PROJECT_DIR$/Form1.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/Physics.cs" />
         <option value="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" />
+        <option value="$PROJECT_DIR$/Logic/Classes/GameController.cs" />
+        <option value="$PROJECT_DIR$/Form1.cs" />
+        <option value="$PROJECT_DIR$/Logic/Classes/IGameObject.cs" />
+        <option value="$PROJECT_DIR$/Logic/Classes/Food.cs" />
+        <option value="$PROJECT_DIR$/Logic/Classes/Obstacles.cs" />
+        <option value="$PROJECT_DIR$/Logic/Classes/Road.cs" />
       </list>
     </option>
   </component>
@@ -139,7 +147,7 @@
       <workItem from="1620366238585" duration="8175000" />
       <workItem from="1620390146082" duration="5676000" />
       <workItem from="1620396160334" duration="1264000" />
-      <workItem from="1620454773584" duration="9728000" />
+      <workItem from="1620454773584" duration="12968000" />
     </task>
     <task id="LOCAL-00001" summary="make array and add enam GameClass.cs">
       <created>1620120761072</created>
@@ -190,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620462936089</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add 3 tests on physics class">
+      <created>1620466934574</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1620466934574</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -218,25 +233,26 @@
     <MESSAGE value="add interaction with object and reaction to keys" />
     <MESSAGE value="get separation of logic and drawing" />
     <MESSAGE value="add test project" />
-    <option name="LAST_COMMIT_MESSAGE" value="add test project" />
+    <MESSAGE value="add 3 tests on physics class" />
+    <option name="LAST_COMMIT_MESSAGE" value="add 3 tests on physics class" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="288" key="GridCell.Tab.0.bottom" timestamp="1620464945489">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1620562537863">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620464945489" />
-    <state width="1493" height="288" key="GridCell.Tab.0.center" timestamp="1620464945489">
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1620562537863" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1620562537863">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620464945489" />
-    <state width="1493" height="288" key="GridCell.Tab.0.left" timestamp="1620464945488">
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1620562537863" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1620562537863">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620464945488" />
-    <state width="1493" height="288" key="GridCell.Tab.0.right" timestamp="1620464945489">
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1620562537863" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1620562537863">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="288" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620464945489" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1620562537863" />
     <state width="1493" height="288" key="GridCell.Tab.1.bottom" timestamp="1620464945489">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -305,10 +321,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="144" key="Rider.ProjectTemplateDialog.Size/0.0.1536.824@0.0.1536.824" timestamp="1620394040842" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1620462940863">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1620466942976">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1620462940863" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1620466942976" />
     <state x="306" y="0" width="1244" height="810" key="dock-window-1" timestamp="1620462564513">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
