@@ -53,7 +53,7 @@ namespace Game
         {
             foreach (var gameObject in gameController.GetGameObjectList())
             {
-                g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.Position.X * 180, 690,
+                g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.Position.X * 180, 580,
                         gameObject.PositionAndSize.Size.Width * 90, gameObject.PositionAndSize.Size.Height * 90);
             }
 
@@ -62,12 +62,12 @@ namespace Game
 
             if (playerPhysics.IsCrouching)
                 g.DrawImage(GetImage(playerImage), -265 + playerPhysics.PositionAndSize.Position.X * 180,
-                    455 + playerPhysics.PositionAndSize.Position.Y * 90,
+                    355 + playerPhysics.PositionAndSize.Position.Y * 90,
                     playerPhysics.PositionAndSize.Size.Width * 180, playerPhysics.PositionAndSize.Size.Height * 140);
 
             else
                 g.DrawImage(GetImage(playerImage), -265 + playerPhysics.PositionAndSize.Position.X * 180,
-                    405 + playerPhysics.PositionAndSize.Position.Y * 90,
+                    300 + playerPhysics.PositionAndSize.Position.Y * 90,
                     playerPhysics.PositionAndSize.Size.Width * 180, playerPhysics.PositionAndSize.Size.Height * 140);
         }
 
