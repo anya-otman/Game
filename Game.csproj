@@ -96,9 +96,6 @@
     <None Include="Images\stump.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Images\road.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Images\berries.png" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,55 @@
+﻿using System.Drawing;
+using Logic.Classes;
+using NUnit.Framework;
+
+namespace TestProject2
+{
+    [TestFixture]
+
+    public class GameStateTests
+    {
+        [Test]
+        public void MapMovement()
+        {
+            var gameController = new GameController();
+            var obj = gameController.GetGameObjectList()[0];
+            gameController.ChangeState();
+
+            var objPosition = obj.PositionAndSize;
+            var expectedObjPosition = new PositionAndSize(new PointF(10, 2), new Size(1, 1));
+
+            Assert.AreEqual(expectedObjPosition.Position.X, objPosition.Position.X);
+        }
+
+        [Test]
+        public void ScoreChange()
+        {
+            var gameController = new GameController();
+            for (var i = 0; i < 8; i++)
+            {
+                gameController.ChangeState();
+            }
+            gameController.GetFood();
+
+            var score = gameController.GetScore();
+            var expectedScore = 10;
+
+            Assert.AreEqual(expectedScore, score);
+        }
+
+        [Test]
+        public void LifeChange()
+        {
+            var gameController = new GameController();
+            for (var i = 0; i < 18; i++)
+            {
+                gameController.ChangeState();
+            }
+
+            var livesNumber = gameController.GetLife();
+            var expectedLivesNumber = 4;
+
+            Assert.AreEqual(expectedLivesNumber, livesNumber);
+        }
+    }
+}

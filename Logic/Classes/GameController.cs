@@ -29,22 +29,6 @@ namespace Logic.Classes
             Collide();
         }
 
-        private void MoveMap()
-        {
-            for (var i = 0; i < gameObjects.Count; i++)
-            {
-                gameObjects[i].PositionAndSize.Position.X -= 1;
-                if (gameObjects[i].PositionAndSize.Position.X < -2)
-                {
-                    gameObjects.RemoveAt(i);
-                    GetNewObject();
-                }
-            }
-
-            if (gameObjects.Count < 2)
-                GetNewRoad();
-        }
-
         public void GetFood()
         {
             if (TryGetFoodIndex(out var index))
@@ -118,26 +102,41 @@ namespace Logic.Classes
             return false;
         }
 
+        private void MoveMap()
+        {
+            for (var i = 0; i < gameObjects.Count; i++)
+            {
+                gameObjects[i].PositionAndSize.Position.X -= 1;
+                if (gameObjects[i].PositionAndSize.Position.X < -2)
+                {
+                    gameObjects.RemoveAt(i);
+                    GetNewObject();
+                }
+            }
+
+            if (gameObjects.Count < 2)
+                GetNewRoad();
+        }
+
         private void GetNewRoad()
         {
             foreach (var position in positions)
             {
                 var obstacle = new Obstacles();
                 var food = new Food();
-                if (position == 11 || position == 20 || position == 53)
+                if (position == 20 || position == 53)
                 {
                     obstacle.PositionAndSize.Position.X = position;
                     gameObjects.Add(obstacle);
                 }
 
-                if (position == 40 || position == 65)
+                if (position == 11 || position == 40 || position == 65)
                 {
                     food.PositionAndSize.Position.X = position;
                     gameObjects.Add(food);
                 }
             }
         }
-
 
         private void GetNewObject()
         {
@@ -159,7 +158,6 @@ namespace Logic.Classes
                     break;
             }
         }
-
 
         private void Collide()
         {
