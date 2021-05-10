@@ -10,6 +10,7 @@ namespace Game
     {
         private readonly Timer mainTimer;
         private GameController gameController;
+        public int timerCount;
 
         public Form1()
         {
@@ -19,9 +20,9 @@ namespace Game
             KeyUp += OnKeyBoardSpace;
             KeyUp += OnKeyBoardUp;
             KeyUp += OnKeyBoardDown;
-            mainTimer = new Timer {Interval = 300};
+            mainTimer = new Timer {Interval = 1};
             mainTimer.Tick += Update;
-
+            timerCount = 0;
             Init();
         }
 
@@ -34,13 +35,18 @@ namespace Game
 
         private void Update(object sender, EventArgs e)
         {
-            gameController.ChangeState();
+            timerCount++;
+            if (timerCount == 60)
+                timerCount = 0;
+            if (timerCount == 0)
+                gameController.ChangeState();
             Text = "Totoro - Life: " + gameController.GetLife() +
                    //" timeInterval: " + mainTimer.Interval + 
                    " Score" + gameController.GetScore() +
                    " foodCounter " + gameController.GetFoodCounter() +
                    " obstaclesCounter " + gameController.GetObstacleCounter();
             Invalidate();
+            
         }
 
         private void DrawGame(object sender, PaintEventArgs e)
@@ -53,7 +59,9 @@ namespace Game
         {
             foreach (var gameObject in gameController.GetGameObjectList())
             {
-                g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.Position.X * 180, 580,
+                if (gameObject.PositionAndSize.Position.X > 11)
+                    continue;
+                g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.Position.X * 180 - timerCount*3, 580,
                         gameObject.PositionAndSize.Size.Width * 90, gameObject.PositionAndSize.Size.Height * 90);
             }
 
