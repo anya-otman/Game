@@ -93,6 +93,7 @@ namespace Logic.Classes
                 var foodPosition = gameObjects[i].PositionAndSize.Position;
                 var playerPosition = player.Physics.PositionAndSize.Position;
                 var playerSize = player.Physics.PositionAndSize.Size;
+                playerSize.Width = 2;
                 if (!IsObjectInPlayerPosition(playerPosition, foodPosition, playerSize))
                     continue;
                 index = i;
@@ -176,7 +177,7 @@ namespace Logic.Classes
 
         private bool IsObjectInPlayerPosition(PointF playerPosition, PointF foodPosition, Size playerSize)
         {
-            return Math.Abs(playerPosition.X - foodPosition.X) < 0.1 &&
+            return Math.Abs(playerPosition.X + playerSize.Width - 1 - foodPosition.X) < 0.1 &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
         }
     }
