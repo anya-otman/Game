@@ -10,7 +10,7 @@ namespace Game
     {
         private readonly Timer mainTimer;
         private GameController gameController;
-        public int timerCount;
+        private int timerCount;
 
         public Form1()
         {
