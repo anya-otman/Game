@@ -25,7 +25,7 @@ namespace TestProject2
         public void ScoreChange()
         {
             var gameController = new GameController();
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < 7; i++)
             {
                 gameController.ChangeState();
             }
