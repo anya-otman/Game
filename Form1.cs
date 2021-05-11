@@ -20,7 +20,7 @@ namespace Game
             KeyUp += OnKeyBoardSpace;
             KeyUp += OnKeyBoardUp;
             KeyUp += OnKeyBoardDown;
-            mainTimer = new Timer {Interval = 1};
+            mainTimer = new Timer {Interval = 2};
             mainTimer.Tick += Update;
             timerCount = 0;
             Init();
@@ -36,7 +36,7 @@ namespace Game
         private void Update(object sender, EventArgs e)
         {
             timerCount++;
-            if (timerCount == 60)
+            if (timerCount == 30)
                 timerCount = 0;
             if (timerCount == 0)
                 gameController.ChangeState();
@@ -61,7 +61,7 @@ namespace Game
             {
                 if (gameObject.PositionAndSize.Position.X > 11)
                     continue;
-                g.DrawImage(GetImage(gameObject.ImageName), -265 + gameObject.PositionAndSize.Position.X * 180 - timerCount*3, 580,
+                g.DrawImage(GetImage(gameObject.TypeName), -265 + gameObject.PositionAndSize.Position.X * 180 - timerCount*6, 580,
                         gameObject.PositionAndSize.Size.Width * 90, gameObject.PositionAndSize.Size.Height * 90);
             }
 
@@ -79,28 +79,28 @@ namespace Game
                     playerPhysics.PositionAndSize.Size.Width * 180, playerPhysics.PositionAndSize.Size.Height * 140);
         }
 
-        private static Image GetImage(ImageName imageName)
+        private static Image GetImage(TypeName typeName)
         {
-            switch (imageName)
+            switch (typeName)
             {
-                case ImageName.Berries:
+                case TypeName.Berries:
                     return Resources.berries;
-                case ImageName.Corn:
+                case TypeName.Corn:
                     return Resources.corn;
-                case ImageName.Nut:
+                case TypeName.Nut:
                     return Resources.nut;
-                case ImageName.Stone1:
+                case TypeName.Stone1:
                     return Resources.stone1;
-                case ImageName.Stone2:
+                case TypeName.Stone2:
                     return Resources.stone2;
-                case ImageName.Stump:
+                case TypeName.Stump:
                     return Resources.stump;
-                case ImageName.Bush:
+                case TypeName.Bush:
                     return Resources.bush;
-                case ImageName.Totoro:
+                case TypeName.Totoro:
                     return Resources.totoro;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(imageName), imageName, null);
+                    throw new ArgumentOutOfRangeException(nameof(typeName), typeName, null);
             }
         }
 

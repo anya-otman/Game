@@ -7,7 +7,7 @@ namespace Logic.Classes
         public PointF Position;
         public Size Size;
 
-        public PositionAndSize(PointF position, Size size)
+        public PositionAndSize(Point position, Size size)
         {
             Position = position;
             Size = size;

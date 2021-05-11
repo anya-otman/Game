@@ -3,7 +3,7 @@
     public interface IGameObject
     {
         PositionAndSize PositionAndSize { get; }
-        ImageName ImageName { get; }
+        TypeName TypeName { get; }
         GameClass ObjectName { get; }
     }
 }

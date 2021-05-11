@@ -16,7 +16,7 @@ namespace TestProject2
             gameController.ChangeState();
 
             var objPosition = obj.PositionAndSize;
-            var expectedObjPosition = new PositionAndSize(new PointF(10, 2), new Size(1, 1));
+            var expectedObjPosition = new PositionAndSize(new Point(10, 2), new Size(1, 1));
 
             Assert.AreEqual(expectedObjPosition.Position.X, objPosition.Position.X);
         }

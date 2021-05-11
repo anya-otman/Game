@@ -6,12 +6,12 @@ namespace Logic.Classes
     public class Food : IGameObject
     {
         public PositionAndSize PositionAndSize { get; }
-        public ImageName ImageName { get; private set; }
+        public TypeName TypeName { get; private set; }
         public GameClass ObjectName => GameClass.Food;
 
         public Food()
         {
-            PositionAndSize = new PositionAndSize(new PointF(11, 2), new Size(1,1));
+            PositionAndSize = new PositionAndSize(new Point(11, 2), new Size(1,1));
             ChooseRandomImage();
         }
         
@@ -22,13 +22,13 @@ namespace Logic.Classes
             switch (rnd)
             {
                 case 1:
-                    ImageName = ImageName.Corn;
+                    TypeName = TypeName.Corn;
                     break;
                 case 2:
-                    ImageName = ImageName.Berries;
+                    TypeName = TypeName.Berries;
                     break;
                 case 3:
-                    ImageName = ImageName.Nut;
+                    TypeName = TypeName.Nut;
                     break;
             }
         }

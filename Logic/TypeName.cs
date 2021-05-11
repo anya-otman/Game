@@ -1,6 +1,6 @@
 ﻿namespace Logic.Classes
 {
-    public enum ImageName
+    public enum TypeName
     {
         Corn,
         Berries,

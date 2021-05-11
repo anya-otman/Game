@@ -7,14 +7,14 @@ namespace Logic.Classes
         public readonly Physics Physics;
         public int Score;
         public int Life;
-        public readonly ImageName ImgName;
+        public readonly TypeName ImgName;
 
         public Player()
         {
-            Physics = new Physics(new PointF(3, 1), new Size(1, 2));
+            Physics = new Physics(new Point(3, 1), new Size(1, 2));
             Score = 0;
             Life = 5;
-            ImgName = ImageName.Totoro;
+            ImgName = TypeName.Totoro;
         }
 
     }

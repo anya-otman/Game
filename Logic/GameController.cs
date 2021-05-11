@@ -31,7 +31,7 @@ namespace Logic.Classes
 
         public void GetFood()
         {
-            if (TryGetFoodIndex(out var index))
+            if (IsPlayerNearFood_GetIndex(out var index))
             {
                 gameObjects.RemoveAt(index);
                 player.Score += 10;
@@ -73,7 +73,7 @@ namespace Logic.Classes
             return player.Physics;
         }
 
-        public ImageName GetPlayerImageName()
+        public TypeName GetPlayerImageName()
         {
             return player.ImgName;
         }
@@ -83,7 +83,7 @@ namespace Logic.Classes
             return gameObjects;
         }
 
-        private bool TryGetFoodIndex(out int index)
+        private bool IsPlayerNearFood_GetIndex(out int index)
         {
             index = -1;
             for (var i = 0; i < gameObjects.Count; i++)
