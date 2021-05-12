@@ -1,4 +1,4 @@
-﻿namespace Logic.Classes
+﻿namespace Logic
 {
     public enum TypeName
     {
@@ -9,6 +9,8 @@
         Stone1,
         Stone2,
         Stump,
+        AppleCore,
+        Mushroom,
         Totoro
     }
 }

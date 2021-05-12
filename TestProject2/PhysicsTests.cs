@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
+using Logic;
 using NUnit.Framework;
-using Logic.Classes;
 
 namespace TestProject2
 {

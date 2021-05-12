@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace Logic.Classes
+namespace Logic
 {
     public class Obstacles : IGameObject
     {
@@ -11,7 +11,7 @@ namespace Logic.Classes
 
         public Obstacles()
         {
-            PositionAndSize = new PositionAndSize(new Point(11, 2), new Size(1,1));
+            PositionAndSize = new PositionAndSize(new Point(11, 2), new SizeF(1,1));
             ChooseRandomImage();
         }
 

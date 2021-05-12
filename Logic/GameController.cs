@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace Logic.Classes
+namespace Logic
 {
     public class GameController
     {
@@ -17,7 +17,7 @@ namespace Logic.Classes
             gameObjects = new List<IGameObject>();
             foodCounter = 0;
             obstaclesCounter = 0;
-            positions = new List<int> {11, 20, 40, 53, 65};
+            positions = new List<int> {11, 20, 35, 53, 65};
             player = new Player();
             GetNewRoad();
         }
@@ -33,8 +33,11 @@ namespace Logic.Classes
         {
             if (IsPlayerNearFood_GetIndex(out var index))
             {
+                if (gameObjects[index].ObjectName == GameClass.Food)
+                    player.Score += 10;
+                if (gameObjects[index].ObjectName == GameClass.BadFood)
+                    player.Life -= 1;
                 gameObjects.RemoveAt(index);
-                player.Score += 10;
             }
         }
 
@@ -88,16 +91,17 @@ namespace Logic.Classes
             index = -1;
             for (var i = 0; i < gameObjects.Count; i++)
             {
-                if (gameObjects[i].ObjectName != GameClass.Food)
-                    continue;
-                var foodPosition = gameObjects[i].PositionAndSize.Position;
-                var playerPosition = player.Physics.PositionAndSize.Position;
-                var playerSize = player.Physics.PositionAndSize.Size;
-                playerSize.Width = 2;
-                if (!IsObjectInPlayerPosition(playerPosition, foodPosition, playerSize))
-                    continue;
-                index = i;
-                return true;
+                if (gameObjects[i].ObjectName == GameClass.Food || gameObjects[i].ObjectName == GameClass.BadFood)
+                {
+                    var foodPosition = gameObjects[i].PositionAndSize.Position;
+                    var playerPosition = player.Physics.PositionAndSize.Position;
+                    var playerSize = player.Physics.PositionAndSize.Size;
+                    playerSize.Width = 2;
+                    if (!IsObjectInPlayerPosition(playerPosition, foodPosition, playerSize))
+                        continue;
+                    index = i;
+                    return true;
+                }
             }
 
             return false;
@@ -125,16 +129,23 @@ namespace Logic.Classes
             {
                 var obstacle = new Obstacles();
                 var food = new Food();
-                if (position == 20 || position == 53)
+                var badFood = new BadFood();
+                if (position == 35 || position == 53)
                 {
                     obstacle.PositionAndSize.Position.X = position;
                     gameObjects.Add(obstacle);
                 }
 
-                if (position == 11 || position == 40 || position == 65)
+                if (position == 11 || position == 65)
                 {
                     food.PositionAndSize.Position.X = position;
                     gameObjects.Add(food);
+                }
+
+                if (position == 20)
+                {
+                    badFood.PositionAndSize.Position.X = position;
+                    gameObjects.Add(badFood);
                 }
             }
         }
@@ -142,7 +153,7 @@ namespace Logic.Classes
         private void GetNewObject()
         {
             var r = new Random();
-            var obj = r.Next(0, 2); //c птицами (0, 3)
+            var obj = r.Next(0, 3); //c птицами (0, 4)
             switch (obj)
             {
                 case 0:
@@ -155,6 +166,12 @@ namespace Logic.Classes
                     var newFood = new Food();
                     newFood.PositionAndSize.Position.X = 60;
                     gameObjects.Add(newFood);
+                    foodCounter++;
+                    break;
+                case 2:
+                    var newBadFood = new BadFood();
+                    newBadFood.PositionAndSize.Position.X = 60;
+                    gameObjects.Add(newBadFood);
                     foodCounter++;
                     break;
             }
@@ -175,7 +192,7 @@ namespace Logic.Classes
             }
         }
 
-        private bool IsObjectInPlayerPosition(PointF playerPosition, PointF foodPosition, Size playerSize)
+        private bool IsObjectInPlayerPosition(PointF playerPosition, Point foodPosition, SizeF playerSize)
         {
             return Math.Abs(playerPosition.X + playerSize.Width - 1 - foodPosition.X) < 0.1 &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;

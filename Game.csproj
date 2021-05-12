@@ -113,5 +113,32 @@
       <Name>Logic</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\life.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\totoroGo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bird1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bird2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bird3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bird4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\bird5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\appleCore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Images\mushroom.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Drawing;
 using Game.Properties;
-using Logic.Classes;
+using Logic;
 
 namespace Game
 {
@@ -99,6 +99,10 @@ namespace Game
                     return Resources.bush;
                 case TypeName.Totoro:
                     return Resources.totoro;
+                case TypeName.AppleCore:
+                    return Resources.appleCore;
+                case TypeName.Mushroom:
+                    return Resources.mushroom;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeName), typeName, null);
             }

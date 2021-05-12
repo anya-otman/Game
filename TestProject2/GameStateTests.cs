@@ -1,5 +1,5 @@
 ﻿using System.Drawing;
-using Logic.Classes;
+using Logic;
 using NUnit.Framework;
 
 namespace TestProject2
@@ -38,13 +38,29 @@ namespace TestProject2
         }
 
         [Test]
-        public void LifeChange()
+        public void LifeChange_WhenCollideWithObstacle()
         {
             var gameController = new GameController();
-            for (var i = 0; i < 18; i++)
+            for (var i = 0; i < 33; i++)
             {
                 gameController.ChangeState();
             }
+
+            var livesNumber = gameController.GetLife();
+            var expectedLivesNumber = 4;
+
+            Assert.AreEqual(expectedLivesNumber, livesNumber);
+        }
+
+        [Test]
+        public void LifeChange_WhenTakeBadFood()
+        {
+            var gameController = new GameController();
+            for (var i = 0; i < 17; i++)
+            {
+                gameController.ChangeState();
+            }
+            gameController.GetFood();
 
             var livesNumber = gameController.GetLife();
             var expectedLivesNumber = 4;

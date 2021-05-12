@@ -1,8 +1,9 @@
-﻿namespace Logic.Classes
+﻿namespace Logic
 {
     public enum GameClass
     {
         Food,
-        Obstacles
+        Obstacles,
+        BadFood
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace Logic.Classes
+﻿namespace Logic
 {
     public interface IGameObject
     {

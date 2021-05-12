@@ -1,13 +1,13 @@
 ﻿using System.Drawing;
 
-namespace Logic.Classes
+namespace Logic
 {
     public class PositionAndSize
     {
-        public PointF Position;
-        public Size Size;
+        public Point Position;
+        public SizeF Size;
 
-        public PositionAndSize(Point position, Size size)
+        public PositionAndSize(Point position, SizeF size)
         {
             Position = position;
             Size = size;
