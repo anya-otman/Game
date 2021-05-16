@@ -12,17 +12,27 @@
       <e p="Game.csproj" t="IncludeRecursive" />
       <e p="Game.sln" t="IncludeFlat" />
       <e p="Images" t="Include">
+        <e p="appleCore.png" t="Include" />
         <e p="backgrond.png" t="Include" />
         <e p="berries.png" t="Include" />
+        <e p="bird1.png" t="Include" />
+        <e p="bird2.png" t="Include" />
+        <e p="bird3.png" t="Include" />
+        <e p="bird4.png" t="Include" />
+        <e p="bird5.png" t="Include" />
         <e p="bush.png" t="Include" />
         <e p="corn.png" t="Include" />
+        <e p="life.png" t="Include" />
+        <e p="mushroom.png" t="Include" />
         <e p="nut.png" t="Include" />
         <e p="stone1.png" t="Include" />
         <e p="stone2.png" t="Include" />
         <e p="stump.png" t="Include" />
         <e p="totoro.png" t="Include" />
+        <e p="totoroGo.png" t="Include" />
       </e>
       <e p="Logic" t="IncludeRecursive">
+        <e p="BadFood.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Bird.cs" t="Include" />
         <e p="Food.cs" t="Include" />

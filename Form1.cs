@@ -61,7 +61,7 @@ namespace Game
             {
                 if (gameObject.PositionAndSize.Position.X > 11)
                     continue;
-                g.DrawImage(GetImage(gameObject.TypeName), -265 + gameObject.PositionAndSize.Position.X * 180 - timerCount*6, 580,
+                g.DrawImage(GetImage(gameObject.TypeName), -90 + gameObject.PositionAndSize.Position.X * 90 - timerCount*3, 580,
                         gameObject.PositionAndSize.Size.Width * 90, gameObject.PositionAndSize.Size.Height * 90);
             }
 
@@ -69,14 +69,14 @@ namespace Game
             var playerImage = gameController.GetPlayerImageName();
 
             if (playerPhysics.IsCrouching)
-                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.PositionAndSize.Position.X * 180,
-                    355 + playerPhysics.PositionAndSize.Position.Y * 90,
-                    playerPhysics.PositionAndSize.Size.Width * 180, playerPhysics.PositionAndSize.Size.Height * 140);
+                g.DrawImage(GetImage(playerImage), -90 + playerPhysics.PositionAndSize.Position.X * 90,
+                    405 + playerPhysics.PositionAndSize.Position.Y * 90,
+                    playerPhysics.PositionAndSize.Size.Width * 90, playerPhysics.PositionAndSize.Size.Height * 90);
 
             else
-                g.DrawImage(GetImage(playerImage), -265 + playerPhysics.PositionAndSize.Position.X * 180,
-                    300 + playerPhysics.PositionAndSize.Position.Y * 90,
-                    playerPhysics.PositionAndSize.Size.Width * 180, playerPhysics.PositionAndSize.Size.Height * 140);
+                g.DrawImage(GetImage(playerImage), -90 + playerPhysics.PositionAndSize.Position.X * 90,
+                    400 + playerPhysics.PositionAndSize.Position.Y * 90,
+                    playerPhysics.PositionAndSize.Size.Width * 90, playerPhysics.PositionAndSize.Size.Height * 90);
         }
 
         private static Image GetImage(TypeName typeName)
