@@ -67,5 +67,38 @@ namespace TestProject2
 
             Assert.AreEqual(expectedLivesNumber, livesNumber);
         }
+
+        [Test]
+        public void TakeCorn()
+        {
+            var gameController = new GameController();
+            
+            gameController.AddObject(new Food(new Point(3, 2), TypeName.Corn));
+            gameController.GetFood();
+            
+            Assert.AreEqual(10, gameController.GetScore());
+        }
+        
+        [Test]
+        public void TakeCorn2()
+        {
+            var gameController = new GameController();
+            
+            gameController.AddObject(new Food(new Point(4, 2), TypeName.Corn));
+            gameController.GetFood();
+            
+            Assert.AreEqual(10, gameController.GetScore());
+        }
+        [Test]
+        public void TakeCornWhenJump()
+        {
+            var gameController = new GameController();
+            
+            gameController.AddObject(new Food(new Point(4, 2), TypeName.Corn));
+            gameController.Jump();
+            gameController.GetFood();
+            
+            Assert.AreEqual(0, gameController.GetScore());
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using System.Drawing;
 using Game.Properties;
@@ -41,7 +42,6 @@ namespace Game
             if (timerCount == 0)
                 gameController.ChangeState();
             Text = "Totoro - Life: " + gameController.GetLife() +
-                   //" timeInterval: " + mainTimer.Interval + 
                    " Score" + gameController.GetScore() +
                    " foodCounter " + gameController.GetFoodCounter() +
                    " obstaclesCounter " + gameController.GetObstacleCounter();
@@ -59,7 +59,7 @@ namespace Game
         {
             foreach (var gameObject in gameController.GetGameObjectList())
             {
-                if (gameObject.PositionAndSize.Position.X > 11)
+                if (gameObject.PositionAndSize.Position.X > 20)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName), -90 + gameObject.PositionAndSize.Position.X * 90 - timerCount*3, 580,
                         gameObject.PositionAndSize.Size.Width * 90, gameObject.PositionAndSize.Size.Height * 90);
@@ -79,6 +79,7 @@ namespace Game
                     playerPhysics.PositionAndSize.Size.Width * 90, playerPhysics.PositionAndSize.Size.Height * 90);
         }
 
+        [SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH", MessageId = "type: System.Byte[]")]
         private static Image GetImage(TypeName typeName)
         {
             switch (typeName)

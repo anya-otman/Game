@@ -6,7 +6,7 @@ namespace Logic
 {
     public class GameController
     {
-        private readonly List<IGameObject> gameObjects;
+        private List<IGameObject> gameObjects;
         private int foodCounter;
         private int obstaclesCounter;
         private readonly Player player;
@@ -41,6 +41,11 @@ namespace Logic
             }
         }
 
+        public void AddObject(IGameObject gameObject)
+        {
+            gameObjects.Add(gameObject);
+        }
+        
         public void Jump()
         {
             player.Physics.Jump();
@@ -96,8 +101,7 @@ namespace Logic
                     var foodPosition = gameObjects[i].PositionAndSize.Position;
                     var playerPosition = player.Physics.PositionAndSize.Position;
                     var playerSize = player.Physics.PositionAndSize.Size;
-                    playerSize.Width = 2;
-                    if (!IsObjectInPlayerPosition(playerPosition, foodPosition, playerSize))
+                    if (!IsObjectInPlayerPosition_MethodForFood(playerPosition, foodPosition, playerSize))
                         continue;
                     index = i;
                     return true;
@@ -183,13 +187,20 @@ namespace Logic
                 var obstaclePosition = gameObject.PositionAndSize.Position;
                 var playerPosition = player.Physics.PositionAndSize.Position;
                 var playerSize = player.Physics.PositionAndSize.Size;
-                if (!IsObjectInPlayerPosition(playerPosition, obstaclePosition, playerSize))
+                if (!IsObjectInPlayerPosition_MethodForObstacles(playerPosition, obstaclePosition, playerSize))
                     continue;
                 player.Life -= 1;
             }
         }
 
-        private bool IsObjectInPlayerPosition(PointF playerPosition, Point foodPosition, SizeF playerSize)
+        private bool IsObjectInPlayerPosition_MethodForFood(PointF playerPosition, Point foodPosition, SizeF playerSize)
+        {
+            return playerPosition.X <= foodPosition.X &&
+                   playerPosition.X + 1 >= foodPosition.X &&
+                   Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
+        }
+        
+        private bool IsObjectInPlayerPosition_MethodForObstacles(PointF playerPosition, Point foodPosition, SizeF playerSize)
         {
             return Math.Abs(playerPosition.X + playerSize.Width - 1 - foodPosition.X) < 0.1 &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
