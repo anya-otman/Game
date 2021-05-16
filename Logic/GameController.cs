@@ -18,7 +18,7 @@ namespace Logic
             foodCounter = 0;
             obstaclesCounter = 0;
             positions = new List<int> {11, 20, 35, 53, 65};
-            player = new Player();
+            player = new Player(new Point(3, 1), 5);
             GetNewRoad();
         }
 
@@ -27,6 +27,11 @@ namespace Logic
             MoveMap();
             player.Physics.ApplyPhysics();
             Collide();
+        }
+
+        public void DoThisMethodEveryGameTick()
+        {
+            player.Physics.DoThisMethodEveryGameTick();
         }
 
         public void GetFood()
@@ -83,7 +88,12 @@ namespace Logic
 
         public TypeName GetPlayerImageName()
         {
-            return player.ImgName;
+            return player.ImageName;
+        }
+        
+        public TypeName GetPlayerImageNameGo()
+        {
+            return player.ImageNameGo;
         }
 
         public List<IGameObject> GetGameObjectList()

@@ -11,6 +11,7 @@
         Stump,
         AppleCore,
         Mushroom,
-        Totoro
+        Totoro,
+        TotoroGo
     }
 }

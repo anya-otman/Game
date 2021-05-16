@@ -8,7 +8,7 @@ namespace Logic
         private bool isJumping;
         private bool isCrouching;
         private int tick;
-        private int jumpTick;
+        private int ticksInAir;
         private int sitTick;
 
         public bool IsCrouching => isCrouching;
@@ -19,23 +19,33 @@ namespace Logic
             isJumping = false;
             isCrouching = false;
             tick = 0;
-            jumpTick = -1;
             sitTick = -1;
         }
 
         public void ApplyPhysics()
         {
-            FallDown();
             if (!isJumping)
                 StandUp();
             tick += 1;
+        }
+
+        public void DoThisMethodEveryGameTick()
+        {
+            if (ticksInAir != 0)
+                ticksInAir++;
+            if (ticksInAir == 60)
+            {
+                ticksInAir = 0;
+                isJumping = false;
+                PositionAndSize = new PositionAndSize(new Point(3, 1), new SizeF(1, 2));
+            }
         }
         
         public void Jump()
         {
             isJumping = true;
             PositionAndSize = new PositionAndSize(new Point(3, 0), new SizeF(1, 2));
-            jumpTick = tick;
+            ticksInAir = 1;
         }
 
         public void SitDown()
@@ -44,14 +54,6 @@ namespace Logic
             isCrouching = true;
             PositionAndSize = new PositionAndSize(new Point(3, 2), new SizeF(1, 1));
             sitTick = tick;
-        }
-
-        private void FallDown()
-        {
-            if (jumpTick == tick || isJumping == false)
-                return;
-            isJumping = false;
-            PositionAndSize = new PositionAndSize(new Point(3, 1), new SizeF(1, 2));
         }
 
         private void StandUp()

@@ -12,6 +12,9 @@ namespace Game
         private readonly Timer mainTimer;
         private GameController gameController;
         private int timerCount;
+        private int imageSize = 90;
+        private int animationCount = 0;
+        private readonly int maxAnimationCount = 26;
 
         public Form1()
         {
@@ -41,12 +44,15 @@ namespace Game
                 timerCount = 0;
             if (timerCount == 0)
                 gameController.ChangeState();
+            animationCount++;
+            if (animationCount == maxAnimationCount)
+                animationCount = 0;
+            gameController.DoThisMethodEveryGameTick();
             Text = "Totoro - Life: " + gameController.GetLife() +
                    " Score" + gameController.GetScore() +
                    " foodCounter " + gameController.GetFoodCounter() +
                    " obstaclesCounter " + gameController.GetObstacleCounter();
             Invalidate();
-            
         }
 
         private void DrawGame(object sender, PaintEventArgs e)
@@ -61,24 +67,35 @@ namespace Game
             {
                 if (gameObject.PositionAndSize.Position.X > 20)
                     continue;
-                g.DrawImage(GetImage(gameObject.TypeName), -90 + gameObject.PositionAndSize.Position.X * 90 - timerCount*3, 580,
-                        gameObject.PositionAndSize.Size.Width * 90, gameObject.PositionAndSize.Size.Height * 90);
+                g.DrawImage(GetImage(gameObject.TypeName),
+                    -90 + gameObject.PositionAndSize.Position.X * 90 - timerCount * 3, 580,
+                    gameObject.PositionAndSize.Size.Width * imageSize,
+                    gameObject.PositionAndSize.Size.Height * imageSize);
             }
 
             var playerPhysics = gameController.GetPlayerPhysics();
             var playerImage = gameController.GetPlayerImageName();
 
             if (playerPhysics.IsCrouching)
-                g.DrawImage(GetImage(playerImage), -90 + playerPhysics.PositionAndSize.Position.X * 90,
-                    405 + playerPhysics.PositionAndSize.Position.Y * 90,
-                    playerPhysics.PositionAndSize.Size.Width * 90, playerPhysics.PositionAndSize.Size.Height * 90);
+                g.DrawImage(GetImage(playerImage), -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
+                    405 + playerPhysics.PositionAndSize.Position.Y * imageSize,
+                    playerPhysics.PositionAndSize.Size.Width * imageSize,
+                    playerPhysics.PositionAndSize.Size.Height * imageSize);
 
+            else if (animationCount < maxAnimationCount / 2)
+                g.DrawImage(GetImage(gameController.GetPlayerImageName()),
+                    -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
+                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize,
+                    playerPhysics.PositionAndSize.Size.Width * imageSize,
+                    playerPhysics.PositionAndSize.Size.Height * imageSize);
             else
-                g.DrawImage(GetImage(playerImage), -90 + playerPhysics.PositionAndSize.Position.X * 90,
-                    400 + playerPhysics.PositionAndSize.Position.Y * 90,
-                    playerPhysics.PositionAndSize.Size.Width * 90, playerPhysics.PositionAndSize.Size.Height * 90);
+                g.DrawImage(GetImage(gameController.GetPlayerImageNameGo()),
+                    -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
+                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize,
+                    playerPhysics.PositionAndSize.Size.Width * imageSize,
+                    playerPhysics.PositionAndSize.Size.Height * imageSize);
         }
-        
+
         private static Image GetImage(TypeName typeName)
         {
             switch (typeName)
@@ -99,6 +116,8 @@ namespace Game
                     return Resources.bush;
                 case TypeName.Totoro:
                     return Resources.totoro;
+                case TypeName.TotoroGo:
+                    return Resources.totoroGo;
                 case TypeName.AppleCore:
                     return Resources.appleCore;
                 case TypeName.Mushroom:
