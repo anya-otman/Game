@@ -78,8 +78,7 @@ namespace Game
                     400 + playerPhysics.PositionAndSize.Position.Y * 90,
                     playerPhysics.PositionAndSize.Size.Width * 90, playerPhysics.PositionAndSize.Size.Height * 90);
         }
-
-        [SuppressMessage("ReSharper.DPA", "DPA0003: Excessive memory allocations in LOH", MessageId = "type: System.Byte[]")]
+        
         private static Image GetImage(TypeName typeName)
         {
             switch (typeName)

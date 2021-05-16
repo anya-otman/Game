@@ -131,23 +131,23 @@ namespace Logic
         {
             foreach (var position in positions)
             {
-                var obstacle = new Obstacles(new Point(11, 2), ChooseRandomObstacleImage());
-                var food = new Food(new Point(11, 2), ChooseRandomFoodImage());
-                var badFood = new BadFood(new Point(11, 2), ChooseRandomBadFoodImage());
                 if (position == 35 || position == 53)
                 {
+                    var obstacle = new Obstacles(new Point(11, 2), ChooseRandomObstacleImage());
                     obstacle.PositionAndSize.Position.X = position;
                     gameObjects.Add(obstacle);
                 }
 
                 if (position == 11 || position == 65)
                 {
+                    var food = new Food(new Point(11, 2), ChooseRandomFoodImage());
                     food.PositionAndSize.Position.X = position;
                     gameObjects.Add(food);
                 }
 
                 if (position == 20)
                 {
+                    var badFood = new BadFood(new Point(11, 2), ChooseRandomBadFoodImage());
                     badFood.PositionAndSize.Position.X = position;
                     gameObjects.Add(badFood);
                 }
@@ -202,7 +202,7 @@ namespace Logic
         
         private bool IsObjectInPlayerPosition_MethodForObstacles(PointF playerPosition, Point foodPosition, SizeF playerSize)
         {
-            return Math.Abs(playerPosition.X + playerSize.Width - 1 - foodPosition.X) < 0.1 &&
+            return playerPosition.X + 1 == foodPosition.X &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
         }
         
