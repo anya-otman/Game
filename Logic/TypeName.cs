@@ -12,6 +12,11 @@
         AppleCore,
         Mushroom,
         Totoro,
-        TotoroGo
+        TotoroGo,
+        Bird1,
+        Bird2,
+        Bird3, 
+        Bird4,
+        Bird5
     }
 }

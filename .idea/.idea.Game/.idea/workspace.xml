@@ -22,12 +22,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec171b7d-d26f-44d6-8b4c-433a2a9bdf40" name="Default Changelist" comment="refactor">
+    <list default="true" id="ec171b7d-d26f-44d6-8b4c-433a2a9bdf40" name="Default Changelist" comment="fix bug, add totoro animation">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Bird.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/GameClass.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/GameClass.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/GameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/Physics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Physics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Player.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/TypeName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/TypeName.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/Game.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/Game.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.pdb" afterDir="false" />
@@ -96,17 +96,18 @@
         <option value="$PROJECT_DIR$/Logic/Classes/GameController.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/TypeName.cs" />
         <option value="$PROJECT_DIR$/Logic/PositionAndSize.cs" />
-        <option value="$PROJECT_DIR$/Logic/Bird.cs" />
         <option value="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" />
         <option value="$PROJECT_DIR$/Logic/Food.cs" />
         <option value="$PROJECT_DIR$/Logic/BadFood.cs" />
         <option value="$PROJECT_DIR$/Logic/Obstacles.cs" />
         <option value="$PROJECT_DIR$/TestProject2/GameStateTests.cs" />
         <option value="$PROJECT_DIR$/Logic/Physics.cs" />
-        <option value="$PROJECT_DIR$/Logic/TypeName.cs" />
         <option value="$PROJECT_DIR$/Logic/Player.cs" />
-        <option value="$PROJECT_DIR$/Logic/GameController.cs" />
         <option value="$PROJECT_DIR$/Form1.cs" />
+        <option value="$PROJECT_DIR$/Logic/GameClass.cs" />
+        <option value="$PROJECT_DIR$/Logic/Bird.cs" />
+        <option value="$PROJECT_DIR$/Logic/TypeName.cs" />
+        <option value="$PROJECT_DIR$/Logic/GameController.cs" />
       </list>
     </option>
   </component>
@@ -164,7 +165,7 @@
       <workItem from="1620828340517" duration="327000" />
       <workItem from="1620828689742" duration="3683000" />
       <workItem from="1621107861678" duration="7648000" />
-      <workItem from="1621182334881" duration="6378000" />
+      <workItem from="1621182334881" duration="7551000" />
     </task>
     <task id="LOCAL-00001" summary="make array and add enam GameClass.cs">
       <created>1620120761072</created>
@@ -264,7 +265,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621186161074</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="fix bug, add totoro animation">
+      <created>1621192302789</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1621192302789</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -298,25 +306,26 @@
     <MESSAGE value="change food, obstacles, badFood" />
     <MESSAGE value="add tests, write method IsObjectInPlayerPosition_MethodForFood" />
     <MESSAGE value="refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor" />
+    <MESSAGE value="fix bug, add totoro animation" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug, add totoro animation" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1621192046730">
+    <state width="1493" height="201" key="GridCell.Tab.0.bottom" timestamp="1621193319687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621192046730" />
-    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1621192046730">
+    <state width="1493" height="201" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621193319687" />
+    <state width="1493" height="201" key="GridCell.Tab.0.center" timestamp="1621193319687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621192046730" />
-    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1621192046730">
+    <state width="1493" height="201" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621193319687" />
+    <state width="1493" height="201" key="GridCell.Tab.0.left" timestamp="1621193319687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621192046730" />
-    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1621192046730">
+    <state width="1493" height="201" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621193319687" />
+    <state width="1493" height="201" key="GridCell.Tab.0.right" timestamp="1621193319687">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621192046730" />
+    <state width="1493" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621193319687" />
     <state width="1493" height="288" key="GridCell.Tab.1.bottom" timestamp="1621185663969">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -385,10 +394,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="144" key="Rider.ProjectTemplateDialog.Size/0.0.1536.824@0.0.1536.824" timestamp="1620394040842" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1621186227173">
+    <state x="597" y="86" key="RiderGenerateDialog" timestamp="1621192484928">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621186227173" />
+    <state x="597" y="86" key="RiderGenerateDialog/0.0.1536.824@0.0.1536.824" timestamp="1621192484928" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1621192308090">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621192308090" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1621174920771">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -418,36 +431,36 @@
           <line>144</line>
           <properties documentPath="D:\C# 2\Game Totoro 4\Game\Logic\GameController.cs" initialLine="134">
             <startOffsets>
-              <option value="3828" />
+              <option value="3832" />
             </startOffsets>
             <endOffsets>
-              <option value="3829" />
+              <option value="3833" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Logic/GameController.cs</url>
-          <line>235</line>
+          <line>246</line>
           <properties documentPath="D:\C# 2\Game Totoro 4\Game\Logic\GameController.cs" initialLine="225">
             <startOffsets>
-              <option value="7333" />
+              <option value="7735" />
             </startOffsets>
             <endOffsets>
-              <option value="7334" />
+              <option value="7736" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Logic/GameController.cs</url>
-          <line>247</line>
+          <line>258</line>
           <properties documentPath="D:\C# 2\Game Totoro 4\Game\Logic\GameController.cs" initialLine="237">
             <startOffsets>
-              <option value="7689" />
+              <option value="8091" />
             </startOffsets>
             <endOffsets>
-              <option value="7712" />
+              <option value="8114" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="4" />

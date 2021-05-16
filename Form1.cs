@@ -12,9 +12,9 @@ namespace Game
         private readonly Timer mainTimer;
         private GameController gameController;
         private int timerCount;
-        private int imageSize = 90;
-        private int animationCount = 0;
-        private readonly int maxAnimationCount = 26;
+        private readonly int imageSize;
+        private int animationCount;
+        private readonly int maxAnimationCount;
 
         public Form1()
         {
@@ -27,6 +27,8 @@ namespace Game
             mainTimer = new Timer {Interval = 2};
             mainTimer.Tick += Update;
             timerCount = 0;
+            imageSize = 90;
+            maxAnimationCount = 26;
             Init();
         }
 
@@ -68,7 +70,7 @@ namespace Game
                 if (gameObject.PositionAndSize.Position.X > 20)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
-                    -90 + gameObject.PositionAndSize.Position.X * 90 - timerCount * 3, 580,
+                    -imageSize + gameObject.PositionAndSize.Position.X * imageSize - timerCount * 3, 580,
                     gameObject.PositionAndSize.Size.Width * imageSize,
                     gameObject.PositionAndSize.Size.Height * imageSize);
             }
@@ -122,6 +124,8 @@ namespace Game
                     return Resources.appleCore;
                 case TypeName.Mushroom:
                     return Resources.mushroom;
+                case TypeName.Bird1:
+                    return Resources.bird1;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(typeName), typeName, null);
             }

@@ -4,6 +4,7 @@
     {
         Food,
         Obstacles,
-        BadFood
+        BadFood,
+        Bird
     }
 }
