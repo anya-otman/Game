@@ -12,6 +12,7 @@ namespace Logic
         private readonly Player player;
         private readonly List<int> positions;
 
+
         public GameController()
         {
             gameObjects = new List<IGameObject>();
@@ -50,7 +51,7 @@ namespace Logic
         {
             gameObjects.Add(gameObject);
         }
-        
+
         public void Jump()
         {
             player.Physics.Jump();
@@ -75,7 +76,7 @@ namespace Logic
         {
             return foodCounter;
         }
-        
+
         public int GetObstacleCounter()
         {
             return obstaclesCounter;
@@ -90,7 +91,7 @@ namespace Logic
         {
             return player.ImageName;
         }
-        
+
         public TypeName GetPlayerImageNameGo()
         {
             return player.ImageNameGo;
@@ -149,7 +150,7 @@ namespace Logic
 
                 if (position == 11 || position == 65)
                 {
-                    var food = new Food(new Point(11, 2), TypeName.Corn);
+                    var food = new Food(new Point(11, 2), ChooseRandomFoodImage());
                     food.PositionAndSize.Position.X = position;
                     gameObjects.Add(food);
                 }
@@ -208,13 +209,14 @@ namespace Logic
                    playerPosition.X + 1 >= foodPosition.X &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
         }
-        
-        private bool IsObjectInPlayerPosition_MethodForObstacles(PointF playerPosition, Point foodPosition, SizeF playerSize)
+
+        private bool IsObjectInPlayerPosition_MethodForObstacles(PointF playerPosition, Point foodPosition,
+            SizeF playerSize)
         {
-            return playerPosition.X + 1 == foodPosition.X &&
+            return Math.Abs(playerPosition.X + 1 - foodPosition.X) < 0.1 &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
         }
-        
+
         private TypeName ChooseRandomFoodImage()
         {
             var r = new Random();
@@ -228,9 +230,10 @@ namespace Logic
                 case 3:
                     return TypeName.Nut;
             }
+
             throw new Exception();
         }
-        
+
         private TypeName ChooseRandomObstacleImage()
         {
             var r = new Random();
@@ -246,9 +249,10 @@ namespace Logic
                 case 3:
                     return TypeName.Stone2;
             }
+
             throw new Exception();
         }
-        
+
         private TypeName ChooseRandomBadFoodImage()
         {
             var r = new Random();
@@ -260,6 +264,7 @@ namespace Logic
                 case 2:
                     return TypeName.Mushroom;
             }
+
             throw new Exception();
         }
     }
