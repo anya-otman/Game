@@ -143,14 +143,13 @@ namespace Logic
             {
                 if (position == 35 || position == 53)
                 {
-                    var obstacle = new Obstacles(new Point(11, 2), ChooseRandomObstacleImage());
-                    obstacle.PositionAndSize.Position.X = position;
+                    var obstacle = new Obstacles(new Point(position, 2), ChooseRandomObstacleImage());
                     gameObjects.Add(obstacle);
                 }
 
                 if (position == 11 || position == 65)
                 {
-                    var food = new Food(new Point(11, 2), ChooseRandomFoodImage());
+                    var food = new Food(new Point(11, 2), TypeName.Corn);
                     food.PositionAndSize.Position.X = position;
                     gameObjects.Add(food);
                 }

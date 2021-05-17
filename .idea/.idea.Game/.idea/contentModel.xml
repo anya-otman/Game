@@ -31,6 +31,7 @@
         <e p="totoro.png" t="Include" />
         <e p="totoroGo.png" t="Include" />
       </e>
+      <e p="Images.cs" t="Include" />
       <e p="Logic" t="IncludeRecursive">
         <e p="BadFood.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />

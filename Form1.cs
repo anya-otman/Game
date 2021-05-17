@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Windows.Forms;
 using System.Drawing;
 using Game.Properties;
@@ -15,6 +14,7 @@ namespace Game
         private readonly int imageSize;
         private int animationCount;
         private readonly int maxAnimationCount;
+        private static Images images;
 
         public Form1()
         {
@@ -35,6 +35,7 @@ namespace Game
         private void Init()
         {
             gameController = new GameController();
+            images = new Images();
             mainTimer.Start();
             Invalidate();
         }
@@ -70,9 +71,7 @@ namespace Game
                 if (gameObject.PositionAndSize.Position.X > 20)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
-                    -imageSize + gameObject.PositionAndSize.Position.X * imageSize - timerCount * 3, 580,
-                    gameObject.PositionAndSize.Size.Width * imageSize,
-                    gameObject.PositionAndSize.Size.Height * imageSize);
+                    -imageSize + gameObject.PositionAndSize.Position.X * imageSize - timerCount * 3, 580);
             }
 
             var playerPhysics = gameController.GetPlayerPhysics();
@@ -80,54 +79,48 @@ namespace Game
 
             if (playerPhysics.IsCrouching)
                 g.DrawImage(GetImage(playerImage), -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
-                    405 + playerPhysics.PositionAndSize.Position.Y * imageSize,
-                    playerPhysics.PositionAndSize.Size.Width * imageSize,
-                    playerPhysics.PositionAndSize.Size.Height * imageSize);
+                    405 + playerPhysics.PositionAndSize.Position.Y * imageSize);
 
             else if (animationCount < maxAnimationCount / 2)
                 g.DrawImage(GetImage(gameController.GetPlayerImageName()),
                     -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
-                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize,
-                    playerPhysics.PositionAndSize.Size.Width * imageSize,
-                    playerPhysics.PositionAndSize.Size.Height * imageSize);
+                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize);
             else
                 g.DrawImage(GetImage(gameController.GetPlayerImageNameGo()),
                     -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
-                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize,
-                    playerPhysics.PositionAndSize.Size.Width * imageSize,
-                    playerPhysics.PositionAndSize.Size.Height * imageSize);
+                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize);
         }
 
-        private static Image GetImage(TypeName typeName)
+        private Image GetImage(TypeName typeName)
         {
             switch (typeName)
             {
                 case TypeName.Berries:
-                    return Resources.berries;
+                    return images.Berries;
                 case TypeName.Corn:
-                    return Resources.corn;
+                    return images.Corn;
                 case TypeName.Nut:
-                    return Resources.nut;
+                    return images.Nut;
                 case TypeName.Stone1:
-                    return Resources.stone1;
+                    return images.Stone1;
                 case TypeName.Stone2:
-                    return Resources.stone2;
+                    return images.Stone2;;
                 case TypeName.Stump:
-                    return Resources.stump;
+                    return images.Stump;;
                 case TypeName.Bush:
-                    return Resources.bush;
+                    return images.Bush;;
                 case TypeName.Totoro:
-                    return Resources.totoro;
+                    return images.Totoro;;
                 case TypeName.TotoroGo:
-                    return Resources.totoroGo;
+                    return images.TotoroGo;;
                 case TypeName.AppleCore:
-                    return Resources.appleCore;
+                    return images.AppleCore;;
                 case TypeName.Mushroom:
-                    return Resources.mushroom;
+                    return images.Mushroom;;
                 case TypeName.Bird1:
-                    return Resources.bird1;
+                    return images.Bird1;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(typeName), typeName, null);
+                    throw new Exception();
             }
         }
 

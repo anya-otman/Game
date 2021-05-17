@@ -11,7 +11,7 @@ namespace Logic
 
         public BadFood(Point point, TypeName typeName)
         {
-            PositionAndSize = new PositionAndSize(point, new SizeF(0.9f, 0.9f));
+            PositionAndSize = new PositionAndSize(point, new SizeF(1, 1));
             TypeName = typeName;
         }
     }
