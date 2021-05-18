@@ -71,7 +71,12 @@ namespace Game
                 if (gameObject.PositionAndSize.Position.X > 20)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * 90 / MaxTimerCount, 580);
+                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * ImageSize / MaxTimerCount, 580);
+            }
+
+            for (int i = 0; i < gameController.GetLife(); i++)
+            {
+                g.DrawImage(images.Life, 750 + 70 * i, 60);
             }
 
             var playerPhysics = gameController.GetPlayerPhysics();

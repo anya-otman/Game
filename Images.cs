@@ -21,6 +21,7 @@ namespace Game
         public Image Bird3;
         public Image Bird4;
         public Image Bird5;
+        public Image Life;
 
         public Images()
         {
@@ -40,6 +41,7 @@ namespace Game
             Bird3 = new Bitmap(Resources.bird3, 90, 90);
             Bird4 = new Bitmap(Resources.bird4, 90, 90);
             Bird5 = new Bitmap(Resources.bird5, 90, 90);
+            Life = new Bitmap(Resources.life, 60, 60);
         }
     }
 }
