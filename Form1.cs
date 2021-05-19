@@ -67,7 +67,8 @@ namespace Game
         
         private void DrawString(Graphics e)
         {
-            e.DrawString("Score " + gameController.GetScore().ToString(), new Font("Thintel", 100, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Green, new PointF(50, 50));
+            var point = new Point(50, 45);
+            e.DrawString("Score " + gameController.GetScore(), new Font("Thintel", 100, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
         }
 
         private void DrawObjects(Graphics g)
