@@ -62,13 +62,19 @@ namespace Game
         {
             var g = e.Graphics;
             DrawObjects(g);
+            DrawString(g);
+        }
+        
+        private void DrawString(Graphics e)
+        {
+            e.DrawString("Score " + gameController.GetScore().ToString(), new Font("Thintel", 100, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Green, new PointF(50, 50));
         }
 
         private void DrawObjects(Graphics g)
         {
             foreach (var gameObject in gameController.GetGameObjectList())
             {
-                if (gameObject.PositionAndSize.Position.X > 20)
+                if (gameObject.PositionAndSize.Position.X > 1800 / ImageSize)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
                     -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * ImageSize / MaxTimerCount, 580);
