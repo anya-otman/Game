@@ -51,10 +51,6 @@ namespace Game
             if (animationCount == maxAnimationCount)
                 animationCount = 0;
             gameController.DoThisMethodEveryGameTick();
-            Text = "Totoro - Life: " + gameController.GetLife() +
-                   " Score" + gameController.GetScore() +
-                   " foodCounter " + gameController.GetFoodCounter() +
-                   " obstaclesCounter " + gameController.GetObstacleCounter();
             Invalidate();
         }
 
