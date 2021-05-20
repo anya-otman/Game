@@ -26,7 +26,7 @@ namespace Game
         public Images()
         {
             Corn = new Bitmap(Resources.corn, 90, 90);
-            Berries = new Bitmap(Resources.corn, 90, 90);
+            Berries = new Bitmap(Resources.berries, 90, 90);
             Nut = new Bitmap(Resources.nut, 90, 90);
             Bush = new Bitmap(Resources.bush, 90, 90);
             Stone1 = new Bitmap(Resources.stone1, 90, 90);

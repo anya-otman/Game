@@ -133,7 +133,7 @@ namespace Logic
                     gameObjects.Add(newBadFood);
                     break;
                 case 3:
-                    var newBird = new Bird(new Point(60, 1));
+                    var newBird = new Bird(new Point(59, 1));
                     gameObjects.Add(newBird);
                     break;
             }
@@ -272,5 +272,6 @@ namespace Logic
         {
             return gameObjects;
         }
+        
     }
 }

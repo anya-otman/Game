@@ -5,7 +5,6 @@ using NUnit.Framework;
 namespace TestProject2
 {
     [TestFixture]
-
     public class GameStateTests
     {
         [Test]
@@ -29,6 +28,7 @@ namespace TestProject2
             {
                 gameController.ChangeState();
             }
+
             gameController.GetFood();
 
             var score = gameController.GetScore();
@@ -47,7 +47,7 @@ namespace TestProject2
             }
 
             var livesNumber = gameController.GetLife();
-            var expectedLivesNumber = 4;
+            var expectedLivesNumber = 3;
 
             Assert.AreEqual(expectedLivesNumber, livesNumber);
         }
@@ -60,6 +60,7 @@ namespace TestProject2
             {
                 gameController.ChangeState();
             }
+
             gameController.GetFood();
 
             var livesNumber = gameController.GetLife();
@@ -69,37 +70,60 @@ namespace TestProject2
         }
 
         [Test]
-        public void TakeCorn()
+        public void Score_WhenTakeFoodWhichBeforePlayer()
         {
             var gameController = new GameController();
-            
+
             gameController.AddObject(new Food(new Point(3, 2), TypeName.Corn));
             gameController.GetFood();
-            
+
             Assert.AreEqual(10, gameController.GetScore());
         }
-        
+
         [Test]
-        public void TakeCorn2()
+        public void Score_WhenTakeFoodOnPlayerPositionX()
         {
             var gameController = new GameController();
-            
+
             gameController.AddObject(new Food(new Point(4, 2), TypeName.Corn));
             gameController.GetFood();
-            
+
             Assert.AreEqual(10, gameController.GetScore());
         }
+
         [Test]
-        public void TakeCornWhenJump()
+        public void Score_WhenTakeFoodInJump()
         {
             var gameController = new GameController();
-            
+
             gameController.AddObject(new Food(new Point(4, 2), TypeName.Corn));
             gameController.Jump();
             gameController.GetFood();
-            
+
             Assert.AreEqual(0, gameController.GetScore());
         }
 
+        [Test]
+        public void LifeChange_WhenCollideWithBird()
+        {
+            var gameController = new GameController();
+
+            gameController.AddObject(new Bird(new Point(5, 1)));
+            gameController.ChangeState();
+            
+            Assert.AreEqual(4, gameController.GetLife());
+        }
+        
+        [Test]
+        public void LifeChange_WhenCollideWithBirdAndCrouching()
+        {
+            var gameController = new GameController();
+
+            gameController.AddObject(new Bird(new Point(5, 1)));
+            gameController.SitDown();
+            gameController.ChangeState();
+            
+            Assert.AreEqual(5, gameController.GetLife());
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Game
         private int animationCount;
         private readonly int maxAnimationCount;
         private static Images images;
-        private const int MaxTimerCount = 30;
+        private const int MaxTimerCount = 2;
 
         public Form1()
         {
@@ -24,9 +24,9 @@ namespace Game
             KeyUp += OnKeyBoardSpace;
             KeyUp += OnKeyBoardUp;
             KeyUp += OnKeyBoardDown;
-            mainTimer = new Timer {Interval = 2};
+            mainTimer = new Timer {Interval = 800};
             mainTimer.Tick += Update;
-            timerCount = 0;
+            timerCount = -1;
             maxAnimationCount = 26;
             Init();
         }
@@ -69,12 +69,18 @@ namespace Game
 
         private void DrawObjects(Graphics g)
         {
+            for (int i = 0; i < 20; i++)
+            {
+                g.DrawImage(GetImage(TypeName.Bush),
+                    -ImageSize + i * ImageSize, 
+                    400);
+            }
             foreach (var gameObject in gameController.GetGameObjectList())
             {
                 if (gameObject.PositionAndSize.Position.X > 1800 / ImageSize)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * ImageSize / MaxTimerCount, 
+                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * 45, 
                     400 + ImageSize*gameObject.PositionAndSize.Position.Y);
             }
 
@@ -90,6 +96,10 @@ namespace Game
                 g.DrawImage(GetImage(playerImage), -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
                     405 + playerPhysics.PositionAndSize.Position.Y * ImageSize,
                     ImageSize, ImageSize);
+            else if (playerPhysics.IsJumping)
+                g.DrawImage(GetImage(gameController.GetPlayerImageName()),
+                    -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
+                    400 + playerPhysics.PositionAndSize.Position.Y * ImageSize);
             else if (animationCount < maxAnimationCount / 2)
                 g.DrawImage(GetImage(gameController.GetPlayerImageName()),
                     -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,

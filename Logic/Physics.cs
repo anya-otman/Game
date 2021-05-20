@@ -12,6 +12,7 @@ namespace Logic
         private int sitTick;
 
         public bool IsCrouching => isCrouching;
+        public bool IsJumping => isJumping;
 
         public Physics(Point position, Size size)
         {
@@ -40,9 +41,11 @@ namespace Logic
                 PositionAndSize = new PositionAndSize(new Point(3, 1), new Size(1, 2));
             }
         }
-        
+
         public void Jump()
         {
+            if (isCrouching) 
+                return;
             isJumping = true;
             PositionAndSize = new PositionAndSize(new Point(3, 0), new Size(1, 2));
             ticksInAir = 1;
@@ -50,7 +53,11 @@ namespace Logic
 
         public void SitDown()
         {
-            if (isJumping) return;
+            if (isJumping)
+            {
+                isJumping = false;
+                ticksInAir = 0;
+            }
             isCrouching = true;
             PositionAndSize = new PositionAndSize(new Point(3, 2), new Size(1, 1));
             sitTick = tick;
