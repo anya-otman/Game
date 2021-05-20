@@ -5,9 +5,9 @@ namespace Logic
     public class PositionAndSize
     {
         public Point Position;
-        public SizeF Size;
+        public Size Size;
 
-        public PositionAndSize(Point position, SizeF size)
+        public PositionAndSize(Point position, Size size)
         {
             Position = position;
             Size = size;

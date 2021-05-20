@@ -12,7 +12,7 @@ namespace Logic
 
         public Player(Point point, int maxLife)
         {
-            Physics = new Physics(point, new SizeF(1, 2));
+            Physics = new Physics(point, new Size(1, 2));
             Score = 0;
             Life = maxLife;
             ImageName = TypeName.Totoro;

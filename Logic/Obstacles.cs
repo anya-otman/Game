@@ -10,7 +10,7 @@ namespace Logic
 
         public Obstacles(Point point, TypeName typeName)
         {
-            PositionAndSize = new PositionAndSize(point, new SizeF(1,1));
+            PositionAndSize = new PositionAndSize(point, new Size(1,1));
             TypeName = typeName;
         }
 

@@ -74,7 +74,8 @@ namespace Game
                 if (gameObject.PositionAndSize.Position.X > 1800 / ImageSize)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * ImageSize / MaxTimerCount, 580);
+                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * ImageSize / MaxTimerCount, 
+                    400 + ImageSize*gameObject.PositionAndSize.Position.Y);
             }
 
             for (int i = 0; i < gameController.GetLife(); i++)
@@ -87,8 +88,8 @@ namespace Game
 
             if (playerPhysics.IsCrouching)
                 g.DrawImage(GetImage(playerImage), -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
-                    405 + playerPhysics.PositionAndSize.Position.Y * ImageSize);
-
+                    405 + playerPhysics.PositionAndSize.Position.Y * ImageSize,
+                    ImageSize, ImageSize);
             else if (animationCount < maxAnimationCount / 2)
                 g.DrawImage(GetImage(gameController.GetPlayerImageName()),
                     -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,

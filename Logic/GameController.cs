@@ -6,9 +6,7 @@ namespace Logic
 {
     public class GameController
     {
-        private List<IGameObject> gameObjects;
-        private int foodCounter;
-        private int obstaclesCounter;
+        private readonly List<IGameObject> gameObjects;
         private readonly Player player;
         private readonly List<int> positions;
 
@@ -16,9 +14,7 @@ namespace Logic
         public GameController()
         {
             gameObjects = new List<IGameObject>();
-            foodCounter = 0;
-            obstaclesCounter = 0;
-            positions = new List<int> {11, 20, 35, 53, 65};
+            positions = new List<int> {11, 19, 20, 35, 53, 65};
             player = new Player(new Point(3, 1), 5);
             GetNewRoad();
         }
@@ -47,61 +43,6 @@ namespace Logic
             }
         }
 
-        public void AddObject(IGameObject gameObject)
-        {
-            gameObjects.Add(gameObject);
-        }
-
-        public void Jump()
-        {
-            player.Physics.Jump();
-        }
-
-        public void SitDown()
-        {
-            player.Physics.SitDown();
-        }
-
-        public int GetLife()
-        {
-            return player.Life;
-        }
-
-        public int GetScore()
-        {
-            return player.Score;
-        }
-
-        public int GetFoodCounter()
-        {
-            return foodCounter;
-        }
-
-        public int GetObstacleCounter()
-        {
-            return obstaclesCounter;
-        }
-
-        public Physics GetPlayerPhysics()
-        {
-            return player.Physics;
-        }
-
-        public TypeName GetPlayerImageName()
-        {
-            return player.ImageName;
-        }
-
-        public TypeName GetPlayerImageNameGo()
-        {
-            return player.ImageNameGo;
-        }
-
-        public List<IGameObject> GetGameObjectList()
-        {
-            return gameObjects;
-        }
-
         private bool IsPlayerNearFood_GetIndex(out int index)
         {
             index = -1;
@@ -112,7 +53,7 @@ namespace Logic
                     var foodPosition = gameObjects[i].PositionAndSize.Position;
                     var playerPosition = player.Physics.PositionAndSize.Position;
                     var playerSize = player.Physics.PositionAndSize.Size;
-                    if (!IsObjectInPlayerPosition_MethodForFood(playerPosition, foodPosition, playerSize))
+                    if (!IsFoodInPlayerPosition(playerPosition, foodPosition, playerSize))
                         continue;
                     index = i;
                     return true;
@@ -126,7 +67,10 @@ namespace Logic
         {
             for (var i = 0; i < gameObjects.Count; i++)
             {
-                gameObjects[i].PositionAndSize.Position.X -= 1;
+                if (gameObjects[i].ObjectName == GameClass.Bird)
+                    gameObjects[i].PositionAndSize.Position.X -= 2;
+                else
+                    gameObjects[i].PositionAndSize.Position.X -= 1;
                 if (gameObjects[i].PositionAndSize.Position.X < -2)
                 {
                     gameObjects.RemoveAt(i);
@@ -148,6 +92,12 @@ namespace Logic
                     gameObjects.Add(obstacle);
                 }
 
+                if (position == 19)
+                {
+                    var bird = new Bird(new Point(position, 1));
+                    gameObjects.Add(bird);
+                }
+
                 if (position == 11 || position == 65)
                 {
                     var food = new Food(new Point(11, 2), ChooseRandomFoodImage());
@@ -167,23 +117,24 @@ namespace Logic
         private void GetNewObject()
         {
             var r = new Random();
-            var obj = r.Next(0, 3); //c птицами (0, 4)
+            var obj = r.Next(0, 4);
             switch (obj)
             {
                 case 0:
                     var newObstacle = new Obstacles(new Point(60, 2), ChooseRandomObstacleImage());
                     gameObjects.Add(newObstacle);
-                    obstaclesCounter++;
                     break;
                 case 1:
                     var newFood = new Food(new Point(60, 2), ChooseRandomFoodImage());
                     gameObjects.Add(newFood);
-                    foodCounter++;
                     break;
                 case 2:
                     var newBadFood = new BadFood(new Point(60, 2), ChooseRandomBadFoodImage());
                     gameObjects.Add(newBadFood);
-                    foodCounter++;
+                    break;
+                case 3:
+                    var newBird = new Bird(new Point(60, 1));
+                    gameObjects.Add(newBird);
                     break;
             }
         }
@@ -192,29 +143,38 @@ namespace Logic
         {
             foreach (var gameObject in gameObjects)
             {
-                if (gameObject.ObjectName != GameClass.Obstacles)
-                    continue;
-                var obstaclePosition = gameObject.PositionAndSize.Position;
-                var playerPosition = player.Physics.PositionAndSize.Position;
-                var playerSize = player.Physics.PositionAndSize.Size;
-                if (!IsObjectInPlayerPosition_MethodForObstacles(playerPosition, obstaclePosition, playerSize))
-                    continue;
-                player.Life -= 1;
+                if (gameObject.ObjectName == GameClass.Obstacles || gameObject.ObjectName == GameClass.Bird)
+                {
+                    var objectPosition = gameObject.PositionAndSize.Position;
+                    var playerPosition = player.Physics.PositionAndSize.Position;
+                    var playerSize = player.Physics.PositionAndSize.Size;
+                    if (gameObject.ObjectName == GameClass.Obstacles &&
+                        IsObstacleInPlayerPosition(playerPosition, objectPosition, playerSize)
+                        || gameObject.ObjectName == GameClass.Bird &&
+                        IsBirdInPlayerPosition(playerPosition, objectPosition))
+                        player.Life -= 1;
+                }
             }
         }
 
-        private bool IsObjectInPlayerPosition_MethodForFood(PointF playerPosition, Point foodPosition, SizeF playerSize)
+        private bool IsFoodInPlayerPosition(Point playerPosition, Point foodPosition, Size playerSize)
         {
             return playerPosition.X <= foodPosition.X &&
                    playerPosition.X + 1 >= foodPosition.X &&
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
         }
 
-        private bool IsObjectInPlayerPosition_MethodForObstacles(PointF playerPosition, Point foodPosition,
-            SizeF playerSize)
+        private bool IsObstacleInPlayerPosition(Point playerPosition, Point obstaclePosition,
+            Size playerSize)
         {
-            return Math.Abs(playerPosition.X + 1 - foodPosition.X) < 0.1 &&
-                   Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
+            return Math.Abs(playerPosition.X + 1 - obstaclePosition.X) < 0.1 &&
+                   Math.Abs(playerPosition.Y + playerSize.Height - 1 - obstaclePosition.Y) < 0.1;
+        }
+
+        private bool IsBirdInPlayerPosition(Point playerPosition, Point birdPosition)
+        {
+            return playerPosition.X == birdPosition.X &&
+                   playerPosition.Y <= birdPosition.Y;
         }
 
         private TypeName ChooseRandomFoodImage()
@@ -266,6 +226,51 @@ namespace Logic
             }
 
             throw new Exception();
+        }
+
+        public void AddObject(IGameObject gameObject)
+        {
+            gameObjects.Add(gameObject);
+        }
+
+        public void Jump()
+        {
+            player.Physics.Jump();
+        }
+
+        public void SitDown()
+        {
+            player.Physics.SitDown();
+        }
+
+        public int GetLife()
+        {
+            return player.Life;
+        }
+
+        public int GetScore()
+        {
+            return player.Score;
+        }
+
+        public Physics GetPlayerPhysics()
+        {
+            return player.Physics;
+        }
+
+        public TypeName GetPlayerImageName()
+        {
+            return player.ImageName;
+        }
+
+        public TypeName GetPlayerImageNameGo()
+        {
+            return player.ImageNameGo;
+        }
+
+        public List<IGameObject> GetGameObjectList()
+        {
+            return gameObjects;
         }
     }
 }
