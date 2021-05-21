@@ -94,9 +94,7 @@ namespace TestProject2
         [Test]
         public void Score_WhenTakeFoodInJump()
         {
-            var gameController = new GameController();
-
-            gameController.AddObject(new Food(new Point(4, 2), TypeName.Corn));
+            var gameController = new GameController(); 
             gameController.Jump();
             gameController.GetFood();
 

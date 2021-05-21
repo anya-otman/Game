@@ -14,7 +14,7 @@ namespace Logic
         public GameController()
         {
             gameObjects = new List<IGameObject>();
-            positions = new List<int> {11, 21, 23, 35, 45, 53, 65};
+            positions = new List<int> {11, 21, 23, 30, 35, 45, 53, 65};
             player = new Player(new Point(3, 1), 5);
             GetNewRoad();
         }
@@ -31,7 +31,7 @@ namespace Logic
             player.Physics.DoThisMethodEveryGameTick();
         }
 
-        public void GetFood()
+        public void GetFood() 
         {
             if (IsPlayerNearFood_GetIndex(out var index))
             {
@@ -65,19 +65,22 @@ namespace Logic
 
         private void MoveMap()
         {
-            for (var i = 0; i < gameObjects.Count; i++)
+            foreach (var gameObject in gameObjects)
             {
-                if (gameObjects[i].ObjectName == GameClass.Bird)
-                    gameObjects[i].PositionAndSize.Position.X -= 2;
+                if (gameObject.ObjectName == GameClass.Bird)
+                    gameObject.PositionAndSize.Position.X -= 2;
                 else
-                    gameObjects[i].PositionAndSize.Position.X -= 1;
-                if (gameObjects[i].PositionAndSize.Position.X < -2)
+                    gameObject.PositionAndSize.Position.X -= 1;
+            }
+
+            for (int i = 0; i < gameObjects.Count-5; i++)
+            {
+                if (gameObjects[i].PositionAndSize.Position.X < 0)
                 {
-                    gameObjects.RemoveAt(i);
+                    gameObjects.Remove(gameObjects[i]);
                     GetNewObject();
                 }
             }
-
             if (gameObjects.Count < 2)
                 GetNewRoad();
         }
@@ -103,6 +106,14 @@ namespace Logic
                     var badFood = new BadFood(new Point(position, 2), ChooseRandomBadFoodImage());
                     gameObjects.Add(badFood);
                 }
+
+                if (position == 30)
+                {
+                    var bird = new Bird(new Point(position, 1));
+                    gameObjects.Add(bird);
+                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
+                    gameObjects.Add(food);
+                }
             }
         }
 
@@ -113,15 +124,15 @@ namespace Logic
             switch (obj)
             {
                 case 0:
-                    var newObstacle = new Obstacles(new Point(60, 2), ChooseRandomObstacleImage());
+                    var newObstacle = new Obstacles(new Point(25, 2), ChooseRandomObstacleImage());
                     gameObjects.Add(newObstacle);
                     break;
                 case 1:
-                    var newFood = new Food(new Point(60, 2), ChooseRandomFoodImage());
+                    var newFood = new Food(new Point(19, 2), ChooseRandomFoodImage());
                     gameObjects.Add(newFood);
                     break;
                 case 2:
-                    var newBadFood = new BadFood(new Point(60, 2), ChooseRandomBadFoodImage());
+                    var newBadFood = new BadFood(new Point(25, 2), ChooseRandomBadFoodImage());
                     gameObjects.Add(newBadFood);
                     break;
                 case 3:
@@ -139,9 +150,8 @@ namespace Logic
                 {
                     var objectPosition = gameObject.PositionAndSize.Position;
                     var playerPosition = player.Physics.PositionAndSize.Position;
-                    var playerSize = player.Physics.PositionAndSize.Size;
                     if (gameObject.ObjectName == GameClass.Obstacles &&
-                        IsObstacleInPlayerPosition(playerPosition, objectPosition, playerSize)
+                        IsObstacleInPlayerPosition(playerPosition, objectPosition)
                         || gameObject.ObjectName == GameClass.Bird &&
                         IsBirdInPlayerPosition(playerPosition, objectPosition))
                         player.Life -= 1;
@@ -156,8 +166,7 @@ namespace Logic
                    Math.Abs(playerPosition.Y + playerSize.Height - 1 - foodPosition.Y) < 0.1;
         }
 
-        private bool IsObstacleInPlayerPosition(Point playerPosition, Point obstaclePosition,
-            Size playerSize)
+        private bool IsObstacleInPlayerPosition(Point playerPosition, Point obstaclePosition)
         {
             return playerPosition.X == obstaclePosition.X &&
                    playerPosition.Y == 1;

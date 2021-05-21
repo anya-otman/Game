@@ -7,9 +7,9 @@ namespace Game
 {
     public sealed partial class Form1 : Form
     {
-        private const int MaxBirdAnimationCount = 5;
+        private const int MaxBirdAnimationCount = 25;
         private const int MaxTimerCount = 30;
-        private const int maxAnimationCount = 30;
+        private const int MaxAnimationCount = 30;
         private const int ImageSize = 90;
 
         private GameController gameController;
@@ -50,13 +50,13 @@ namespace Game
             {
                 gameController.ChangeState();
                 timerCount = 0;
-                birdAnimationCount++;
             }
 
+            birdAnimationCount++;
             if (birdAnimationCount == MaxBirdAnimationCount)
                 birdAnimationCount = 0;
             animationCount++;
-            if (animationCount == maxAnimationCount)
+            if (animationCount == MaxAnimationCount)
                 animationCount = 0;
             gameController.DoThisMethodEveryGameTick();
             Invalidate();
@@ -83,8 +83,13 @@ namespace Game
             {
                 if (gameObject.PositionAndSize.Position.X > 1800 / ImageSize)
                     continue;
-                g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize,
+                if (gameObject.TypeName == TypeName.Bird)
+                    g.DrawImage(GetImage(gameObject.TypeName),
+                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 180 / MaxTimerCount * timerCount,
+                        400 + ImageSize * gameObject.PositionAndSize.Position.Y);
+                else
+                    g.DrawImage(GetImage(gameObject.TypeName),
+                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 90 / MaxTimerCount * timerCount,
                     400 + ImageSize * gameObject.PositionAndSize.Position.Y);
             }
 
@@ -132,7 +137,7 @@ namespace Game
                 case TypeName.Bush:
                     return images.Bush;
                 case TypeName.Totoro:
-                    if (animationCount < maxAnimationCount / 2)
+                    if (animationCount < MaxAnimationCount / 2)
                         return images.Totoro;
                     return images.TotoroGo;
                 case TypeName.AppleCore:
@@ -140,13 +145,13 @@ namespace Game
                 case TypeName.Mushroom:
                     return images.Mushroom;
                 case TypeName.Bird:
-                    if (birdAnimationCount == 0)
+                    if (birdAnimationCount < 5)
                         return images.Bird1;
-                    if (birdAnimationCount == 1)
+                    if (birdAnimationCount < 10)
                         return images.Bird2;
-                    if (birdAnimationCount == 2)
+                    if (birdAnimationCount < 15)
                         return images.Bird3;
-                    if (birdAnimationCount == 3)
+                    if (birdAnimationCount < 20)
                         return images.Bird4;
                     return images.Bird5;
                 default:
