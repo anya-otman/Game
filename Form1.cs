@@ -9,7 +9,7 @@ namespace Game
     {
         private const int MaxBirdAnimationCount = 5;
         private const int MaxTimerCount = 30;
-        private const int maxAnimationCount = 26;
+        private const int maxAnimationCount = 30;
         private const int ImageSize = 90;
 
         private GameController gameController;

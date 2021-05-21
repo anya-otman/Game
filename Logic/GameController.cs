@@ -14,7 +14,7 @@ namespace Logic
         public GameController()
         {
             gameObjects = new List<IGameObject>();
-            positions = new List<int> {11, 21, 23, 35, 53, 65};
+            positions = new List<int> {11, 21, 23, 35, 45, 53, 65};
             player = new Player(new Point(3, 1), 5);
             GetNewRoad();
         }
@@ -92,13 +92,7 @@ namespace Logic
                     gameObjects.Add(obstacle);
                 }
 
-                if (position == 21)
-                {
-                    var bird = new Bird(new Point(position, 1));
-                    gameObjects.Add(bird);
-                }
-
-                if (position == 11 || position == 65)
+                if (position == 11 || position == 65 || position == 21 || position == 45)
                 {
                     var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
                     gameObjects.Add(food);
