@@ -41,16 +41,17 @@ namespace Game
 
         private void Update(object sender, EventArgs e)
         {
-            timerCount++;
-            if (timerCount == MaxTimerCount)
-            {
-                gameController.ChangeState();
-                timerCount = 0;
-            }
-            animationCount++;
-            if (animationCount == maxAnimationCount)
-                animationCount = 0;
-            gameController.DoThisMethodEveryGameTick();
+            gameController.ChangeState();
+            //timerCount++;
+            //if (timerCount == MaxTimerCount)
+            //{
+            //    gameController.ChangeState();
+            //    timerCount = 0;
+            //}
+            //animationCount++;
+            //if (animationCount == maxAnimationCount)
+            //    animationCount = 0;
+            //gameController.DoThisMethodEveryGameTick();
             Invalidate();
         }
 
@@ -64,7 +65,7 @@ namespace Game
         private void DrawString(Graphics e)
         {
             var point = new Point(50, 45);
-            e.DrawString("Score " + gameController.GetScore(), new Font("Thintel", 100, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
+            e.DrawString("Score " + gameController.GetScore(), new Font("Thintel", 80, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
         }
 
         private void DrawObjects(Graphics g)
@@ -80,7 +81,7 @@ namespace Game
                 if (gameObject.PositionAndSize.Position.X > 1800 / ImageSize)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - timerCount * 45, 
+                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize, 
                     400 + ImageSize*gameObject.PositionAndSize.Position.Y);
             }
 

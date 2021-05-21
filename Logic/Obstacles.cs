@@ -5,7 +5,7 @@ namespace Logic
     public class Obstacles : IGameObject
     {
         public PositionAndSize PositionAndSize { get; }
-        public TypeName TypeName { get; private set; }
+        public TypeName TypeName { get; }
         public GameClass ObjectName => GameClass.Obstacles;
 
         public Obstacles(Point point, TypeName typeName)
