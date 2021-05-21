@@ -8,7 +8,7 @@ namespace Logic
         public Bird(Point position)
         {
             PositionAndSize = new PositionAndSize(position, new Size(1,1));
-            TypeName = TypeName.Bird1;
+            TypeName = TypeName.Bird;
         }
 
         public PositionAndSize PositionAndSize { get; }

@@ -42,7 +42,7 @@ namespace TestProject2
             physics.SitDown();
             var positionAndSize = physics.PositionAndSize;
             
-            var expectedPositionAndSize = new PositionAndSize(new Point(3, 0), new Size(1, 2));
+            var expectedPositionAndSize = new PositionAndSize(new Point(3, 2), new Size(1, 2));
             Assert.AreEqual(expectedPositionAndSize.Position, positionAndSize.Position);
             Assert.AreEqual(expectedPositionAndSize.Size,positionAndSize.Size);
         }

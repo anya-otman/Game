@@ -8,7 +8,6 @@ namespace Logic
         public int Score;
         public int Life;
         public readonly TypeName ImageName;
-        public readonly TypeName ImageNameGo;
 
         public Player(Point point, int maxLife)
         {
@@ -16,7 +15,6 @@ namespace Logic
             Score = 0;
             Life = maxLife;
             ImageName = TypeName.Totoro;
-            ImageNameGo = TypeName.TotoroGo;
         }
 
     }

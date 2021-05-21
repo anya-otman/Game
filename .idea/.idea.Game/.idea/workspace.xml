@@ -23,14 +23,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ec171b7d-d26f-44d6-8b4c-433a2a9bdf40" name="Default Changelist" comment="add bird">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Images.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Images.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Bird.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Bird.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/GameController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logic/Physics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Physics.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestProject2/GameStateTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestProject2/GameStateTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/TypeName.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/TypeName.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/Game.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/Game.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Game.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Game.csproj.FileListAbsolute.txt" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.csproj.FileListAbsolute.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/obj/Debug/Game.csproj.GenerateResource.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.csproj.GenerateResource.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/Game.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.csprojAssemblyReference.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/Game.exe" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/Game.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.pdb" afterDir="false" />
@@ -44,19 +49,19 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Logic/Bird.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Logic/GameController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Logic/IGameObject.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Logic/GameClass.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Logic/Player.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Logic/Physics.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Logic/PositionAndSize.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/GameController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/Bird.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1E9166BF-CA65-4377-B09C-EA42D003812D/7d/d0601cb2/Point.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1E9166BF-CA65-4377-B09C-EA42D003812D/6b/8a963496/Font.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Logic/Food.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Logic/TypeName.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Logic/Obstacles.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/Physics.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/TypeName.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/Food.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/F6747DE9-0205-433F-84EB-50C1DA278135/e1/a38f560a/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/GameClass.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Logic/PositionAndSize.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -97,21 +102,21 @@
         <option value="$PROJECT_DIR$/Logic/Classes/Road.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/GameController.cs" />
         <option value="$PROJECT_DIR$/Logic/Classes/TypeName.cs" />
-        <option value="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" />
         <option value="$PROJECT_DIR$/Logic/GameClass.cs" />
-        <option value="$PROJECT_DIR$/Logic/TypeName.cs" />
         <option value="$PROJECT_DIR$/new.cs" />
         <option value="$PROJECT_DIR$/Logic/PositionAndSize.cs" />
         <option value="$PROJECT_DIR$/Logic/BadFood.cs" />
-        <option value="$PROJECT_DIR$/Logic/Bird.cs" />
         <option value="$PROJECT_DIR$/Logic/Food.cs" />
         <option value="$PROJECT_DIR$/Logic/Obstacles.cs" />
-        <option value="$PROJECT_DIR$/Logic/Player.cs" />
         <option value="$PROJECT_DIR$/TestProject2/GameStateTests.cs" />
         <option value="$PROJECT_DIR$/Logic/Physics.cs" />
-        <option value="$PROJECT_DIR$/Logic/GameController.cs" />
         <option value="$PROJECT_DIR$/Images.cs" />
+        <option value="$PROJECT_DIR$/Logic/TypeName.cs" />
+        <option value="$PROJECT_DIR$/Logic/Bird.cs" />
+        <option value="$PROJECT_DIR$/Logic/Player.cs" />
         <option value="$PROJECT_DIR$/Form1.cs" />
+        <option value="$PROJECT_DIR$/Logic/GameController.cs" />
+        <option value="$PROJECT_DIR$/TestProject2/PhysicsTests.cs" />
       </list>
     </option>
   </component>
@@ -177,6 +182,7 @@
       <workItem from="1621276226572" duration="258000" />
       <workItem from="1621277286877" duration="8013000" />
       <workItem from="1621490939240" duration="5762000" />
+      <workItem from="1621594598476" duration="1647000" />
     </task>
     <task id="LOCAL-00001" summary="make array and add enam GameClass.cs">
       <created>1620120761072</created>
@@ -384,22 +390,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="add bird" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="202" key="GridCell.Tab.0.bottom" timestamp="1621513603076">
+    <state width="1493" height="25" key="GridCell.Tab.0.bottom" timestamp="1621596189048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="202" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621513603076" />
-    <state width="1493" height="202" key="GridCell.Tab.0.center" timestamp="1621513603076">
+    <state width="1493" height="25" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621596189048" />
+    <state width="1493" height="25" key="GridCell.Tab.0.center" timestamp="1621596189048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="202" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621513603076" />
-    <state width="1493" height="202" key="GridCell.Tab.0.left" timestamp="1621513603068">
+    <state width="1493" height="25" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621596189048" />
+    <state width="1493" height="25" key="GridCell.Tab.0.left" timestamp="1621596189047">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="202" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621513603068" />
-    <state width="1493" height="202" key="GridCell.Tab.0.right" timestamp="1621513603076">
+    <state width="1493" height="25" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621596189047" />
+    <state width="1493" height="25" key="GridCell.Tab.0.right" timestamp="1621596189048">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="202" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621513603076" />
+    <state width="1493" height="25" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621596189048" />
     <state width="1493" height="288" key="GridCell.Tab.1.bottom" timestamp="1621272569257">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

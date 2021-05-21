@@ -165,8 +165,8 @@ namespace Logic
         private bool IsObstacleInPlayerPosition(Point playerPosition, Point obstaclePosition,
             Size playerSize)
         {
-            return Math.Abs(playerPosition.X + 1 - obstaclePosition.X) < 0.1 &&
-                   Math.Abs(playerPosition.Y + playerSize.Height - 1 - obstaclePosition.Y) < 0.1;
+            return playerPosition.X == obstaclePosition.X &&
+                   playerPosition.Y == 1;
         }
 
         private bool IsBirdInPlayerPosition(Point playerPosition, Point birdPosition)
@@ -259,11 +259,6 @@ namespace Logic
         public TypeName GetPlayerImageName()
         {
             return player.ImageName;
-        }
-
-        public TypeName GetPlayerImageNameGo()
-        {
-            return player.ImageNameGo;
         }
 
         public List<IGameObject> GetGameObjectList()

@@ -7,14 +7,18 @@ namespace Game
 {
     public sealed partial class Form1 : Form
     {
-        private readonly Timer mainTimer;
-        private GameController gameController;
-        private int timerCount;
+        private const int MaxBirdAnimationCount = 5;
+        private const int MaxTimerCount = 30;
+        private const int maxAnimationCount = 26;
         private const int ImageSize = 90;
+
+        private GameController gameController;
+        private readonly Timer mainTimer;
+        private int timerCount;
         private int animationCount;
-        private readonly int maxAnimationCount;
+        private int birdAnimationCount;
         private static Images images;
-        private const int MaxTimerCount = 2;
+
 
         public Form1()
         {
@@ -24,10 +28,10 @@ namespace Game
             KeyUp += OnKeyBoardSpace;
             KeyUp += OnKeyBoardUp;
             KeyUp += OnKeyBoardDown;
-            mainTimer = new Timer {Interval = 800};
+            mainTimer = new Timer {Interval = 10};
             mainTimer.Tick += Update;
             timerCount = -1;
-            maxAnimationCount = 26;
+            birdAnimationCount = 0;
             Init();
         }
 
@@ -41,17 +45,20 @@ namespace Game
 
         private void Update(object sender, EventArgs e)
         {
-            gameController.ChangeState();
-            //timerCount++;
-            //if (timerCount == MaxTimerCount)
-            //{
-            //    gameController.ChangeState();
-            //    timerCount = 0;
-            //}
-            //animationCount++;
-            //if (animationCount == maxAnimationCount)
-            //    animationCount = 0;
-            //gameController.DoThisMethodEveryGameTick();
+            timerCount++;
+            if (timerCount == MaxTimerCount)
+            {
+                gameController.ChangeState();
+                timerCount = 0;
+                birdAnimationCount++;
+            }
+
+            if (birdAnimationCount == MaxBirdAnimationCount)
+                birdAnimationCount = 0;
+            animationCount++;
+            if (animationCount == maxAnimationCount)
+                animationCount = 0;
+            gameController.DoThisMethodEveryGameTick();
             Invalidate();
         }
 
@@ -59,37 +66,36 @@ namespace Game
         {
             var g = e.Graphics;
             DrawObjects(g);
-            DrawString(g);
+            DrawPlayer(g);
+            DrawScore(g);
         }
-        
-        private void DrawString(Graphics e)
+
+        private void DrawScore(Graphics e)
         {
             var point = new Point(50, 45);
-            e.DrawString("Score " + gameController.GetScore(), new Font("Thintel", 80, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
+            e.DrawString("Score " + gameController.GetScore(),
+                new Font("Thintel", 80, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
         }
 
         private void DrawObjects(Graphics g)
         {
-            for (int i = 0; i < 20; i++)
-            {
-                g.DrawImage(GetImage(TypeName.Bush),
-                    -ImageSize + i * ImageSize, 
-                    400);
-            }
             foreach (var gameObject in gameController.GetGameObjectList())
             {
                 if (gameObject.PositionAndSize.Position.X > 1800 / ImageSize)
                     continue;
                 g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize, 
-                    400 + ImageSize*gameObject.PositionAndSize.Position.Y);
+                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize,
+                    400 + ImageSize * gameObject.PositionAndSize.Position.Y);
             }
 
             for (int i = 0; i < gameController.GetLife(); i++)
             {
                 g.DrawImage(images.Life, 750 + 70 * i, 60);
             }
+        }
 
+        private void DrawPlayer(Graphics g)
+        {
             var playerPhysics = gameController.GetPlayerPhysics();
             var playerImage = gameController.GetPlayerImageName();
 
@@ -101,17 +107,13 @@ namespace Game
                 g.DrawImage(GetImage(gameController.GetPlayerImageName()),
                     -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
                     400 + playerPhysics.PositionAndSize.Position.Y * ImageSize);
-            else if (animationCount < maxAnimationCount / 2)
-                g.DrawImage(GetImage(gameController.GetPlayerImageName()),
-                    -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
-                    400 + playerPhysics.PositionAndSize.Position.Y * ImageSize);
             else
-                g.DrawImage(GetImage(gameController.GetPlayerImageNameGo()),
+                g.DrawImage(GetImage(gameController.GetPlayerImageName()),
                     -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
                     400 + playerPhysics.PositionAndSize.Position.Y * ImageSize);
         }
 
-        private static Image GetImage(TypeName typeName)
+        private Image GetImage(TypeName typeName)
         {
             switch (typeName)
             {
@@ -130,15 +132,23 @@ namespace Game
                 case TypeName.Bush:
                     return images.Bush;
                 case TypeName.Totoro:
-                    return images.Totoro;
-                case TypeName.TotoroGo:
+                    if (animationCount < maxAnimationCount / 2)
+                        return images.Totoro;
                     return images.TotoroGo;
                 case TypeName.AppleCore:
                     return images.AppleCore;
                 case TypeName.Mushroom:
                     return images.Mushroom;
-                case TypeName.Bird1:
-                    return images.Bird1;
+                case TypeName.Bird:
+                    if (birdAnimationCount == 0)
+                        return images.Bird1;
+                    if (birdAnimationCount == 1)
+                        return images.Bird2;
+                    if (birdAnimationCount == 2)
+                        return images.Bird3;
+                    if (birdAnimationCount == 3)
+                        return images.Bird4;
+                    return images.Bird5;
                 default:
                     throw new Exception();
             }
