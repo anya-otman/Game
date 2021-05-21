@@ -8,15 +8,52 @@ namespace Logic
     {
         private readonly List<IGameObject> gameObjects;
         private readonly Player player;
-        private readonly List<int> positions;
+        private readonly List<int> positionsForFirstRoad;
+        private readonly List<int> positionsForSecondRoad; //для второй дороги
 
 
         public GameController()
         {
             gameObjects = new List<IGameObject>();
-            positions = new List<int> {11, 21, 23, 30, 35, 45, 53, 65};
+            positionsForFirstRoad = new List<int> {11, 14, 21, 25, 30, 35, 45, 53, 65};
+            positionsForSecondRoad = new List<int> {13, 15, 19, 24, 28, 34, 36, 40, 45, 51, 57, 60}; //для второй дороги
             player = new Player(new Point(3, 1), 5);
             GetNewRoad();
+            //GetNewSecondRoad();
+        }
+
+        
+        //это я пишу метод, который будет генерировать другую дорогу
+        private void GetNewSecondRoad()
+        {
+            foreach (var position in positionsForSecondRoad)
+            {
+                if (position == 13 || position == 24 || position == 36|| position == 40 || position == 57)
+                {
+                    var obstacle = new Obstacles(new Point(position, 2), ChooseRandomObstacleImage());
+                    gameObjects.Add(obstacle);
+                }
+
+                if (position == 15 || position == 19 || position == 28 || position == 45 || position == 60)
+                {
+                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
+                    gameObjects.Add(food);
+                }
+
+                if (position == 51)
+                {
+                    var badFood = new BadFood(new Point(position, 2), ChooseRandomBadFoodImage());
+                    gameObjects.Add(badFood);
+                }
+
+                if (position == 34)
+                {
+                    var bird = new Bird(new Point(position, 1));
+                    gameObjects.Add(bird);
+                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
+                    gameObjects.Add(food);
+                }
+            }
         }
 
         public void ChangeState()
@@ -31,7 +68,7 @@ namespace Logic
             player.Physics.DoThisMethodEveryGameTick();
         }
 
-        public void GetFood() 
+        public void GetFood()
         {
             if (IsPlayerNearFood_GetIndex(out var index))
             {
@@ -73,7 +110,7 @@ namespace Logic
                     gameObject.PositionAndSize.Position.X -= 1;
             }
 
-            for (int i = 0; i < gameObjects.Count-5; i++)
+            for (int i = 0; i < gameObjects.Count; i++)
             {
                 if (gameObjects[i].PositionAndSize.Position.X < 0)
                 {
@@ -81,27 +118,28 @@ namespace Logic
                     GetNewObject();
                 }
             }
+
             if (gameObjects.Count < 2)
                 GetNewRoad();
         }
 
         private void GetNewRoad()
         {
-            foreach (var position in positions)
+            foreach (var position in positionsForFirstRoad)
             {
-                if (position == 35 || position == 53)
+                if (position == 14 || position == 35 || position == 53)
                 {
                     var obstacle = new Obstacles(new Point(position, 2), ChooseRandomObstacleImage());
                     gameObjects.Add(obstacle);
                 }
 
-                if (position == 11 || position == 65 || position == 21 || position == 45)
+                if (position == 11 || position == 21 || position == 65 || position == 45)
                 {
                     var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
                     gameObjects.Add(food);
                 }
 
-                if (position == 23)
+                if (position == 25)
                 {
                     var badFood = new BadFood(new Point(position, 2), ChooseRandomBadFoodImage());
                     gameObjects.Add(badFood);
@@ -268,6 +306,5 @@ namespace Logic
         {
             return gameObjects;
         }
-        
     }
 }
