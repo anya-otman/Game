@@ -9,53 +9,19 @@ namespace Logic
         private readonly List<IGameObject> gameObjects;
         private readonly Player player;
         private readonly List<int> positionsForFirstRoad;
-        private readonly List<int> positionsForSecondRoad; //для второй дороги
+        private readonly List<int> positionsForSecondRoad;
+        private Random random;
 
 
         public GameController()
         {
             gameObjects = new List<IGameObject>();
             positionsForFirstRoad = new List<int> {11, 14, 21, 25, 30, 35, 45, 53, 65};
-            positionsForSecondRoad = new List<int> {13, 15, 19, 24, 28, 34, 36, 40, 45, 51, 57, 60}; //для второй дороги
+            positionsForSecondRoad = new List<int> {15, 19, 24, 28, 34, 36, 40, 45, 51, 57, 60}; 
             player = new Player(new Point(3, 1), 5);
-            GetNewRoad();
-            //GetNewSecondRoad();
+            random = new Random();
+            GetNewFirstRoad();
         }
-
-        
-        //это я пишу метод, который будет генерировать другую дорогу
-        private void GetNewSecondRoad()
-        {
-            foreach (var position in positionsForSecondRoad)
-            {
-                if (position == 13 || position == 24 || position == 36|| position == 40 || position == 57)
-                {
-                    var obstacle = new Obstacles(new Point(position, 2), ChooseRandomObstacleImage());
-                    gameObjects.Add(obstacle);
-                }
-
-                if (position == 15 || position == 19 || position == 28 || position == 45 || position == 60)
-                {
-                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
-                    gameObjects.Add(food);
-                }
-
-                if (position == 51)
-                {
-                    var badFood = new BadFood(new Point(position, 2), ChooseRandomBadFoodImage());
-                    gameObjects.Add(badFood);
-                }
-
-                if (position == 34)
-                {
-                    var bird = new Bird(new Point(position, 1));
-                    gameObjects.Add(bird);
-                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
-                    gameObjects.Add(food);
-                }
-            }
-        }
-
         public void ChangeState()
         {
             MoveMap();
@@ -63,9 +29,9 @@ namespace Logic
             Collide();
         }
 
-        public void DoThisMethodEveryGameTick()
+        public void UpdatePlayerPosition()
         {
-            player.Physics.DoThisMethodEveryGameTick();
+            player.Physics.UpdatePlayerPosition();
         }
 
         public void GetFood()
@@ -78,6 +44,46 @@ namespace Logic
                     player.Life -= 1;
                 gameObjects.RemoveAt(index);
             }
+        }
+        
+        public void AddObject(IGameObject gameObject)
+        {
+            gameObjects.Add(gameObject);
+        }
+
+        public void Jump()
+        {
+            player.Physics.Jump();
+        }
+
+        public void SitDown()
+        {
+            player.Physics.SitDown();
+        }
+
+        public int GetLife()
+        {
+            return player.Life;
+        }
+
+        public int GetScore()
+        {
+            return player.Score;
+        }
+
+        public Physics GetPlayerPhysics()
+        {
+            return player.Physics;
+        }
+
+        public TypeName GetPlayerImageName()
+        {
+            return player.ImageName;
+        }
+
+        public List<IGameObject> GetGameObjectList()
+        {
+            return gameObjects;
         }
 
         private bool IsPlayerNearFood_GetIndex(out int index)
@@ -119,11 +125,20 @@ namespace Logic
                 }
             }
 
-            if (gameObjects.Count < 2)
-                GetNewRoad();
+            if (gameObjects.Count < 3)
+                GetNewObject();
+            /*if (gameObjects.Count < 2)
+            {
+                var randomNumber = random.Next(0, 2);
+                if (randomNumber == 0)
+                    GetNewSecondRoad();
+                else
+                    GetNewFirstRoad();
+                
+            }*/
         }
 
-        private void GetNewRoad()
+        private void GetNewFirstRoad()
         {
             foreach (var position in positionsForFirstRoad)
             {
@@ -154,11 +169,42 @@ namespace Logic
                 }
             }
         }
+        
+        private void GetNewSecondRoad()
+        {
+            foreach (var position in positionsForSecondRoad)
+            {
+                if (position == 24 || position == 36|| position == 40 || position == 57)
+                {
+                    var obstacle = new Obstacles(new Point(position, 2), ChooseRandomObstacleImage());
+                    gameObjects.Add(obstacle);
+                }
+
+                if (position == 15 || position == 19 || position == 28 || position == 45 || position == 60)
+                {
+                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
+                    gameObjects.Add(food);
+                }
+
+                if (position == 51)
+                {
+                    var badFood = new BadFood(new Point(position, 2), ChooseRandomBadFoodImage());
+                    gameObjects.Add(badFood);
+                }
+
+                if (position == 34)
+                {
+                    var bird = new Bird(new Point(position, 1));
+                    gameObjects.Add(bird);
+                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
+                    gameObjects.Add(food);
+                }
+            }
+        }
 
         private void GetNewObject()
         {
-            var r = new Random();
-            var obj = r.Next(0, 4);
+            var obj = random.Next(0, 4);
             switch (obj)
             {
                 case 0:
@@ -218,9 +264,8 @@ namespace Logic
 
         private TypeName ChooseRandomFoodImage()
         {
-            var r = new Random();
-            var rnd = r.Next(1, 4);
-            switch (rnd)
+            var randomNumber = random.Next(1, 4);
+            switch (randomNumber)
             {
                 case 1:
                     return TypeName.Corn;
@@ -229,15 +274,13 @@ namespace Logic
                 case 3:
                     return TypeName.Nut;
             }
-
             throw new Exception();
         }
 
         private TypeName ChooseRandomObstacleImage()
         {
-            var r = new Random();
-            var rnd = r.Next(0, 4);
-            switch (rnd)
+            var randomNumber = random.Next(0, 4);
+            switch (randomNumber)
             {
                 case 0:
                     return TypeName.Bush;
@@ -248,63 +291,22 @@ namespace Logic
                 case 3:
                     return TypeName.Stone2;
             }
-
             throw new Exception();
         }
 
         private TypeName ChooseRandomBadFoodImage()
         {
-            var r = new Random();
-            var rnd = r.Next(1, 3);
-            switch (rnd)
+            var randomNumber = random.Next(1, 3);
+            switch (randomNumber)
             {
                 case 1:
                     return TypeName.AppleCore;
                 case 2:
                     return TypeName.Mushroom;
             }
-
             throw new Exception();
         }
 
-        public void AddObject(IGameObject gameObject)
-        {
-            gameObjects.Add(gameObject);
-        }
-
-        public void Jump()
-        {
-            player.Physics.Jump();
-        }
-
-        public void SitDown()
-        {
-            player.Physics.SitDown();
-        }
-
-        public int GetLife()
-        {
-            return player.Life;
-        }
-
-        public int GetScore()
-        {
-            return player.Score;
-        }
-
-        public Physics GetPlayerPhysics()
-        {
-            return player.Physics;
-        }
-
-        public TypeName GetPlayerImageName()
-        {
-            return player.ImageName;
-        }
-
-        public List<IGameObject> GetGameObjectList()
-        {
-            return gameObjects;
-        }
+        
     }
 }

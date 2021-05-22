@@ -8,11 +8,11 @@ namespace Game
     public sealed partial class Form1 : Form
     {
         private const int MaxBirdAnimationCount = 25;
-        private const int MaxTimerCount = 30;
         private const int MaxAnimationCount = 30;
         private const int ImageSize = 90;
 
         private GameController gameController;
+        private int maxTimerCount;
         private readonly Timer mainTimer;
         private int timerCount;
         private int animationCount;
@@ -32,6 +32,7 @@ namespace Game
             mainTimer.Tick += Update;
             timerCount = -1;
             birdAnimationCount = 0;
+            maxTimerCount = 30;
             Init();
         }
 
@@ -45,31 +46,47 @@ namespace Game
 
         private void Update(object sender, EventArgs e)
         {
+            if (gameController.GetScore() == 50)
+                maxTimerCount = 25;
+            if (gameController.GetScore() == 100)
+                maxTimerCount = 20;
             timerCount++;
-            if (timerCount == MaxTimerCount)
+            if (timerCount == maxTimerCount)
             {
                 gameController.ChangeState();
                 timerCount = 0;
             }
-
             birdAnimationCount++;
             if (birdAnimationCount == MaxBirdAnimationCount)
                 birdAnimationCount = 0;
             animationCount++;
             if (animationCount == MaxAnimationCount)
                 animationCount = 0;
-            gameController.DoThisMethodEveryGameTick();
+            gameController.UpdatePlayerPosition();
             Invalidate();
         }
 
         private void DrawGame(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
+            DrawFinalState(g);
             DrawObjects(g);
             DrawPlayer(g);
             DrawScore(g);
         }
 
+        private void DrawFinalState(Graphics e)
+        {
+            if (gameController.GetLife() == 0)
+            {
+                mainTimer.Stop();
+                var point = new Point(400, 45);
+                e.DrawString("Game Over",
+                    new Font("Thintel", 120, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
+            }
+            
+        }
+        
         private void DrawScore(Graphics e)
         {
             var point = new Point(50, 45);
@@ -85,11 +102,11 @@ namespace Game
                     continue;
                 if (gameObject.TypeName == TypeName.Bird)
                     g.DrawImage(GetImage(gameObject.TypeName),
-                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 180 / MaxTimerCount * timerCount,
+                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 180 / maxTimerCount * timerCount,
                         400 + ImageSize * gameObject.PositionAndSize.Position.Y);
                 else
                     g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 90 / MaxTimerCount * timerCount,
+                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 90 / maxTimerCount * timerCount,
                     400 + ImageSize * gameObject.PositionAndSize.Position.Y);
             }
 

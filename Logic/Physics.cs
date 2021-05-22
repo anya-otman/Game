@@ -30,7 +30,7 @@ namespace Logic
             tick += 1;
         }
 
-        public void DoThisMethodEveryGameTick()
+        public void UpdatePlayerPosition()
         {
             if (ticksInAir != 0)
                 ticksInAir++;
