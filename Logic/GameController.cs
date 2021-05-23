@@ -10,7 +10,7 @@ namespace Logic
         private readonly Player player;
         private readonly List<int> positionsForFirstRoad;
         private readonly List<int> positionsForSecondRoad;
-        private Random random;
+        private readonly Random random;
 
 
         public GameController()
@@ -29,9 +29,9 @@ namespace Logic
             Collide();
         }
 
-        public void UpdatePlayerPosition()
+        public void UpdatePlayerPosition(int maxTickInAir)
         {
-            player.Physics.UpdatePlayerPosition();
+            player.Physics.UpdatePlayerPosition(maxTickInAir);
         }
 
         public void GetFood()
@@ -124,10 +124,8 @@ namespace Logic
                     GetNewObject();
                 }
             }
-
+            
             if (gameObjects.Count < 3)
-                GetNewObject();
-            /*if (gameObjects.Count < 2)
             {
                 var randomNumber = random.Next(0, 2);
                 if (randomNumber == 0)
@@ -135,28 +133,29 @@ namespace Logic
                 else
                     GetNewFirstRoad();
                 
-            }*/
+            }
         }
 
         private void GetNewFirstRoad()
         {
+            var delta = 5;
             foreach (var position in positionsForFirstRoad)
             {
                 if (position == 14 || position == 35 || position == 53)
                 {
-                    var obstacle = new Obstacles(new Point(position, 2), ChooseRandomObstacleImage());
+                    var obstacle = new Obstacles(new Point(position + delta, 2), ChooseRandomObstacleImage());
                     gameObjects.Add(obstacle);
                 }
 
                 if (position == 11 || position == 21 || position == 65 || position == 45)
                 {
-                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
+                    var food = new Food(new Point(position + delta, 2), ChooseRandomFoodImage());
                     gameObjects.Add(food);
                 }
 
                 if (position == 25)
                 {
-                    var badFood = new BadFood(new Point(position, 2), ChooseRandomBadFoodImage());
+                    var badFood = new BadFood(new Point(position + delta, 2), ChooseRandomBadFoodImage());
                     gameObjects.Add(badFood);
                 }
 
@@ -164,7 +163,7 @@ namespace Logic
                 {
                     var bird = new Bird(new Point(position, 1));
                     gameObjects.Add(bird);
-                    var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
+                    var food = new Food(new Point(position + delta, 2), ChooseRandomFoodImage());
                     gameObjects.Add(food);
                 }
             }
@@ -204,7 +203,7 @@ namespace Logic
 
         private void GetNewObject()
         {
-            var obj = random.Next(0, 4);
+            var obj = random.Next(0, 6);
             switch (obj)
             {
                 case 0:
@@ -214,6 +213,12 @@ namespace Logic
                 case 1:
                     var newFood = new Food(new Point(19, 2), ChooseRandomFoodImage());
                     gameObjects.Add(newFood);
+                    break;
+                case 4:
+                    gameObjects.Add(new Food(new Point(19, 2), ChooseRandomFoodImage()));
+                    break;
+                case 5:
+                    gameObjects.Add(new Food(new Point(19, 2), ChooseRandomFoodImage()));
                     break;
                 case 2:
                     var newBadFood = new BadFood(new Point(25, 2), ChooseRandomBadFoodImage());

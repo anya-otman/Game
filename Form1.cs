@@ -8,8 +8,8 @@ namespace Game
     public sealed partial class Form1 : Form
     {
         private const int MaxBirdAnimationCount = 25;
-        private const int MaxAnimationCount = 30;
         private const int ImageSize = 90;
+        private const int maxTickInAir = 60;
 
         private GameController gameController;
         private int maxTimerCount;
@@ -18,8 +18,7 @@ namespace Game
         private int animationCount;
         private int birdAnimationCount;
         private static Images images;
-
-
+        private int maxAnimationCount;
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +32,7 @@ namespace Game
             timerCount = -1;
             birdAnimationCount = 0;
             maxTimerCount = 30;
+            maxAnimationCount = 30;
             Init();
         }
 
@@ -47,9 +47,17 @@ namespace Game
         private void Update(object sender, EventArgs e)
         {
             if (gameController.GetScore() == 50)
+            {
                 maxTimerCount = 25;
+                maxAnimationCount = 26;
+            }
+
             if (gameController.GetScore() == 100)
+            {
                 maxTimerCount = 20;
+                maxAnimationCount = 22;
+            }
+
             timerCount++;
             if (timerCount == maxTimerCount)
             {
@@ -61,9 +69,9 @@ namespace Game
             if (birdAnimationCount == MaxBirdAnimationCount)
                 birdAnimationCount = 0;
             animationCount++;
-            if (animationCount == MaxAnimationCount)
+            if (animationCount == maxAnimationCount)
                 animationCount = 0;
-            gameController.UpdatePlayerPosition();
+            gameController.UpdatePlayerPosition(maxTickInAir);
             Invalidate();
         }
 
@@ -104,6 +112,7 @@ namespace Game
             mainTimer.Start();
             Controls.Clear();
         }
+
         private void DrawScore(Graphics e)
         {
             var point = new Point(50, 45);
@@ -173,7 +182,7 @@ namespace Game
                 case TypeName.Bush:
                     return images.Bush;
                 case TypeName.Totoro:
-                    if (animationCount < MaxAnimationCount / 2)
+                    if (animationCount < maxAnimationCount / 2)
                         return images.Totoro;
                     return images.TotoroGo;
                 case TypeName.AppleCore:

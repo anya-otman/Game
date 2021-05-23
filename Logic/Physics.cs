@@ -30,11 +30,11 @@ namespace Logic
             tick += 1;
         }
 
-        public void UpdatePlayerPosition()
+        public void UpdatePlayerPosition(int maxTickInAir)
         {
             if (ticksInAir != 0)
                 ticksInAir++;
-            if (ticksInAir == 60)
+            if (ticksInAir == maxTickInAir)
             {
                 ticksInAir = 0;
                 isJumping = false;

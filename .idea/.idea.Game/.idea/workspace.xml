@@ -22,10 +22,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ec171b7d-d26f-44d6-8b4c-433a2a9bdf40" name="Default Changelist" comment="add acceleration on score 50 and 100, add &quot;game over&quot;, start write code for second road">
+    <list default="true" id="ec171b7d-d26f-44d6-8b4c-433a2a9bdf40" name="Default Changelist" comment="add restart button">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Form1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Form1.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Logic/GameController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/GameController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logic/Physics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logic/Physics.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/Game.exe" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bin/Debug/Game.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Debug/Game.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/obj/Debug/Game.csprojAssemblyReference.cache" beforeDir="false" afterPath="$PROJECT_DIR$/obj/Debug/Game.csprojAssemblyReference.cache" afterDir="false" />
@@ -175,7 +176,7 @@
       <workItem from="1621277286877" duration="8013000" />
       <workItem from="1621490939240" duration="5762000" />
       <workItem from="1621594598476" duration="18755000" />
-      <workItem from="1621756456540" duration="4329000" />
+      <workItem from="1621756456540" duration="6838000" />
     </task>
     <task id="LOCAL-00001" summary="make array and add enam GameClass.cs">
       <created>1620120761072</created>
@@ -373,7 +374,14 @@
       <option name="project" value="LOCAL" />
       <updated>1621712322167</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="add restart button">
+      <created>1621767631845</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1621767631845</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -395,7 +403,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="make array and add enam GameClass.cs" />
     <MESSAGE value="division logic and drawing, add enum ImageName.cs" />
     <MESSAGE value="add new project logic, add logic take food" />
     <MESSAGE value="add interaction with object and reaction to keys" />
@@ -420,25 +427,26 @@
     <MESSAGE value="add slow normal animation" />
     <MESSAGE value="add slow normal animation, start create second road type" />
     <MESSAGE value="add acceleration on score 50 and 100, add &quot;game over&quot;, start write code for second road" />
-    <option name="LAST_COMMIT_MESSAGE" value="add acceleration on score 50 and 100, add &quot;game over&quot;, start write code for second road" />
+    <MESSAGE value="add restart button" />
+    <option name="LAST_COMMIT_MESSAGE" value="add restart button" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1493" height="25" key="GridCell.Tab.0.bottom" timestamp="1621767188660">
+    <state width="1493" height="25" key="GridCell.Tab.0.bottom" timestamp="1621769795946">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="25" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621767188660" />
-    <state width="1493" height="25" key="GridCell.Tab.0.center" timestamp="1621767188660">
+    <state width="1493" height="25" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1621769795946" />
+    <state width="1493" height="25" key="GridCell.Tab.0.center" timestamp="1621769795946">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="25" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621767188660" />
-    <state width="1493" height="25" key="GridCell.Tab.0.left" timestamp="1621767188660">
+    <state width="1493" height="25" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1621769795946" />
+    <state width="1493" height="25" key="GridCell.Tab.0.left" timestamp="1621769795945">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="25" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621767188660" />
-    <state width="1493" height="25" key="GridCell.Tab.0.right" timestamp="1621767188660">
+    <state width="1493" height="25" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1621769795945" />
+    <state width="1493" height="25" key="GridCell.Tab.0.right" timestamp="1621769795946">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="25" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621767188660" />
+    <state width="1493" height="25" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1621769795946" />
     <state width="1493" height="288" key="GridCell.Tab.1.bottom" timestamp="1621272569257">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -515,10 +523,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="93" y="93" width="1350" height="638" key="VCS.FileHistoryDialog/0.0.1536.824@0.0.1536.824" timestamp="1621678603630" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1621712327416">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1621767640036">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621712327416" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1621767640036" />
     <state x="586" y="326" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1621446019472">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
