@@ -7,9 +7,9 @@ namespace Game
 {
     public sealed partial class Form1 : Form
     {
-        private const int MaxBirdAnimationCount = 25;
-        private const int ImageSize = 90;
-        private const int MaxTickInAir = 60;
+        private const int maxBirdAnimationCount = 25;
+        private const int imageSize = 90;
+        private const int maxTickInAir = 60;
 
         private GameController gameController;
         private int maxTimerCount;
@@ -66,12 +66,12 @@ namespace Game
             }
 
             birdAnimationCount++;
-            if (birdAnimationCount == MaxBirdAnimationCount)
+            if (birdAnimationCount == maxBirdAnimationCount)
                 birdAnimationCount = 0;
             animationCount++;
             if (animationCount == maxAnimationCount)
                 animationCount = 0;
-            gameController.UpdatePlayerPosition(MaxTickInAir);
+            gameController.UpdatePlayerPosition(maxTickInAir);
             Invalidate();
         }
 
@@ -88,9 +88,9 @@ namespace Game
         private void DrawFinalState(Graphics e)
         {
             mainTimer.Stop();
-            var point = new Point(400, 45);
+            var point = new Point(480, 30);
             e.DrawString("Game Over",
-                new Font("Thintel", 120, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
+                new Font("Thintel", 100, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
             CreateRestartButton();
         }
 
@@ -124,18 +124,18 @@ namespace Game
         {
             foreach (var gameObject in gameController.GetGameObjectList())
             {
-                if (gameObject.PositionAndSize.Position.X > 1800 / ImageSize)
+                if (gameObject.PositionAndSize.Position.X > 1800 / imageSize)
                     continue;
                 if (gameObject.TypeName == TypeName.Bird)
                     g.DrawImage(GetImage(gameObject.TypeName),
-                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize -
+                        -imageSize + gameObject.PositionAndSize.Position.X * imageSize -
                         180 / maxTimerCount * timerCount,
-                        400 + ImageSize * gameObject.PositionAndSize.Position.Y);
+                        400 + imageSize * gameObject.PositionAndSize.Position.Y);
                 else
                     g.DrawImage(GetImage(gameObject.TypeName),
-                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize -
+                        -imageSize + gameObject.PositionAndSize.Position.X * imageSize -
                         90 / maxTimerCount * timerCount,
-                        400 + ImageSize * gameObject.PositionAndSize.Position.Y);
+                        400 + imageSize * gameObject.PositionAndSize.Position.Y);
             }
 
             for (int i = 0; i < gameController.GetLife(); i++)
@@ -150,17 +150,17 @@ namespace Game
             var playerImage = gameController.GetPlayerImageName();
 
             if (playerPhysics.IsCrouching)
-                g.DrawImage(GetImage(playerImage), -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
-                    405 + playerPhysics.PositionAndSize.Position.Y * ImageSize,
-                    ImageSize, ImageSize);
+                g.DrawImage(GetImage(playerImage), -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
+                    405 + playerPhysics.PositionAndSize.Position.Y * imageSize,
+                    imageSize, imageSize);
             else if (playerPhysics.IsJumping)
                 g.DrawImage(GetImage(gameController.GetPlayerImageName()),
-                    -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
-                    400 + playerPhysics.PositionAndSize.Position.Y * ImageSize);
+                    -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
+                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize);
             else
                 g.DrawImage(GetImage(gameController.GetPlayerImageName()),
-                    -ImageSize + playerPhysics.PositionAndSize.Position.X * ImageSize,
-                    400 + playerPhysics.PositionAndSize.Position.Y * ImageSize);
+                    -imageSize + playerPhysics.PositionAndSize.Position.X * imageSize,
+                    400 + playerPhysics.PositionAndSize.Position.Y * imageSize);
         }
 
         private Image GetImage(TypeName typeName)

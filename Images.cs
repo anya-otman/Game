@@ -25,23 +25,24 @@ namespace Game
 
         public Images()
         {
-            Corn = new Bitmap(Resources.corn, 90, 90);
-            Berries = new Bitmap(Resources.berries, 90, 90);
-            Nut = new Bitmap(Resources.nut, 90, 90);
-            Bush = new Bitmap(Resources.bush, 90, 90);
-            Stone1 = new Bitmap(Resources.stone1, 90, 90);
-            Stone2 = new Bitmap(Resources.stone2, 90, 90);
-            Stump = new Bitmap(Resources.stump, 90, 90);
-            AppleCore = new Bitmap(Resources.appleCore, 90, 90);
-            Mushroom = new Bitmap(Resources.mushroom, 90, 90);
-            Totoro = new Bitmap(Resources.totoro, 90, 180);
-            TotoroGo = new Bitmap(Resources.totoroGo, 90, 180);
-            Bird1 = new Bitmap(Resources.bird1, 90, 90);
-            Bird2 = new Bitmap(Resources.bird2, 90, 90);
-            Bird3 = new Bitmap(Resources.bird3, 90, 90);
-            Bird4 = new Bitmap(Resources.bird4, 90, 90);
-            Bird5 = new Bitmap(Resources.bird5, 90, 90);
-            Life = new Bitmap(Resources.life, 60, 60);
+            var imageSize = 90;
+            Corn = new Bitmap(Resources.corn, imageSize, imageSize);
+            Berries = new Bitmap(Resources.berries, imageSize, imageSize);
+            Nut = new Bitmap(Resources.nut, imageSize, imageSize);
+            Bush = new Bitmap(Resources.bush, imageSize, imageSize);
+            Stone1 = new Bitmap(Resources.stone1, imageSize, imageSize);
+            Stone2 = new Bitmap(Resources.stone2, imageSize, imageSize);
+            Stump = new Bitmap(Resources.stump, imageSize, imageSize);
+            AppleCore = new Bitmap(Resources.appleCore, imageSize, imageSize);
+            Mushroom = new Bitmap(Resources.mushroom, imageSize, imageSize);
+            Totoro = new Bitmap(Resources.totoro, imageSize, 2 * imageSize);
+            TotoroGo = new Bitmap(Resources.totoroGo, imageSize, 2 * imageSize);
+            Bird1 = new Bitmap(Resources.bird1, imageSize, imageSize);
+            Bird2 = new Bitmap(Resources.bird2, imageSize, imageSize);
+            Bird3 = new Bitmap(Resources.bird3, imageSize, imageSize);
+            Bird4 = new Bitmap(Resources.bird4, imageSize, imageSize);
+            Bird5 = new Bitmap(Resources.bird5, imageSize, imageSize);
+            Life = new Bitmap(Resources.life, 2 * imageSize / 3, 2 * imageSize / 3);
         }
     }
 }

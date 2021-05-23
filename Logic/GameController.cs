@@ -12,16 +12,16 @@ namespace Logic
         private readonly List<int> positionsForSecondRoad;
         private readonly Random random;
 
-
         public GameController()
         {
             gameObjects = new List<IGameObject>();
-            positionsForFirstRoad = new List<int> {11, 14, 21, 25, 30, 35, 45, 53, 65};
-            positionsForSecondRoad = new List<int> {15, 19, 24, 28, 34, 36, 40, 45, 51, 57, 60}; 
+            positionsForFirstRoad = new List<int> {9, 14, 21, 25, 28, 35, 45, 53, 65};
+            positionsForSecondRoad = new List<int> {16, 19, 23, 30, 33, 36, 40, 47, 51, 57, 60}; 
             player = new Player(new Point(3, 1), 5);
             random = new Random();
             GetNewFirstRoad();
         }
+
         public void ChangeState()
         {
             MoveMap();
@@ -102,7 +102,6 @@ namespace Logic
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -147,7 +146,7 @@ namespace Logic
                     gameObjects.Add(obstacle);
                 }
 
-                if (position == 11 || position == 21 || position == 65 || position == 45)
+                if (position == 9 || position == 21 || position == 65 || position == 45)
                 {
                     var food = new Food(new Point(position + delta, 2), ChooseRandomFoodImage());
                     gameObjects.Add(food);
@@ -159,7 +158,7 @@ namespace Logic
                     gameObjects.Add(badFood);
                 }
 
-                if (position == 30)
+                if (position == 28)
                 {
                     var bird = new Bird(new Point(position, 1));
                     gameObjects.Add(bird);
@@ -173,13 +172,13 @@ namespace Logic
         {
             foreach (var position in positionsForSecondRoad)
             {
-                if (position == 24 || position == 36|| position == 40 || position == 57)
+                if (position == 23 || position == 36|| position == 40 || position == 57)
                 {
                     var obstacle = new Obstacles(new Point(position, 2), ChooseRandomObstacleImage());
                     gameObjects.Add(obstacle);
                 }
 
-                if (position == 15 || position == 19 || position == 28 || position == 45 || position == 60)
+                if (position == 16 || position == 19 || position == 30 || position == 47 || position == 60)
                 {
                     var food = new Food(new Point(position, 2), ChooseRandomFoodImage());
                     gameObjects.Add(food);
@@ -191,7 +190,7 @@ namespace Logic
                     gameObjects.Add(badFood);
                 }
 
-                if (position == 34)
+                if (position == 33)
                 {
                     var bird = new Bird(new Point(position, 1));
                     gameObjects.Add(bird);
@@ -203,25 +202,25 @@ namespace Logic
 
         private void GetNewObject()
         {
-            var obj = random.Next(0, 6);
+            var obj = random.Next(0, 5);
             switch (obj)
             {
                 case 0:
-                    var newObstacle = new Obstacles(new Point(25, 2), ChooseRandomObstacleImage());
+                    var newObstacle = new Obstacles(new Point(39, 2), ChooseRandomObstacleImage());
                     gameObjects.Add(newObstacle);
                     break;
                 case 1:
-                    var newFood = new Food(new Point(19, 2), ChooseRandomFoodImage());
+                    var newFood = new Food(new Point(26, 2), ChooseRandomFoodImage());
                     gameObjects.Add(newFood);
                     break;
                 case 4:
-                    gameObjects.Add(new Food(new Point(19, 2), ChooseRandomFoodImage()));
+                    gameObjects.Add(new Food(new Point(29, 2), ChooseRandomFoodImage()));
                     break;
                 case 5:
-                    gameObjects.Add(new Food(new Point(19, 2), ChooseRandomFoodImage()));
+                    gameObjects.Add(new Obstacles(new Point(17, 2), ChooseRandomFoodImage()));
                     break;
                 case 2:
-                    var newBadFood = new BadFood(new Point(25, 2), ChooseRandomBadFoodImage());
+                    var newBadFood = new BadFood(new Point(22, 2), ChooseRandomBadFoodImage());
                     gameObjects.Add(newBadFood);
                     break;
                 case 3:
@@ -311,7 +310,5 @@ namespace Logic
             }
             throw new Exception();
         }
-
-        
     }
 }

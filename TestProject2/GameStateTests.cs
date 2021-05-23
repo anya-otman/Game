@@ -15,7 +15,7 @@ namespace TestProject2
             gameController.ChangeState();
 
             var objPosition = obj.PositionAndSize;
-            var expectedObj = new PositionAndSize(new Point(15, 2), new Size(1, 1));
+            var expectedObj = new PositionAndSize(new Point(13, 2), new Size(1, 1));
 
             Assert.AreEqual(expectedObj.Position.X, objPosition.Position.X);
         }
@@ -24,7 +24,7 @@ namespace TestProject2
         public void LifeChange_WhenCollideWithObstacle()
         {
             var gameController = new GameController();
-            for (var i = 0; i < 33; i++)
+            for (var i = 0; i < 16; i++)
             {
                 gameController.ChangeState();
             }

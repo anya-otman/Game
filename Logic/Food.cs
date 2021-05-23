@@ -5,7 +5,7 @@ namespace Logic
     public class Food : IGameObject
     {
         public PositionAndSize PositionAndSize { get; }
-        public TypeName TypeName { get; private set; }
+        public TypeName TypeName { get; }
         public GameClass ObjectName => GameClass.Food;
 
         public Food(Point point, TypeName typeName)

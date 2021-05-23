@@ -16,6 +16,5 @@ namespace Logic
             Life = maxLife;
             ImageName = TypeName.Totoro;
         }
-
     }
 }

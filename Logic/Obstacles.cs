@@ -13,7 +13,5 @@ namespace Logic
             PositionAndSize = new PositionAndSize(point, new Size(1,1));
             TypeName = typeName;
         }
-
-        
     }
 }
