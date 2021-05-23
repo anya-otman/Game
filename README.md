@@ -1,5 +1,5 @@
-Up - Jump\
-Down - Sit down\
+Key Up - Jump\
+Key Down - Sit down\
 Space - Take food
 
 Food: corn, berries, nut\
