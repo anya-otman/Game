@@ -56,6 +56,7 @@ namespace Game
                 gameController.ChangeState();
                 timerCount = 0;
             }
+
             birdAnimationCount++;
             if (birdAnimationCount == MaxBirdAnimationCount)
                 birdAnimationCount = 0;
@@ -69,7 +70,8 @@ namespace Game
         private void DrawGame(object sender, PaintEventArgs e)
         {
             var g = e.Graphics;
-            DrawFinalState(g);
+            if (gameController.GetLife() == 0)
+                DrawFinalState(g);
             DrawObjects(g);
             DrawPlayer(g);
             DrawScore(g);
@@ -77,16 +79,31 @@ namespace Game
 
         private void DrawFinalState(Graphics e)
         {
-            if (gameController.GetLife() == 0)
-            {
-                mainTimer.Stop();
-                var point = new Point(400, 45);
-                e.DrawString("Game Over",
-                    new Font("Thintel", 120, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
-            }
-            
+            mainTimer.Stop();
+            var point = new Point(400, 45);
+            e.DrawString("Game Over",
+                new Font("Thintel", 120, FontStyle.Bold, GraphicsUnit.Pixel), Brushes.Chartreuse, point);
+            CreateRestartButton();
         }
-        
+
+        private void CreateRestartButton()
+        {
+            var button = new Button {Location = new Point(450, 300), Size = new Size(230, 100)};
+            button.Click += ButtonClick;
+            button.Text = @"Restart";
+            button.ForeColor = Color.Chartreuse;
+            button.Font = new Font("Thintel", 80, FontStyle.Bold, GraphicsUnit.Pixel);
+            button.BackColor = Color.Peru;
+            Controls.Add(button);
+        }
+
+        private void ButtonClick(object sender, EventArgs e)
+        {
+            gameController = new GameController();
+            maxTimerCount = 30;
+            mainTimer.Start();
+            Controls.Clear();
+        }
         private void DrawScore(Graphics e)
         {
             var point = new Point(50, 45);
@@ -102,12 +119,14 @@ namespace Game
                     continue;
                 if (gameObject.TypeName == TypeName.Bird)
                     g.DrawImage(GetImage(gameObject.TypeName),
-                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 180 / maxTimerCount * timerCount,
+                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize -
+                        180 / maxTimerCount * timerCount,
                         400 + ImageSize * gameObject.PositionAndSize.Position.Y);
                 else
                     g.DrawImage(GetImage(gameObject.TypeName),
-                    -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize - 90 / maxTimerCount * timerCount,
-                    400 + ImageSize * gameObject.PositionAndSize.Position.Y);
+                        -ImageSize + gameObject.PositionAndSize.Position.X * ImageSize -
+                        90 / maxTimerCount * timerCount,
+                        400 + ImageSize * gameObject.PositionAndSize.Position.Y);
             }
 
             for (int i = 0; i < gameController.GetLife(); i++)
