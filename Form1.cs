@@ -9,7 +9,7 @@ namespace Game
     {
         private const int MaxBirdAnimationCount = 25;
         private const int ImageSize = 90;
-        private const int maxTickInAir = 60;
+        private const int MaxTickInAir = 60;
 
         private GameController gameController;
         private int maxTimerCount;
@@ -71,7 +71,7 @@ namespace Game
             animationCount++;
             if (animationCount == maxAnimationCount)
                 animationCount = 0;
-            gameController.UpdatePlayerPosition(maxTickInAir);
+            gameController.UpdatePlayerPosition(MaxTickInAir);
             Invalidate();
         }
 

@@ -15,28 +15,11 @@ namespace TestProject2
             gameController.ChangeState();
 
             var objPosition = obj.PositionAndSize;
-            var expectedObj = new PositionAndSize(new Point(10, 2), new Size(1, 1));
+            var expectedObj = new PositionAndSize(new Point(15, 2), new Size(1, 1));
 
             Assert.AreEqual(expectedObj.Position.X, objPosition.Position.X);
         }
-
-        [Test]
-        public void ScoreChange()
-        {
-            var gameController = new GameController();
-            for (var i = 0; i < 7; i++)
-            {
-                gameController.ChangeState();
-            }
-
-            gameController.GetFood();
-
-            var score = gameController.GetScore();
-            var expectedScore = 10;
-
-            Assert.AreEqual(expectedScore, score);
-        }
-
+        
         [Test]
         public void LifeChange_WhenCollideWithObstacle()
         {
@@ -47,7 +30,7 @@ namespace TestProject2
             }
 
             var livesNumber = gameController.GetLife();
-            var expectedLivesNumber = 3;
+            var expectedLivesNumber = 4;
 
             Assert.AreEqual(expectedLivesNumber, livesNumber);
         }
